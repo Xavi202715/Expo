@@ -1,0 +1,469 @@
+/* Importación de fuentes amigables */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap');
+
+:root {
+    --bg-main: #fdfbf7;       /* Blanco/Crema exacto del prototipo */
+    --text-dark: #2c2a29;     /* Gris muy oscuro/negro de tu paleta */
+    --orange-primary: #a34828; /* Marrón/Anaranjado rojizo de los botones */
+    --yellow-brand: #b88a41;   /* Ocre/Mostaza de tu paleta */
+    --green-brand: #3a6b45;    /* Verde orgánico de las hojas */
+    --card-bg: #ffffff;
+    --border-color: #ededed;
+    --panel-bg: #f4f3ea;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main); 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    color: var(--text-dark);
+}
+
+/* ==========================================================================
+   DISEÑO DEL ENTORNO DE FONDO (PC) - FORMAS DE TU PALETA
+   ========================================================================== */
+.bg-decorations-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.decor-shape.left-orange-blob {
+    position: absolute;
+    width: 260px;
+    height: 500px;
+    background-color: var(--yellow-brand);
+    border-radius: 0 250px 250px 0;
+    left: 0;
+    top: 15%;
+    opacity: 0.85;
+}
+
+.decor-shape.left-green-leaves {
+    position: absolute;
+    width: 180px;
+    height: 320px;
+    background-color: var(--green-brand);
+    border-radius: 0 160px 160px 0;
+    left: 0;
+    top: 55%;
+    opacity: 0.95;
+}
+
+.decor-shape.right-brown-blob {
+    position: absolute;
+    width: 240px;
+    height: 550px;
+    background-color: var(--orange-primary);
+    border-radius: 270px 0 0 270px;
+    right: 0;
+    top: 25%;
+    opacity: 0.9;
+}
+
+.decor-shape.right-green-leaves {
+    position: absolute;
+    width: 140px;
+    height: 220px;
+    background-color: var(--green-brand);
+    border-radius: 110px 0 0 110px;
+    right: 0;
+    top: 75%;
+    opacity: 0.85;
+}
+
+/* ==========================================================================
+   ESTRUCTURA DE LA TARJETA CENTRAL
+   ========================================================================== */
+.app-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    z-index: 2;
+}
+
+.login-container {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 50px;
+    padding: 40px 35px;
+    box-shadow: 0 20px 60px rgba(44, 42, 41, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra superior */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.top-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #8a817c;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.icon-circle {
+    width: 45px;
+    height: 45px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--green-brand);
+}
+
+.top-option:first-child .icon-circle {
+    color: var(--yellow-brand);
+}
+
+/* Sección del Logotipo (CORREGIDO: Sin círculo de fondo y más grande) */
+.brand-section {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.logo-container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;          /* Ocupa el ancho completo para centrar al conejito libre */
+    height: 120px;         /* Altura adecuada para el logo */
+    margin-bottom: 10px;
+}
+
+.brand-logo {
+    height: 100%;          /* Forzamos a que use el alto máximo del contenedor */
+    width: auto;           /* Mantiene la proporción perfecta del conejito */
+    object-fit: contain;
+    transform: scale(2.2); /* Ampliado estratégicamente para eliminar los márgenes transparentes del archivo */
+}
+
+.brand-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 2.7rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.brand-title span {
+    color: var(--green-brand);
+}
+
+.brand-tagline {
+    color: #617168;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   ILUSTRACIÓN DE LOS NIÑOS
+   ========================================================================== */
+.illustration-container {
+    width: 100%;
+    height: 280px;         
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;      
+    margin: -10px 0 5px 0; 
+}
+
+.main-illustration {
+    width: 120%;           
+    height: 100%;
+    object-fit: contain;
+    transform: scale(2.4); 
+}
+
+/* Campos de entrada del Formulario */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 22px;
+    color: var(--orange-primary);
+    font-size: 1.15rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px 20px 16px 58px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 1rem;
+    outline: none;
+    background-color: #fafafa;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.input-group input:focus {
+    border-color: var(--orange-primary);
+    background-color: #fff;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 22px;
+    cursor: pointer;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+/* Formulario opciones */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.remember-me input {
+    margin-right: 8px;
+    accent-color: var(--green-brand);
+    width: 18px;
+    height: 18px;
+}
+
+.forgot-password {
+    color: var(--green-brand);
+    text-decoration: none;
+}
+
+/* Botón Iniciar Sesión */
+.btn-submit {
+    background-color: var(--orange-primary);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 25px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 5px;
+    box-shadow: 0 6px 15px rgba(163, 72, 40, 0.15);
+}
+
+/* Separadores de Redes */
+.divider {
+    text-align: center;
+    margin: 18px 0;
+    position: relative;
+}
+
+.divider::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.divider span {
+    background-color: var(--card-bg);
+    padding: 0 15px;
+    color: #7f8c8d;
+    font-size: 0.85rem;
+    position: relative;
+}
+
+/* Botones de Redes Sociales */
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-color);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.social-btn.google { color: #ea4335; }
+.social-btn.microsoft { color: #00a4ef; }
+.social-btn.apple { color: #000000; }
+
+/* Panel de Accesibilidad */
+.accessibility-panel {
+    background-color: var(--panel-bg);
+    border-radius: 26px;
+    padding: 18px;
+    text-align: center;
+}
+
+.accessibility-panel h3 {
+    font-size: 0.95rem;
+    color: var(--green-brand);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.accessibility-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.access-item {
+    background: white;
+    border: none;
+    border-radius: 16px;
+    padding: 10px 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    min-height: 80px;
+}
+
+.access-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--green-brand);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.text-icon { font-size: 1.4rem; font-family: 'Fredoka', sans-serif; }
+.letter-space { font-size: 0.8rem; letter-spacing: 1px; }
+
+.access-item span {
+    font-size: 0.68rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.zoom-buttons {
+    display: none;
+    gap: 4px;
+}
+
+.zoom-buttons.active {
+    display: flex;
+}
+
+.zoom-buttons button {
+    background-color: var(--green-brand);
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.panel-footer {
+    font-size: 0.72rem;
+    color: #8a968a;
+    margin-top: 2px;
+}
+
+/* ==========================================================================
+   📱 ADAPTACIÓN SMARTPHONE (Celular)
+   ========================================================================== */
+@media (max-width: 520px) {
+    .app-wrapper {
+        padding: 0;
+    }
+    .login-container {
+        border-radius: 0px;
+        min-height: 100vh;
+        box-shadow: none;
+        padding: 30px 20px;
+    }
+    .bg-decorations-container {
+        display: none;
+    }
+    .logo-container {
+        height: 100px;         /* Proporción reducida para pantallas móviles */
+    }
+    .brand-logo {
+        transform: scale(1.8); /* Ajuste de escala para celular */
+    }
+    .illustration-container {
+        height: 230px;     
+    }
+    .main-illustration {
+        transform: scale(2.1); 
+    }
+}
+
+/* Modos de Accesibilidad */
+.high-contrast-mode { background-color: #000000 !important; }
+.high-contrast-mode .bg-decorations-container { display: none; }
+.high-contrast-mode .login-container { background-color: #121212 !important; border: 2px solid #ffffff; }
+.high-contrast-mode .brand-title, .high-contrast-mode .brand-tagline, .high-contrast-mode .top-option, .high-contrast-mode .form-options, .high-contrast-mode .remember-me, .high-contrast-mode .forgot-password, .high-contrast-mode .divider span, .high-contrast-mode .accessibility-panel h3, .high-contrast-mode .panel-footer, .high-contrast-mode .access-item span { color: #ffffff !important; }
+.extra-spacing-mode * { letter-spacing: 2px !important; line-height: 1.7 !important; }
+.focus-visible-mode input:focus, .focus-visible-mode button:focus, .focus-visible-mode .access-item:focus { outline: 4px solid var(--yellow-brand) !important; outline-offset: 2px; }

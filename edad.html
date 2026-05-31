@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriPeques - ¿Cuántos años tienes?</title>
+    <link rel="stylesheet" href="style_edad.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="bg-decorations-container">
+        <div class="decor-shape left-yellow-blob"></div>
+        <div class="decor-shape right-orange-blob"></div>
+    </div>
+
+    <div class="app-wrapper">
+        <div class="age-container">
+            
+            <div class="top-nav-bar">
+                <button type="button" class="nav-btn-circle" onclick="window.history.back()" title="Atrás">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                
+                <div class="step-indicator">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+                <div class="top-option" id="goToAccessibility">
+                    <div class="icon-circle"><i class="fa-solid fa-universal-access"></i></div>
+                    <span>Accesibilidad</span>
+                </div>
+            </div>
+
+            <div class="question-section">
+                <h1 class="question-title">¿Cuántos años tienes?</h1>
+                <p class="question-tagline">Así personalizamos tu experiencia para ayudarte a crecer saludable.</p>
+            </div>
+
+            <div class="interactive-display">
+                <div class="character-left">
+                    <img src="img/niña.png" alt="Niña NutriPeques" class="char-img">
+                </div>
+
+                <div class="age-badge-center">
+                    <div class="circle-bg-glow"></div>
+                    <div class="age-number-display"><span id="ageValue">10</span></div>
+                    <div class="age-text-label">años</div>
+                    
+                    <button type="button" class="audio-feedback-btn" id="btnSpeakAge">
+                        <i class="fa-solid fa-volume-high"></i> <span id="audioText">10 años seleccionado</span>
+                    </button>
+                </div>
+
+                <div class="character-right">
+                    <img src="img/monis.png" alt="Conejito NutriPeques" class="char-img">
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <div class="slider-wrapper">
+                    <button type="button" class="calc-btn" id="btnMinus" aria-label="Disminuir edad">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                    
+                    <div class="range-container">
+                        <input type="range" id="ageSlider" min="6" max="15" value="10" step="1">
+                        <div class="slider-ticks">
+                            <span class="tick" data-age="6">6<small>años</small></span>
+                            <span class="tick" data-age="7">7</span>
+                            <span class="tick" data-age="8">8</span>
+                            <span class="tick" data-age="9">9</span>
+                            <span class="tick" data-age="10">10</span>
+                            <span class="tick" data-age="11">11</span>
+                            <span class="tick" data-age="12">12</span>
+                            <span class="tick" data-age="13">13</span>
+                            <span class="tick" data-age="14">14</span>
+                            <span class="tick" data-age="15">15<small>años</small></span>
+                        </div>
+                    </div>
+
+                    <button type="button" class="calc-btn" id="btnPlus" aria-label="Aumentar edad">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="motivation-card">
+                <div class="motivation-icon-circle">
+                    <i class="fa-regular fa-star"></i>
+                </div>
+                <div class="motivation-text">
+                    <h3>¡Cada edad es increíble!</h3>
+                    <p>Come bien, aprende y diviértete. Estamos aquí para acompañarte.</p>
+                </div>
+                <div class="motivation-illustration">
+                    <img src="img/brocoliabra.png" alt="Brócoli feliz" class="broccoli-img">
+                </div>
+            </div>
+
+            <button type="button" class="btn-continue" id="btnContinue">
+                Continuar <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <div id="accessibilityPanel" class="accessibility-panel">
+                <h3>Accesibilidad rápida</h3>
+                <div class="accessibility-grid">
+                    
+                    <div class="access-item" id="textAccessItem">
+                        <div class="access-icon text-icon">Aa</div>
+                        <div class="zoom-buttons" id="zoomContainer">
+                            <button type="button" id="btnZoomIn" title="Aumentar letra">+</button>
+                            <button type="button" id="btnZoomOut" title="Disminuir letra">-</button>
+                        </div>
+                        <span>Texto grande</span>
+                    </div>
+
+                    <button type="button" class="access-item" id="btnContrast">
+                        <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
+                        <span>Alto contraste</span>
+                    </button>
+
+                    <button type="button" class="access-item" id="btnSpeakText">
+                        <div class="access-icon"><i class="fa-solid fa-volume-high"></i></div>
+                        <span>Leer en voz alta</span>
+                    </button>
+
+                    <button type="button" class="access-item" id="btnSpacing">
+                        <div class="access-icon letter-space">AAA</div>
+                        <span>Más espacio</span>
+                    </button>
+
+                    <button type="button" class="access-item" id="btnFocus">
+                        <div class="access-icon"><i class="fa-solid fa-expand"></i></div>
+                        <span>Enfoque visible</span>
+                    </button>
+
+                </div>
+                <p class="panel-footer">Puedes cambiar estas opciones en cualquier momento.</p>
+                <div class="privacy-footer">
+                    <i class="fa-solid fa-shield-halved"></i> Tus datos están seguros y son privados.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script_edad.js"></script>
+</body>
+</html>
