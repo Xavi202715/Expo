@@ -1,124 +1,182 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriPeques - Iniciar Sesión</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutritionExpress</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 </head>
 <body>
 
-    <div class="bg-decorations-container">
-        <div class="decor-shape left-orange-blob"></div>
-        <div class="decor-shape left-green-leaves"></div>
-        <div class="decor-shape right-brown-blob"></div>
-        <div class="decor-shape right-green-leaves"></div>
+      <header>
+        <div class="logo">
+            <img src="img/logo.png" class="imglogo">
+             <span>Nutrition<br>Express</span>
+        </div>
+
+        <nav>
+            <a href="#" class="active">Inicio</a>
+            <a href="#">Recetas</a>
+            <a href="#">Calculadora</a>
+            <a href="#">Nosotros</a>
+            <a href="#">Expertos</a>
+        </nav>
+
+        <div class="user">
+            
+        </div>
+
+        <div class="user">
+            <img src="img/perfil.png">
+        </div>
+    </header>
+
+<div class="auth-container">
+
+    <div class="auth-left">
+
+        <img src="img/logo.png" class="logo">
+
+        <h1>Nutrition<span>Express</span></h1>
+
+        <p class="decoration">
+          <strong>Come bien, vive mejor</strong>  
+        </p>
+
+
     </div>
 
-    <div class="app-wrapper">
-        <div class="login-container">
-            
-            <div class="top-bar">
-                <div class="top-option">
-                    <div class="icon-circle"><i class="fa-regular fa-user"></i></div>
-                    <span>Invitado</span>
-                </div>
-                <div class="top-option">
-                    <div class="icon-circle"><i class="fa-solid fa-universal-access"></i></div>
-                    <span>Accesibilidad</span>
-                </div>
+    <div class="auth-right">
+
+        <h2>Iniciar sesión</h2>
+
+        <form id="loginForm">
+
+            <div class="input-box">
+                <i class="fa-regular fa-envelope"></i>
+
+                <input
+                type="email"
+                id="email"
+                placeholder="Correo electrónico"
+                required>
             </div>
 
-            <div class="brand-section">
-                <div class="logo-container">
-                    <img src="img/logo.png" alt="Logo NutriPeques" class="brand-logo">
-                </div>
-                <h1 class="brand-title">Nutri<span>Peques</span></h1>
-                <p class="brand-tagline">Aprende, come bien y crece fuerte</p>
+            <div class="input-box">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <input
+                type="password"
+                id="password"
+                placeholder="Contraseña"
+                required>
+
+                <i
+                class="fa-regular fa-eye"
+                id="togglePassword">
+                </i>
+
             </div>
 
-            <div class="illustration-container">
-                <img src="img/niños.png" alt="Niños NutriPeques" class="main-illustration">
+            <div class="options">
+
+                <label>
+                    <input type="checkbox">
+                    Recordarme
+                </label>
+
+                <a href="forgot-password.html">
+                    ¿Olvidaste tu contraseña?
+                </a>
+
             </div>
 
-            <form id="loginForm" class="login-form">
-                
-                <div class="input-group">
-                    <i class="fa-regular fa-envelope input-icon"></i>
-                    <input type="email" id="email" placeholder="Correo electrónico" required>
-                </div>
+            <button type="submit">
+                Iniciar sesión
+            </button>
 
-                <div class="input-group">
-                    <i class="fa-solid fa-lock input-icon"></i>
-                    <input type="password" id="password" placeholder="Contraseña" required>
-                    <i class="fa-regular fa-eye toggle-password" id="togglePassword"></i>
-                </div>
+        </form>
 
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" id="remember">
-                        <span class="checkmark"></span>
-                        Recordarme
-                    </label>
-                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
-                </div>
+        <div class="separator">
+            <span>o continuar con</span>
+        </div>
 
-                <button type="submit" class="btn-submit">
-                    Iniciar sesión <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </form>
+        <div class="social-buttons">
 
-            <div class="divider">
-                <span>o continúa con</span>
-            </div>
+            <button class="google">
+                <i class="fa-brands fa-google"></i>
+                Google
+            </button>
 
-            <div class="social-login">
-                <button type="button" class="social-btn google"><i class="fa-brands fa-google"></i></button>
-                <button type="button" class="social-btn microsoft"><i class="fa-brands fa-windows"></i></button>
-                <button type="button" class="social-btn apple"><i class="fa-brands fa-apple"></i></button>
-            </div>
-
-            <div class="accessibility-panel">
-                <h3>Accesibilidad rápida</h3>
-                <div class="accessibility-grid">
-                    
-                    <div class="access-item" id="textAccessItem" onclick="toggleZoomButtons(event)">
-                        <div class="access-icon text-icon">A</div>
-                        <div class="zoom-buttons" id="zoomContainer">
-                            <button type="button" onclick="changeFontSize(1, event)" title="Aumentar letra">+</button>
-                            <button type="button" onclick="changeFontSize(-1, event)" title="Disminuir letra">-</button>
-                        </div>
-                        <span>Texto grande</span>
-                    </div>
-
-                    <button type="button" class="access-item" onclick="toggleContrast()">
-                        <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
-                        <span>Alto contraste</span>
-                    </button>
-
-                    <button type="button" class="access-item" onclick="speakText()">
-                        <div class="access-icon"><i class="fa-solid fa-volume-high"></i></div>
-                        <span>Leer en voz alta</span>
-                    </button>
-
-                    <button type="button" class="access-item" onclick="toggleLetterSpacing()">
-                        <div class="access-icon letter-space">AAA</div>
-                        <span>Más espacio</span>
-                    </button>
-
-                    <button type="button" class="access-item" onclick="toggleFocusVisible()">
-                        <div class="access-icon"><i class="fa-solid fa-expand"></i></div>
-                        <span>Enfoque visible</span>
-                    </button>
-
-                </div>
-                <p class="panel-footer">Puedes cambiar estas opciones en cualquier momento.</p>
-            </div>
+            <button class="microsoft">
+                <i class="fa-brands fa-microsoft"></i>
+                Microsoft
+            </button>
 
         </div>
+
+        <p class="register-link">
+
+            ¿No tienes cuenta?
+
+            <a href="register.html">
+                Crear cuenta
+            </a>
+
+        </p>
+
     </div>
 
-    <script src="script.js"></script>
+</div>
+
+<button id="accessibilityBtn" class="access-btn">
+    ♿
+</button>
+
+<div id="accessibilityPanel" class="access-panel">
+
+    <h3>Accesibilidad</h3>
+
+    <button onclick="toggleLargeText()">
+        🔍 Texto Grande
+    </button>
+
+    <button onclick="toggleDarkMode()">
+        🌙 Modo Oscuro
+    </button>
+
+    <button onclick="toggleContrast()">
+        ⚫ Alto Contraste
+    </button>
+
+    <button onclick="toggleDyslexia()">
+        📖 Modo Dislexia
+    </button>
+
+    <button onclick="readPage()">
+        🔊 Leer Página
+    </button>
+
+    <button onclick="toggleSpacing()">
+        ↔ Más Espaciado
+    </button>
+
+    <button onclick="toggleFocus()">
+        🎯 Enfoque Visible
+    </button>
+
+</div>
+
+   <footer>
+        <p>Copyright © 2026 Nutrition Express</p>
+        <p>Hecho por Cynthia, Bryan, Xavier, Nahomy, Usiel y Fabiola.</p>
+    </footer>
+
+<script src="js/inicio.js"></script>
+
 </body>
 </html>
