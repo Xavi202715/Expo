@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutritionExpress</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+</head>
+<body>
+
+      <header>
+        <div class="logo">
+            <img src="img/logo.png" class="imglogo">
+             <span>Nutrition<br>Express</span>
+        </div>
+
+        <nav>
+            <a href="#" class="active">Inicio</a>
+            <a href="#">Recetas</a>
+            <a href="#">Calculadora</a>
+            <a href="#">Nosotros</a>
+            <a href="#">Expertos</a>
+        </nav>
+
+        <div class="user">
+            
+        </div>
+
+        <div class="user">
+            <img src="img/perfil.png">
+        </div>
+    </header>
+
+<div class="auth-container">
+
+    <div class="auth-left">
+
+        <img src="img/logo.png" class="logo">
+
+        <h1>Nutrition<span>Express</span></h1>
+
+        <p class="decoration">
+          <strong>Come bien, vive mejor</strong>  
+        </p>
+
+
+    </div>
+
+    <div class="auth-right">
+
+        <h2>Iniciar sesión</h2>
+
+        <form id="loginForm">
+
+            <div class="input-box">
+                <i class="fa-regular fa-envelope"></i>
+
+                <input
+                type="email"
+                id="email"
+                placeholder="Correo electrónico"
+                required>
+            </div>
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <input
+                type="password"
+                id="password"
+                placeholder="Contraseña"
+                required>
+
+                <i
+                class="fa-regular fa-eye"
+                id="togglePassword">
+                </i>
+
+            </div>
+
+            <div class="options">
+
+                <label>
+                    <input type="checkbox">
+                    Recordarme
+                </label>
+
+                <a href="forgot-password.html">
+                    ¿Olvidaste tu contraseña?
+                </a>
+
+            </div>
+
+            <button type="submit">
+                Iniciar sesión
+            </button>
+
+        </form>
+
+        <div class="separator">
+            <span>o continuar con</span>
+        </div>
+
+        <div class="social-buttons">
+
+            <button class="google">
+                <i class="fa-brands fa-google"></i>
+                Google
+            </button>
+
+            <button class="microsoft">
+                <i class="fa-brands fa-microsoft"></i>
+                Microsoft
+            </button>
+
+        </div>
+
+        <p class="register-link">
+
+            ¿No tienes cuenta?
+
+            <a href="register.html">
+                Crear cuenta
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+<button id="accessibilityBtn" class="access-btn">
+    ♿
+</button>
+
+<div id="accessibilityPanel" class="access-panel">
+
+    <h3>Accesibilidad</h3>
+
+    <button onclick="toggleLargeText()">
+        🔍 Texto Grande
+    </button>
+
+    <button onclick="toggleDarkMode()">
+        🌙 Modo Oscuro
+    </button>
+
+    <button onclick="toggleContrast()">
+        ⚫ Alto Contraste
+    </button>
+
+    <button onclick="toggleDyslexia()">
+        📖 Modo Dislexia
+    </button>
+
+    <button onclick="readPage()">
+        🔊 Leer Página
+    </button>
+
+    <button onclick="toggleSpacing()">
+        ↔ Más Espaciado
+    </button>
+
+    <button onclick="toggleFocus()">
+        🎯 Enfoque Visible
+    </button>
+
+</div>
+
+   <footer>
+        <p>Copyright © 2026 Nutrition Express</p>
+        <p>Hecho por Cynthia, Bryan, Xavier, Nahomy, Usiel y Fabiola.</p>
+    </footer>
+
+<script src="js/inicio.js"></script>
+
+</body>
+</html>

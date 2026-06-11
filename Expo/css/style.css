@@ -1,0 +1,310 @@
+body{
+margin:0;
+font-family:Segoe UI,sans-serif;
+background:#fff;
+}
+
+.auth-container{
+display:flex;
+min-height:100vh;
+}
+
+.auth-left{
+flex:1;
+background:#f9f5ef;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:40px;
+
+}
+
+.auth-right{
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:60px;
+}
+
+.logo{
+width:150px;
+}
+
+
+
+h1{
+    font-size: 45px;
+}
+
+.decoration{
+    font-size: 20px;
+    
+}
+
+h1 span{
+color:#4b7f4b;
+
+}
+
+.input-box{
+display:flex;
+align-items:center;
+border:2px solid #b56d3b;
+border-radius:10px;
+padding:12px;
+margin-bottom:15px;
+}
+
+.input-box input{
+border:none;
+outline:none;
+flex:1;
+padding-left:10px;
+}
+
+.options{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+font-size:14px;
+}
+
+button{
+background:#b56d3b;
+color:white;
+border:none;
+padding:14px;
+border-radius:25px;
+cursor:pointer;
+}
+
+.social-buttons{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+
+.social-buttons button{
+flex:1;
+background:white;
+color:black;
+border:1px solid #ddd;
+}
+
+.access-btn{
+position:fixed;
+right:20px;
+bottom:20px;
+width:60px;
+height:60px;
+border:none;
+border-radius:50%;
+font-size:28px;
+cursor:pointer;
+background:#4b7f4b;
+color:white;
+z-index:1000;
+}
+
+.access-panel{
+position:fixed;
+right:20px;
+bottom:90px;
+width:250px;
+background:white;
+border-radius:15px;
+padding:15px;
+box-shadow:0 0 20px rgba(0,0,0,.2);
+display:none;
+z-index:999;
+}
+
+.access-panel.active{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.access-panel button{
+background:#f5f5f5;
+color:#333;
+padding:10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.large-text{
+font-size:1.2em;
+}
+
+.dark-mode{
+background:#1e1e1e;
+color:white;
+}
+
+.dark-mode .auth-left{
+background:#2d2d2d;
+}
+
+.contrast{
+background:black;
+color:yellow;
+}
+
+.contrast input{
+background:black;
+color:yellow;
+border:2px solid yellow;
+}
+
+.dyslexia{
+font-family:'OpenDyslexic',sans-serif;
+}
+
+.spacing{
+letter-spacing:2px;
+line-height:2;
+}
+
+.focus-mode *:focus{
+outline:4px solid orange !important;
+outline-offset:4px;
+}
+
+@media(max-width:768px){
+
+.auth-container{
+flex-direction:column;
+}
+
+.auth-right{
+padding:30px;
+}
+
+}
+
+.imglogo{
+    width: 40%;
+    height: auto;
+}
+header{
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:1.3rem;
+    font-weight:bold;
+    color:#8b6d3f;
+}
+
+nav{
+    display:flex;
+    gap:35px;
+    padding: 10px;
+    margin-top: 7px;
+}
+
+nav a{
+    text-decoration:none;
+    color:black;
+    font-weight:600;
+}
+nav a:hover{
+    color: #f7b64a;
+}
+.user img{
+    width: 50px;
+    height: auto;
+    padding-top: 15px;
+}
+
+.active{
+    border-bottom:3px solid orange;
+    padding-bottom:5px;
+}
+
+.user{
+    font-size:2rem;
+}
+
+/*footer*/
+
+footer{
+    background: linear-gradient(135deg, #f7b64a, #e79c2f);
+    color: #2c2c2c;
+    padding: 30px 50px;
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    box-shadow: 0 -4px 10px rgba(0,0,0,.1);
+}
+
+footer .imglogo{
+    width: 90px;
+    height: auto;
+    transition: .3s;
+}
+
+footer .imglogo:hover{
+    transform: scale(1.08);
+}
+
+footer a{
+    color: #5a2d0c;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 12px;
+    transition: .3s;
+}
+
+footer a:hover{
+    color: white;
+}
+
+footer p{
+    font-size: .95rem;
+}
+
+.menu-footer{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+/* Línea decorativa */
+footer::before{
+    content: "";
+    width: 80%;
+    height: 2px;
+    background: rgba(255,255,255,.5);
+    margin-bottom: 10px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    footer{
+        text-align: center;
+        padding: 25px;
+    }
+
+    .menu-footer{
+        flex-direction: column;
+        gap: 10px;
+    }
+}
