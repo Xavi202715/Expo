@@ -1,111 +1,95 @@
-const togglePassword =
-document.getElementById("togglePassword");
+// CONTROL DE VISIBILIDAD DE CONTRASEÑA
+const togglePassword = document.getElementById("togglePassword");
+const password = document.getElementById("password");
 
-const password =
-document.getElementById("password");
+if (togglePassword && password) {
+    togglePassword.addEventListener("click", () => {
+        if (password.type === "password") {
+            password.type = "text";
+            togglePassword.classList.replace("fa-eye", "fa-eye-slash");
+        } else {
+            password.type = "password";
+            togglePassword.classList.replace("fa-eye-slash", "fa-eye");
+        }
+    });
+}
 
-togglePassword.addEventListener("click", ()=>{
-
-    if(password.type === "password"){
-        password.type = "text";
-        togglePassword.classList.replace(
-        "fa-eye",
-        "fa-eye-slash"
-        );
-    }
-    else{
-        password.type = "password";
-        togglePassword.classList.replace(
-        "fa-eye-slash",
-        "fa-eye"
-        );
-    }
-
-});
-
-document
-.getElementById("loginForm")
-.addEventListener("submit", function(e){
-
+// VALIDACIÓN DEL FORMULARIO DE LOGUEO
+document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
+    const email = document.getElementById("email").value;
+    const passwordVal = document.getElementById("password").value;
 
-    const email =
-    document.getElementById("email").value;
-
-    const password =
-    document.getElementById("password").value;
-
-    if(password.length < 6){
-
-        alert(
-        "La contraseña debe tener al menos 6 caracteres"
-        );
-
+    if (passwordVal.length < 6) {
+        alert("La contraseña debe tener al menos 6 caracteres");
         return;
     }
-
     alert("Inicio de sesión correcto");
-
 });
 
-const accessBtn =
-document.getElementById("accessibilityBtn");
 
-const accessPanel =
-document.getElementById("accessibilityPanel");
+// ==========================================================================
+// 🛠️ CONTROLADORES DEL PANEL DE ACCESIBILIDAD REUTILIZADOS
+// ==========================================================================
 
-accessBtn.addEventListener("click", ()=>{
+const accessPanel = document.getElementById("accessibilityPanel");
 
+// Abre y cierra el menú lateral / flotante
+function toggleAccessPanel() {
     accessPanel.classList.toggle("active");
-
-});
-
-function toggleLargeText(){
-
-    document.body.classList.toggle("large-text");
-
 }
 
-function toggleDarkMode(){
-
-    document.body.classList.toggle("dark-mode");
-
+// Muestra los botones + y - ocultando la letra "A"
+function toggleZoomButtons(event) {
+    const zoomContainer = document.getElementById('zoomContainer');
+    const iconA = document.querySelector('.text-icon');
+    
+    zoomContainer.classList.toggle('active');
+    
+    if (zoomContainer.classList.contains('active')) {
+        iconA.style.display = 'none';
+    } else {
+        iconA.style.display = 'flex';
+    }
 }
 
-function toggleContrast(){
-
-    document.body.classList.toggle("contrast");
-
+// Cambia el tamaño de fuente de todo el documento de forma proporcional
+let currentSize = 16; 
+function changeFontSize(action, event) {
+    event.stopPropagation(); // Evita que se cierre el panel por propagación de click
+    if (action === 1 && currentSize < 24) {
+        currentSize += 1;
+    } else if (action === -1 && currentSize > 13) {
+        currentSize -= 1;
+    }
+    document.documentElement.style.fontSize = currentSize + 'px';
 }
 
-function toggleDyslexia(){
-
-    document.body.classList.toggle("dyslexia");
-
+// Modo Alto Contraste
+function toggleContrast() { 
+    document.body.classList.toggle('high-contrast-mode'); 
 }
 
-function readPage(){
-
-    const speech =
-    new SpeechSynthesisUtterance(
-    document.body.innerText
-    );
-
-    speech.lang = "es-ES";
-
-    speechSynthesis.cancel();
-    speechSynthesis.speak(speech);
-
+// Modo Dislexia
+function toggleDyslexia() {
+    document.body.classList.toggle("dyslexia-mode");
 }
 
-function toggleSpacing(){
-
-    document.body.classList.toggle("spacing");
-
+// Más Espaciado de Texto
+function toggleLetterSpacing() { 
+    document.body.classList.toggle('extra-spacing-mode'); 
 }
 
-function toggleFocus(){
+// Enfoque Altamente Visible
+function toggleFocusVisible() { 
+    document.body.classList.toggle('focus-visible-mode'); 
+}
 
-    document.body.classList.toggle("focus-mode");
-
+// Lector de pantalla (Texto a Voz) nativo optimizado para Login
+function speakText() {
+    window.speechSynthesis.cancel(); // Detiene cualquier lectura previa activa
+    const welcomeText = "Bienvenido a Nutrition Express. Iniciar sesión. Introduce tu correo electrónico y tu contraseña para continuar.";
+    const utterance = new SpeechSynthesisUtterance(welcomeText);
+    utterance.lang = 'es-ES';
+    window.speechSynthesis.speak(utterance);
 }
