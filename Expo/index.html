@@ -1,183 +1,336 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NutritionExpress</title>
-
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutritionExpress - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Fuente necesaria para que funcione el Modo Dislexia sin romper tus estilos -->
+    <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 </head>
 <body>
 
-      <header>
-        <div class="logo">
-            <img src="img/logo.png" class="imglogo">
-             <span>Nutrition<br>Express</span>
-        </div>
-
-        <nav>
-            <a href="#" class="active">Inicio</a>
-            <a href="#">Recetas</a>
-            <a href="#">Calculadora</a>
-            <a href="#">Nosotros</a>
-            <a href="#">Expertos</a>
+   
+    <header class="main-header">
+        <a href="index.html" class="logo-area" id="logoBtn" style="text-decoration: none; color: inherit;">
+            <img src="img/logo.png" alt="Nutrition Express Logo">
+            <div class="logo-text">
+                <span class="brand-title">Nutrition</span>
+                <span class="brand-sub">Express</span>
+            </div>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="active">Inicio</a>
+            <a href="expertos.html">Expertos</a>
+            <a href="recetas.html">Recetas</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="recursos.html">Recursos</a>
+            <a href="nosotros.html">Nosotros</a>
         </nav>
-
-        <div class="user">
-            
-        </div>
-
-        <div class="user">
-            <img src="img/perfil.png">
-        </div>
+        <a href="login.html" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
+            <i class="fa-regular fa-calendar-days"></i> Agendar cita
+        </a>
     </header>
 
-<div class="auth-container">
+    <section class="hero-container">
+        <div class="organic-shape shape-terracotta"></div>
+        <div class="organic-shape shape-green"></div>
+        <div class="organic-shape shape-cream-blob"></div>
 
-    <div class="auth-left">
+        <div class="hero-left">
+            <h1>Tu bienestar,<br>sin complicaciones</h1>
+            <p class="hero-subtitle">Nutrición personalizada, acceso fácil y herramientas para una vida más saludable.</p>
+            <div class="hero-actions">
+                <a href="login.html" class="btn-green-fill" style="text-decoration: none; display: inline-block; text-align: center;">
+                    <i class="fa-regular fa-calendar-days"></i> Agendar cita
+                </a>
+                <a href="recetas.html" class="btn-outline-dark" style="text-decoration: none; display: inline-block; text-align: center;">
+                    <i class="fa-solid fa-utensils"></i> Ver recetas
+                </a>
+            </div>
+            <div class="hero-badges">
+                <div class="badge-item"><i class="fa-solid fa-users"></i> <span>Atención<br>inclusiva</span></div>
+                <div class="badge-item"><i class="fa-solid fa-arrows-spin"></i> <span>Planes<br>personalizados</span></div>
+                <div class="badge-item"><i class="fa-solid fa-award"></i> <span>Expertos<br>certificados</span></div>
+            </div>
+        </div>
 
-        <img src="img/logo.png" class="logo">
+        <div class="hero-right-frame">
+            <img src="img/mujerplato.jpg" alt="Nutrición Express" class="hero-main-img">
+        </div>
+    </section>
 
-        <h1>Nutrition<span>Express</span></h1>
+<section class="quick-cards-section">
 
-        <p class="decoration">
-          <strong>Come bien, vive mejor</strong>  
-        </p>
-
-
+    <div class="q-card">
+        <div class="q-icon-box box-orange">
+            <i class="fa-regular fa-user"></i>
+        </div>
+        <div class="q-card-text">
+            <h3>Expertos</h3>
+            <p>Conoce a nuestros nutriólogos certificados.</p>
+            <a href="expertos.html" class="q-link link-orange" style="text-decoration: none; display: inline-block;">Conocer más &rarr;</a>
+        </div>
     </div>
 
-    <div class="auth-right">
+    <div class="q-card">
+        <div class="q-icon-box box-green">
+            <i class="fa-solid fa-bowl-rice"></i>
+        </div>
+        <div class="q-card-text">
+            <h3>Recetas saludables</h3>
+            <p>Recetas deliciosas, fáciles y nutritivas.</p>
+            <a href="recetas.html" class="q-link link-green" style="text-decoration: none; display: inline-block;">Explorar recetas &rarr;</a>
+        </div>
+    </div>
 
-        <h2>Iniciar sesión</h2>
+    <div class="q-card">
+        <div class="q-icon-box box-gold">
+            <i class="fa-regular fa-calendar"></i>
+        </div>
+        <div class="q-card-text">
+            <h3>Agendar cita</h3>
+            <p>Reserva tu consulta de forma rápida y segura.</p>
+            <a href="login.html" class="q-link link-gold" style="text-decoration: none; display: inline-block;">Agendar ahora &rarr;</a>
+        </div>
+    </div>
 
-        <form id="loginForm">
+    <div class="q-card">
+        <div class="q-icon-box box-blue">
+            <i class="fa-regular fa-book"></i>
+        </div>
+        <div class="q-card-text">
+            <h3>Recursos</h3>
+            <p>Guías, tips y herramientas para tu bienestar.</p>
+            <a href="recursos.html" class="q-link link-blue" style="text-decoration: none; display: inline-block;">Ver recursos &rarr;</a>
+        </div>
+    </div>
 
-            <div class="input-box">
-                <i class="fa-regular fa-envelope"></i>
+</section>
 
-                <input
-                type="email"
-                id="email"
-                placeholder="Correo electrónico"
-                required>
-            </div>
-
-            <div class="input-box">
-
-                <i class="fa-solid fa-lock"></i>
-
-                <input
-                type="password"
-                id="password"
-                placeholder="Contraseña"
-                required>
-
-                <i
-                class="fa-regular fa-eye"
-                id="togglePassword">
-                </i>
-
-            </div>
-
-            <div class="options">
-
-                <label>
-                    <input type="checkbox">
-                    Recordarme
-                </label>
-
-                <a href="forgot-password.html">
-                    ¿Olvidaste tu contraseña?
-                </a>
-
-            </div>
-
-            <button type="submit">
-                Iniciar sesión
-            </button>
-
-        </form>
-
-        <div class="separator">
-            <span>o continuar con</span>
+    <section class="experts-section-container">
+        <div class="experts-left-text">
+            <h2>Nuestros expertos</h2>
+            <p>Profesionales en nutrición listos para acompañarte en tu camino hacia una vida más saludable.</p>
+            <a href="expertos.html" class="btn-green-fill" style="text-decoration: none; display: inline-block; text-align: center;">
+                <i class="fa-solid fa-users"></i> Conocer a todos
+            </a>
         </div>
 
-        <div class="social-buttons">
+        <div class="experts-cards-container">
+            <div class="doctor-card">
+                <div class="doctor-img-box">
+                    <img src="img/doctora.webp" alt="Dra. Andrea López">
+                </div>
+                <div class="doctor-info">
+                    <h3>Dra. Andrea López</h3>
+                    <span class="specialty">Nutrióloga Clínica</span>
+                    <p class="desc"><i class="fa-solid fa-stethoscope"></i> Especialista en nutrición clínica y enfermedades crónicas.</p>
+                </div>
+            </div>
+            <div class="doctor-card">
+                <div class="doctor-img-box">
+                    <img src="img/doctor.avif" alt="Lic. Carlos Ramírez">
+                </div>
+                <div class="doctor-info">
+                    <h3>Lic. Carlos Ramírez</h3>
+                    <span class="specialty">Nutriólogo Deportivo</span>
+                    <p class="desc"><i class="fa-solid fa-dumbbell"></i> Especialista en nutrición deportiva y rendimiento.</p>
+                </div>
+            </div>
+            <div class="doctor-card">
+                <div class="doctor-img-box">
+                    <img src="img/doctor2.avif" alt="Mtra. Sofía Herrera">
+                </div>
+                <div class="doctor-info">
+                    <h3>Mtra. Sofía Herrera</h3>
+                    <span class="specialty">Nutrióloga Infantil</span>
+                    <p class="desc"><i class="fa-solid fa-child"></i> Especialista en nutrición infantil y desarrollo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <button class="google">
-                <i class="fa-brands fa-google"></i>
-                Google
-            </button>
-
-            <button class="microsoft">
-                <i class="fa-brands fa-microsoft"></i>
-                Microsoft
-            </button>
-
+    <section class="recipes-section">
+        <div class="recipes-header">
+            <div>
+                <h2>Recetas destacadas</h2>
+                <p class="recipes-subtitle">Ideas saludables para cada momento del día.</p>
+            </div>
+            <a href="recetas.html" class="view-all-link" style="text-decoration: none;">Ver todas las recetas &rarr;</a>
         </div>
 
-        <p class="register-link">
-
-            ¿No tienes cuenta?
-
-            <a href="register.html">
-                Crear cuenta
+        <div class="recipes-horizontal-list">
+            <a href="DETALLE_RECETA_SMOOTHIE.html" class="recipe-horizontal-card" style="text-decoration: none; color: inherit; display: flex;">
+                <div class="recipe-img-container">
+                    <img src="img/smothie.webp" alt="Smoothie bowl">
+                </div>
+                <div class="recipe-content-container">
+                    <span class="recipe-tag tag-breakfast">Desayuno</span>
+                    <h3>Smoothie bowl de frutos rojos</h3>
+                    <span class="recipe-duration"><i class="fa-regular fa-clock"></i> 20 min</span>
+                </div>
             </a>
 
-        </p>
+            <a href="DETALLE_RECETA_ENSALADA.html" class="recipe-horizontal-card" style="text-decoration: none; color: inherit; display: flex;">
+                <div class="recipe-img-container">
+                    <img src="img/ensaladagarbanzos.webp" alt="Ensalada de quinoa">
+                </div>
+                <div class="recipe-content-container">
+                    <span class="recipe-tag tag-lunch">Comida</span>
+                    <h3>Ensalada de quinoa y garbanzos</h3>
+                    <span class="recipe-duration"><i class="fa-regular fa-clock"></i> 30 min</span>
+                </div>
+            </a>
 
-    </div>
+            <a href="DETALLE_RECETA_SOPA.html" class="recipe-horizontal-card" style="text-decoration: none; color: inherit; display: flex;">
+                <div class="recipe-img-container">
+                    <img src="img/lentejas.jpg" alt="Sopa de lentejas">
+                </div>
+                <div class="recipe-content-container">
+                    <span class="recipe-tag tag-dinner">Cena</span>
+                    <h3>Sopa de lentejas con verduras</h3>
+                    <span class="recipe-duration"><i class="fa-regular fa-clock"></i> 40 min</span>
+                </div>
+            </a>
+        </div>
+    </section>
 
-</div>
+    <section class="cta-blue-banner">
+        <div class="cta-left">
+            <div class="cta-icon-circle"><i class="fa-regular fa-calendar-check"></i></div>
+            <div class="cta-titles">
+                <h2>Agenda tu cita hoy</h2>
+                <p>Atención presencial o en línea. Tú eliges lo que mejor se adapte a ti.</p>
+            </div>
+        </div>
+        <a href="AGENDAR_CITA.html" class="btn-white-cta" style="text-decoration: none; display: inline-block; text-align: center;">
+            Agendar ahora
+        </a>
+    </section>
 
-<button id="accessibilityBtn" class="access-btn">
-    ♿
-</button>
+    <section class="values-section">
+        <h2>Nutrición para todos</h2>
+        <p class="values-main-sub">En Nutrition Express creemos en una atención inclusiva, accesible y respetuosa. Todos son bienvenidos.</p>
+        <div class="values-grid">
+            <div class="value-item">
+                <i class="fa-solid fa-users-viewfinder"></i>
+                <h4>Atención sin discriminación</h4>
+            </div>
+            <div class="value-item">
+                <i class="fa-regular fa-comment-dots"></i>
+                <h4>Lenguaje claro y accesible</h4>
+            </div>
+            <div class="value-item">
+                <i class="fa-solid fa-seedling"></i>
+                <h4>Opciones vegetarianas y veganas</h4>
+            </div>
+            <div class="value-item">
+                <i class="fa-solid fa-wheelchair"></i>
+                <h4>Adaptaciones para necesidades especiales</h4>
+            </div>
+        </div>
+    </section>
 
-<div id="accessibilityPanel" class="access-panel">
-
-    <h3>Accesibilidad</h3>
-
-    <button onclick="toggleLargeText()">
-        🔍 Texto Grande
-    </button>
-
-    <button onclick="toggleDarkMode()">
-        🌙 Modo Oscuro
-    </button>
-
-    <button onclick="toggleContrast()">
-        ⚫ Alto Contraste
-    </button>
-
-    <button onclick="toggleDyslexia()">
-        📖 Modo Dislexia
-    </button>
-
-    <button onclick="readPage()">
-        🔊 Leer Página
-    </button>
-
-    <button onclick="toggleSpacing()">
-        ↔ Más Espaciado
-    </button>
-
-    <button onclick="toggleFocus()">
-        🎯 Enfoque Visible
-    </button>
-
-</div>
-
-   <footer>
-        <p>Copyright © 2026 Nutrition Express</p>
-        <p>Hecho por Cynthia, Bryan, Xavier, Nahomy, Usiel y Fabiola.</p>
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="footer-brand-column">
+                <div class="newsletter-box">
+                    <p><i class="fa-regular fa-envelope"></i> Recibe consejos y recetas saludables en tu correo</p>
+                    <div class="input-group">
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-links-columns">
+                <div class="footer-col">
+                    <h4>Enlaces rápidos</h4>
+                    <a href="index.html">Inicio</a>
+                    <a href="expertos.html">Expertos</a>
+                    <a href="recetas.html">Recetas</a>
+                    <a href="servicios.html">Servicios</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Servicios</h4>
+                    <a href="servicios.html">Consulta nutricional</a>
+                    <a href="servicios.html">Nutrición deportiva</a>
+                    <a href="servicios.html">Nutrición infantil</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="footer-socials">
+                        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Nutrition Express. Todos los derechos reservados.</p>
+            <div class="footer-legal">
+                <a href="AVISO_PRIVACIDAD.html">Aviso de privacidad</a>
+                <a href="TERMINOS_CONDICIONES.html">Términos y condiciones</a>
+            </div>
+        </div>
     </footer>
 
-<script src="js/inicio.js"></script>
+    <!-- ========================================================================== -->
+    <!-- ♿ AGREGADO EXCLUSIVO: COMPONENTE DE ACCESIBILIDAD -->
+    <!-- ========================================================================== -->
+   
+    <button id="accessibilityBtn" class="access-btn" title="Opciones de Accesibilidad" onclick="toggleAccessPanel()">
+        ♿
+    </button>
 
+    <div id="accessibilityPanel" class="access-panel">
+        <h3>Accesibilidad rápida</h3>
+        
+        <div class="accessibility-grid">
+            <div class="access-item" id="textAccessItem" onclick="toggleZoomButtons(event)">
+                <div class="access-icon text-icon">A</div>
+                <div class="zoom-buttons" id="zoomContainer">
+                    <button type="button" onclick="changeFontSize(1, event)" title="Aumentar letra">+</button>
+                    <button type="button" onclick="changeFontSize(-1, event)" title="Disminuir letra">-</button>
+                </div>
+                <span>Texto grande</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="toggleContrast()">
+                <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
+                <span>Alto contraste</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="speakText()">
+                <div class="access-icon"><i class="fa-solid fa-volume-high"></i></div>
+                <span>Leer en voz alta</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="toggleDyslexia()">
+                <div class="access-icon"><i class="fa-solid fa-book-open"></i></div>
+                <span>Modo Dislexia</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="toggleLetterSpacing()">
+                <div class="access-icon letter-space">AAA</div>
+                <span>Más espacio</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="toggleFocusVisible()">
+                <div class="access-icon"><i class="fa-solid fa-expand"></i></div>
+                <span>Enfoque visible</span>
+            </div>
+        </div>
+        <p class="panel-footer">Puedes cambiar estas opciones en cualquier momento.</p>
+    </div>
+    <!-- Vinculación limpia de tu JavaScript -->
+<script src="js/artyom.window.min.js"></script>
+
+<script src="js/script.js"></script>
+
+<script src="js/asistente.js"></script>
 </body>
 </html>
