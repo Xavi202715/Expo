@@ -1,0 +1,206 @@
+/* ==========================================================================
+   VARIABLES DE DISEÑO ORIGINAL
+   ========================================================================== */
+:root {
+    --bg-cream: #fdfbf7;
+    --dark-charcoal: #2c2a29;
+    --terracotta: #a34828;
+    --gold-ochre: #b88a41;
+    --forest-green: #3a6b45;
+    --light-gray: #edf1f2;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: var(--dark-charcoal);
+    background-color: #ffffff;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* ACCESIBILIDAD BAR */
+.top-accessibility-bar {
+    background: #f8f9fa;
+    padding: 10px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+}
+.top-actions { display: flex; align-items: center; gap: 12px; }
+.color-box { width: 22px; height: 22px; border: none; border-radius: 4px; color: white; font-weight: bold; cursor: pointer; }
+.bg-black-box { background: black; }
+.bg-gold-box { background: var(--gold-ochre); }
+
+/* NAVBAR */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+.logo-area { display: flex; align-items: center; gap: 12px; cursor: pointer; font-size: 1.3rem; font-weight: bold; color: #8b6d3b; line-height: 1.2; }
+.logo-area img { width: 75px !important; height: auto !important; display: block; }
+.logo-text { display: flex; flex-direction: column; line-height: 1; }
+.brand-title { font-size: 20px; font-weight: 800; }
+.brand-sub { font-size: 18px; font-weight: 700; color: var(--forest-green); }
+
+.nav-links { display: flex; gap: 35px; align-items: center; }
+.nav-links a { text-decoration: none; color: black; font-weight: 600; font-size: 15px; }
+.nav-links a.active { color: var(--dark-charcoal); border-bottom: 3px solid var(--forest-green); padding-bottom: 4px; padding-top: 4px; }
+.header-btn-schedule { background: var(--forest-green); color: white; border: none; padding: 12px 22px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+
+/* FOOTER (CORREGIDO DE LADO A LADO SIN DESBORDARSE) */
+.main-footer { 
+    background: var(--forest-green); 
+    color: white; 
+    padding: 30px 80px; 
+    width: 100%; 
+    box-sizing: border-box;
+}
+.footer-top { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1300px; 
+    margin: 0 auto;
+}
+.footer-brand-column { width: 30%; }
+.footer-brand-column p { font-size: 15px; opacity: 0.95; line-height: 1.4; margin-bottom: 10px; }
+
+.input-group { display: flex; background: white; padding: 4px; border-radius: 25px; width: 100%; max-width: 300px; align-items: center; }
+.input-group input { border: none; padding-left: 14px; outline: none; flex-grow: 1; font-size: 14px; background: transparent; color: var(--dark-charcoal); }
+.input-group button { background: var(--dark-charcoal); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+.footer-links-columns { display: flex; width: 65%; justify-content: space-between; align-items: center; }
+.footer-col { flex: 1; padding-left: 40px; }
+.footer-col:not(:first-child) { border-left: 1px solid rgba(255, 255, 255, 0.25); }
+.footer-col h4 { margin-bottom: 10px; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.footer-col a { display: block; color: rgba(255,255,255,0.9); text-decoration: none; font-size: 14px; margin-bottom: 6px; }
+.footer-col a:hover { color: white; }
+
+.footer-socials { display: flex; gap: 16px; align-items: center; }
+.footer-socials a { color: white; font-size: 20px; opacity: 0.9; display: inline-flex; align-items: center; text-decoration: none; }
+
+.footer-bottom { 
+    max-width: 1300px;
+    margin: 20px auto 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.15); 
+    padding-top: 15px; 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 13px; 
+    color: rgba(255,255,255,0.7); 
+}
+.footer-legal a { color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 15px; }
+.footer-legal a:hover { color: white; }
+
+
+/* ==========================================================================
+   ♿ BOTÓN Y PANEL DE ACCESIBILIDAD TOTALMENTE AISLADOS Y FLOTANTES
+   ========================================================================== */
+.access-btn {
+    position: fixed !important;
+    right: 25px !important;
+    bottom: 25px !important;
+    width: 60px !important;
+    height: 60px !important;
+    border: none !important;
+    border-radius: 50% !important;
+    font-size: 26px !important;
+    cursor: pointer !important;
+    background: #2e6f40 !important; 
+    color: white !important;
+    z-index: 99999 !important; /* Prioridad absoluta por encima de todo */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.2s ease !important;
+}
+.access-btn:hover { transform: scale(1.1) !important; }
+
+.access-panel {
+    position: fixed !important;
+    right: 25px !important;
+    bottom: 95px !important; /* Lo separa perfectamente por encima del botón redondo */
+    width: 300px !important;
+    height: auto !important; /* Evita que crezca hacia abajo */
+    background: white !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.25) !important;
+    display: none !important;
+    z-index: 99998 !important;
+    border: 1px solid #e0dcd5 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important; /* Elimina cualquier empuje residual */
+}
+
+.access-panel.active {
+    display: block !important;
+}
+
+.access-panel h3 { margin: 0 0 15px 0 !important; text-align: center !important; font-family: sans-serif !important; color: #333 !important; font-size: 1.1rem !important; }
+.accessibility-grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+
+.accessibility-grid .access-item {
+    background: #fcfbfa !important; color: #2c2a29 !important; border: 1px solid #e0dcd5 !important;
+    border-radius: 12px !important; padding: 12px 6px !important; display: flex !important;
+    flex-direction: column !important; align-items: center !important; justify-content: center !important;
+    gap: 8px !important; cursor: pointer !important; min-height: 85px !important; text-align: center !important;
+    width: 100% !important; box-sizing: border-box !important; font-family: sans-serif !important;
+}
+.accessibility-grid .access-item:hover { background: #f5f1ea !important; }
+.access-item span { font-size: 0.78rem !important; font-weight: 600 !important; }
+.access-icon { font-size: 1.3rem !important; color: #b56d3b !important; }
+.text-icon { font-size: 1.5rem !important; font-weight: 800 !important; }
+.letter-space { letter-spacing: 2px !important; font-weight: bold !important; }
+
+.zoom-buttons { display: none !important; gap: 6px !important; }
+.zoom-buttons.active { display: flex !important; }
+.zoom-buttons button {
+    width: 26px !important; height: 26px !important; padding: 0 !important; border-radius: 50% !important;
+    border: 1px solid #b56d3b !important; background: white !important; color: #b56d3b !important;
+    font-weight: bold !important; cursor: pointer !important;
+}
+.panel-footer { font-size: 0.72rem !important; color: #777 !important; text-align: center !important; margin-top: 12px !important; font-family: sans-serif !important; }
+
+/* MODOS ALTERNOS */
+body.high-contrast-mode { background-color: #000000 !important; color: #ffffff !important; }
+body.high-contrast-mode header, body.high-contrast-mode footer, body.high-contrast-mode section { background: #000 !important; color: #fff !important; border: 1px solid #fff !important; }
+body.high-contrast-mode .access-panel { background: #111 !important; border: 1px solid #fff !important; }
+body.high-contrast-mode * { color: #fff !important; }
+
+body.dyslexia-mode, body.dyslexia-mode * { font-family: 'OpenDyslexic', sans-serif !important; }
+body.extra-spacing-mode * { letter-spacing: 2px !important; line-height: 1.8 !important; }
+body.focus-visible-mode *:focus { outline: 5px dashed #0056b3 !important; outline-offset: 3px !important; }
+html, body 
+{
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important; /* Corta cualquier cosa que intente salirse por la derecha */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.logo-area img {
+    max-height: 60px !important; /* Ajusta este número al tamaño que quieras para tu barra de navegación */
+    width: auto !important;
+    display: inline-block !important;
+}
+
+.main-header {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
