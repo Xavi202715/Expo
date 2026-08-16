@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrición Express - Sala de Reunión Accesible</title>
+    <link rel="stylesheet" href="css/citasmeet.css">
+</head>
+<body>
+
+    <div class="meeting-container">
+        <div class="video-grid">
+            <div class="video-card main-video">
+                <div class="video-placeholder">🎥 Video del Experto en Nutrición</div>
+                <video id="expertVideo" autoplay playsinline></video>
+                <div class="video-label">Nutricionista</div>
+            </div>
+            
+            <div class="video-card user-video">
+                <div class="video-placeholder">👋 Tu Cámara</div>
+                <video id="userVideo" autoplay playsinline muted></video>
+                <div class="video-label">Tú (Detector de Señas Activo)</div>
+            </div>
+        </div>
+
+        <div class="interpreter-panel">
+            <div class="panel-header">
+                <span class="live-indicator"></span>
+                <h3>Traducción e Intérprete IA</h3>
+            </div>
+            <div id="subtitlesBox" class="subtitles-box">
+                <p class="system-text">[Sistema]: Conexión establecida. El intérprete de lengua de señas y subtítulos está listo.</p>
+                </div>
+        </div>
+
+        <div class="controls-bar">
+            <button id="btnMic" class="control-btn">🎙️ Silenciar</button>
+            <button id="btnCam" class="control-btn">📷 Apagar Cámara</button>
+            <button id="btnInterpreter" class="control-btn active-feature">🤟 Intérprete IA: ON</button>
+            <button id="btnLeave" class="leave-btn">❌ Salir de la Cita</button>
+        </div>
+    </div>
+
+    <script src="js/citasmeet.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Header y Footer</title>
+    <!-- Aquí vinculas tu archivo CSS donde pegaste el código que hicimos -->
+   <link rel="stylesheet" href="css/footer_boton.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+
+</head>
+<body>
+ <header class="main-header">
+        <a href="index.html" class="logo-area" id="logoBtn" style="text-decoration: none; color: inherit;">
+            <img src="img/logo.png" alt="Nutrition Express Logo">
+            <div class="logo-text">
+                <span class="brand-title">Nutrition</span>
+                <span class="brand-sub">Express</span>
+            </div>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="active">Inicio</a>
+            <a href="expertos.html">Expertos</a>
+            <a href="carpetas.html">Planes</a>
+            <a href="servicios.html">calculadora</a>
+            <a href="recursos.html">Recursos</a>
+            <a href="nosotros.html">Nosotros</a>
+        </nav>
+        <a href="citas.html" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
+            <i class="fa-regular fa-calendar-days"></i> Agendar cita
+        </a>
+    </header>
+
+
+
+  <!-- Aquí vinculas tu archivo CSS donde pegaste el código que hicimos -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <footer class="main-footer">
+        <div class="footer-top">
+            <div class="footer-brand-column">
+                <div class="newsletter-box">
+                    <p><i class="fa-regular fa-envelope"></i> Recibe consejos y recetas saludables en tu correo</p>
+                    <div class="input-group">
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-links-columns">
+                <div class="footer-col">
+                    <h4>Enlaces rápidos</h4>
+                    <a href="index.html">Inicio</a>
+                    <a href="expertos.html">Expertos</a>
+                    <a href="recetas.html">Recetas</a>
+                    <a href="servicios.html">Servicios</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Servicios</h4>
+                    <a href="servicios.html">Consulta nutricional</a>
+                    <a href="servicios.html">Nutrición deportiva</a>
+                    <a href="servicios.html">Nutrición infantil</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="footer-socials">
+                        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Nutrition Express. Todos los derechos reservados.</p>
+            <div class="footer-legal">
+                <a href="AVISO_PRIVACIDAD.html">Aviso de privacidad</a>
+                <a href="TERMINOS_CONDICIONES.html">Términos y condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================================================== -->
+    <!-- ♿ AGREGADO EXCLUSIVO: COMPONENTE DE ACCESIBILIDAD -->
+    <!-- ========================================================================== -->
+   
+    <button id="accessibilityBtn" class="access-btn" title="Opciones de Accesibilidad" onclick="toggleAccessPanel()">
+        ♿
+    </button>
+
+    <div id="accessibilityPanel" class="access-panel">
+        <h3>Accesibilidad rápida</h3>
+        
+        <div class="accessibility-grid">
+            <div class="access-item" id="textAccessItem" onclick="toggleZoomButtons(event)">
+                <div class="access-icon text-icon">A</div>
+                <div class="zoom-buttons" id="zoomContainer">
+                    <button type="button" onclick="changeFontSize(1, event)" title="Aumentar letra">+</button>
+                    <button type="button" onclick="changeFontSize(-1, event)" title="Disminuir letra">-</button>
+                </div>
+                <span>Texto grande</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="toggleContrast()">
+                <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
+                <span>Alto contraste</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="speakText()">
+                <div class="access-icon"><i class="fa-solid fa-volume-high"></i></div>
+                <span>Leer en voz alta</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="toggleDyslexia()">
+                <div class="access-icon"><i class="fa-solid fa-book-open"></i></div>
+                <span>Modo Dislexia</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="toggleLetterSpacing()">
+                <div class="access-icon letter-space">AAA</div>
+                <span>Más espacio</span>
+            </div>
+
+            <div class="access-item" role="button" onclick="toggleFocusVisible()">
+                <div class="access-icon"><i class="fa-solid fa-expand"></i></div>
+                <span>Enfoque visible</span>
+            </div>
+        </div>
+        <p class="panel-footer">Puedes cambiar estas opciones en cualquier momento.</p>
+    </div>
+
+
+</body>
+</html>
