@@ -72,3 +72,36 @@ function openPlan(id) {
       alert("Este plan aún no está disponible.");
   }
 }
+
+/* MARCADOR DE FAVORITOS / PLANES FIJADOS */
+function toggleBookmark(planCode, planTitle, planLevel, btnElement) {
+  fetch('guardar_favorito.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      plan_code: planCode,
+      plan_title: planTitle,
+      plan_level: planLevel
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      const icon = btnElement.querySelector('i');
+      if (data.is_favorite) {
+        btnElement.classList.add('active');
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+      } else {
+        btnElement.classList.remove('active');
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+      }
+    } else {
+      alert('Error al guardar el estado del plan.');
+    }
+  })
+  .catch(err => console.error('Error:', err));
+}

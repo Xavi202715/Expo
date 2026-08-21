@@ -12,7 +12,7 @@
 <body>
 
  <header class="main-header">
-        <a href="index.html" class="logo-area" id="logoBtn" style="text-decoration: none; color: inherit;">
+        <a href="index.php" class="logo-area" id="logoBtn" style="text-decoration: none; color: inherit;">
             <img src="img/logo.png" alt="Nutrition Express Logo">
             <div class="logo-text">
                 <span class="brand-title">Nutrition</span>
@@ -20,14 +20,14 @@
             </div>
         </a>
         <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="expertos1.html">Experts</a>
-            <a href="carpetas.html" class="active">Plans</a>
-            <a href="calculadora.html">Calculator</a>
-            <a href="servicios.html">Services</a>
-            <a href="nosotros.html">About Us</a>
+            <a href="index.php">Home</a>
+            <a href="expertos1.php">Experts</a>
+            <a href="carpetas.php" class="active">Plans</a>
+            <a href="calculadora.php">Calculator</a>
+            <a href="servicios.php">Services</a>
+            <a href="nosotros.php">About Us</a>
         </nav>
-        <a href="citas.html" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
+        <a href="citas.php" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
             <i class="fa-regular fa-calendar-days"></i> Schedule Appointment
         </a>
     </header>
@@ -101,7 +101,7 @@
                 <div class="details">
                   
                 </div>
-                <button class="card-btn" onclick="window.location.href='catalogo.html'">View Plan</button>
+                <button class="card-btn" onclick="window.location.href='catalogo.php'">View Plan</button>
             </div>
         </div>
 
@@ -115,7 +115,7 @@
                 <div class="details">
                 
                 </div>
-                <button class="card-btn" onclick="window.location.href='catalogo.html'">View Plan</button>
+                <button class="card-btn" onclick="window.location.href='catalogo.php'">View Plan</button>
             </div>
         </div>
 
@@ -130,7 +130,7 @@
                     <span><i class="fa-solid fa-fire"></i> 1500 kcal</span>
                     <span><i class="fa-solid fa-calendar-days"></i> 45 days</span>
                 </div>
-                <button class="card-btn">View Plan</button>
+                <button class="card-btn" on click="window.location.href='catalogo.php'">View Plan</button>
             </div>
         </div>
 
@@ -218,16 +218,16 @@
             <div class="footer-links-columns">
                 <div class="footer-col">
                     <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="expertos.html">Experts</a>
-                    <a href="recetas.html">Recipes</a>
-                    <a href="servicios.html">Services</a>
+                    <a href="index.php">Home</a>
+                    <a href="expertos.php">Experts</a>
+                    <a href="recetas.php">Recipes</a>
+                    <a href="servicios.php">Services</a>
                 </div>
                 <div class="footer-col">
                     <h4>Services</h4>
-                    <a href="servicios.html">Nutritional Consultation</a>
-                    <a href="servicios.html">Sports Nutrition</a>
-                    <a href="servicios.html">Pediatric Nutrition</a>
+                    <a href="servicios.php">Nutritional Consultation</a>
+                    <a href="servicios.php">Sports Nutrition</a>
+                    <a href="servicios.php">Pediatric Nutrition</a>
                 </div>
                 <div class="footer-col">
                     <h4>Follow Us</h4>

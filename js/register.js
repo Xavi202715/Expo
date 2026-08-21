@@ -12,35 +12,7 @@ togglePassword.addEventListener("click", () => {
   }
 });
 
-document.getElementById("RegisterForm").addEventListener("submit", function (e) {
-  e.preventDefault();
 
-  const nombre = document.getElementById("nombre").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirm-password").value;
-
-  // Validar nombre
-  if (nombre.length < 3) {
-    alert("El nombre debe tener al menos 3 caracteres");
-    return;
-  }
-
-  // Validar contraseña
-  if (password.length < 6) {
-    alert("La contraseña debe tener al menos 6 caracteres");
-    return;
-  }
-
-  // Confirmar contraseña
-  if (password !== confirmPassword) {
-    alert("Las contraseñas no coinciden");
-    return;
-  }
-
-  // Si todo está correcto
-  alert(`✅ Registro exitoso. Bienvenido/a, ${nombre}!`);
-});
 
 const accessPanel = document.getElementById("accessibilityPanel");
 

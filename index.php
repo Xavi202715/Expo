@@ -14,7 +14,7 @@
 <body>
 
 <header class="main-header">
-        <a href="index.html" class="logo-area" id="logoBtn" style="text-decoration: none; color: inherit;">
+        <a href="index.php" class="logo-area" id="logoBtn" style="text-decoration: none; color: inherit;">
             <img src="img/logo.png" alt="Nutrition Express Logo">
             <div class="logo-text">
                 <span class="brand-title">Nutrition</span>
@@ -22,7 +22,7 @@
             </div>
         </a>
         <nav class="nav-links">
-            <a href="index.html" class="active">Home</a>
+            <a href="index.php" class="active">Home</a>
             <a href="expertos1.php">Experts</a>
             <a href="carpetas.php  ">Plans</a>
             <a href="calculadora.php">Calculator</a>

@@ -12,7 +12,7 @@
 <body>
  
  <header class="main-header">
-        <a href="index.html" class="logo-area" id="logoBtn" style="text-decoration: none; color: inherit;">
+        <a href="index.php" class="logo-area" id="logoBtn" style="text-decoration: none; color: inherit;">
             <img src="img/logo.png" alt="Nutrition Express Logo">
             <div class="logo-text">
                 <span class="brand-title">Nutrition</span>
@@ -20,14 +20,14 @@
             </div>
         </a>
         <nav class="nav-links">
-            <a href="index.html" >Inicio</a>
-            <a href="expertos1.html">Expertos</a>
-            <a href="carpetas.html" class="active">Planes</a>
-            <a href="calculadora.html">calculadora</a>
-            <a href="servicios.html">Servicios</a>
-            <a href="nosotros.html">Nosotros</a>
+            <a href="index.php" >Inicio</a>
+            <a href="expertos1.php">Expertos</a>
+            <a href="carpetas.php" class="active">Planes</a>
+            <a href="calculadora.php">calculadora</a>
+            <a href="servicios.php">Servicios</a>
+            <a href="nosotros.php">Nosotros</a>
         </nav>
-        <a href="citas.html" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
+        <a href="citas.php" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
             <i class="fa-regular fa-calendar-days"></i> Agendar cita
         </a>
     </header>
@@ -167,16 +167,16 @@
             <div class="footer-links-columns">
                 <div class="footer-col">
                     <h4>Enlaces rápidos</h4>
-                    <a href="index.html">Inicio</a>
-                    <a href="expertos.html">Expertos</a>
-                    <a href="recetas.html">Recetas</a>
-                    <a href="servicios.html">Servicios</a>
+                    <a href="index.php">Inicio</a>
+                    <a href="expertos.php">Expertos</a>
+                    <a href="recetas.php">Recetas</a>
+                    <a href="servicios.php">Servicios</a>
                 </div>
                 <div class="footer-col">
                     <h4>Servicios</h4>
-                    <a href="servicios.html">Consulta nutricional</a>
-                    <a href="servicios.html">Nutrición deportiva</a>
-                    <a href="servicios.html">Nutrición infantil</a>
+                    <a href="servicios.php">Consulta nutricional</a>
+                    <a href="servicios.php">Nutrición deportiva</a>
+                    <a href="servicios.php">Nutrición infantil</a>
                 </div>
                 <div class="footer-col">
                     <h4>Síguenos</h4>

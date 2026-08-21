@@ -9,13 +9,6 @@ background:#fff;
     width: 75px;
     height: auto;
 }
-header{
-    background:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-}
 
 .logo{
     display:flex;
@@ -56,16 +49,7 @@ nav a:hover{
     font-size:2rem;
 }
 
-footer{
-    background: linear-gradient(135deg, #f7b64a, #e79c2f);
-    color: #2c2c2c;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-}
+
 
 .auth-container{
 display:flex;

@@ -573,3 +573,50 @@ body.dark-mode .meal-preview.red {
 body.dark-mode .card-info {
     border-top-color: #333333 !important;
 }
+
+/* ==========================================
+   BOTÓN DE MARCADOR / PIN EN CARDS
+========================================== */
+
+/* Ajustamos .left para usar Flexbox y alinear el código y el pin */
+.card .left {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+}
+
+/* Estilo base del botón del marcador */
+.bookmark-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookmark-btn:hover {
+    color: #ffffff;
+    transform: scale(1.15);
+}
+
+/* Estado activo cuando la card está marcada/fijada */
+.bookmark-btn.active {
+    color: #ffd700; /* Color dorado destacado para el pin activo */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Adaptación para Modo Oscuro */
+body.dark-mode .bookmark-btn {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body.dark-mode .bookmark-btn.active {
+    color: #ffe082;
+}
