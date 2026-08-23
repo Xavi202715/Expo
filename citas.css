@@ -1,0 +1,578 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+
+    background: #F7F6F3;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px;
+}
+
+
+/* =========================================
+   CONTENEDOR
+========================================= */
+
+.container {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    background: white;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, .08);
+}
+
+
+/* =========================================
+   IZQUIERDA
+========================================= */
+
+.left {
+
+    background: #44764B;
+
+    color: white;
+
+    padding: 60px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.left h1 {
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+}
+
+
+.left p {
+
+    line-height: 30px;
+
+    font-size: 16px;
+
+    max-width: 450px;
+}
+
+
+.decoracion {
+
+    font-size: 90px;
+
+    text-align: center;
+
+    margin-top: 40px;
+}
+
+
+/* =========================================
+   DERECHA
+========================================= */
+
+.right {
+
+    padding: 50px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================
+   INPUT GROUP
+========================================= */
+
+.input-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   CAMPOS DINÁMICOS
+========================================= */
+
+#grupoEspecialista,
+#grupoLugar {
+
+    display: none;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+label {
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+    color: #222;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    background: white;
+
+    transition: .3s;
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    border-color: #44764B;
+
+    box-shadow:
+        0 0 8px rgba(68,118,75,.2);
+}
+
+
+textarea {
+
+    resize: vertical;
+}
+
+
+/* =========================================
+   INFORMACIÓN DEL LUGAR
+========================================= */
+
+.ubicacion {
+
+    display: none;
+
+    background: #f1f7f2;
+
+    border-left: 5px solid #44764B;
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+}
+
+
+.ubicacion-titulo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #44764B;
+
+    margin-bottom: 8px;
+}
+
+
+.ubicacion-titulo span {
+
+    font-size: 21px;
+}
+
+
+.ubicacion p {
+
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 22px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================
+   BOTÓN MAPS
+========================================= */
+
+#botonMapa {
+
+    display: inline-block;
+
+    background: #44764B;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    transition: .3s;
+}
+
+
+#botonMapa:hover {
+
+    background: #365f3c;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   MAPA
+========================================= */
+
+.mapa-container {
+
+    display: none;
+
+    width: 100%;
+
+    height: 300px;
+
+    margin-bottom: 20px;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.1);
+
+    background: #ddd;
+}
+
+
+.mapa-container iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: 0;
+}
+
+
+/* =========================================
+   BOTÓN CONFIRMAR
+========================================= */
+
+.boton-confirmar {
+
+    width: 100%;
+
+    padding: 16px;
+
+    background: #F7941D;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 50px;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.boton-confirmar:hover {
+
+    background: #e68613;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.6);
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+}
+
+
+.modal-contenido {
+
+    background: white;
+
+    width: 380px;
+
+    max-width: 90%;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.3);
+}
+
+
+.check {
+
+    width: 90px;
+
+    height: 90px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: #28a745;
+
+    color: white;
+
+    font-size: 55px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.modal-contenido h2 {
+
+    margin-bottom: 10px;
+}
+
+
+.modal-contenido p {
+
+    color: #666;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   BOTONES MODAL
+========================================= */
+
+.botones {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+
+.botones button {
+
+    width: auto;
+
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    color: white;
+}
+
+
+#verDatos {
+
+    background: #0d6efd;
+}
+
+
+#cerrarModal {
+
+    background: #6c757d;
+}
+
+
+#verDatos:hover {
+
+    background: #0b5ed7;
+}
+
+
+#cerrarModal:hover {
+
+    background: #5c636a;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:900px) {
+
+    body {
+
+        padding: 20px;
+
+        align-items: flex-start;
+    }
+
+
+    .container {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .left {
+
+        text-align: center;
+
+        padding: 40px 30px;
+    }
+
+
+    .left p {
+
+        margin: auto;
+    }
+
+
+    .right {
+
+        max-height: none;
+
+        overflow-y: visible;
+
+        padding: 30px;
+    }
+
+}
+
+
+@media(max-width:500px) {
+
+    body {
+
+        padding: 10px;
+    }
+
+
+    .left {
+
+        padding: 30px 20px;
+    }
+
+
+    .left h1 {
+
+        font-size: 32px;
+    }
+
+
+    .right {
+
+        padding: 20px;
+    }
+
+
+    .botones {
+
+        flex-direction: column;
+    }
+
+
+    .botones button {
+
+        width: 100%;
+    }
+
+
+    .mapa-container {
+
+        height: 250px;
+    }
+
+}
