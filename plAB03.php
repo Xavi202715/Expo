@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Details - AB-01 General Balanced Nutrition</title>
-    <link rel="stylesheet" href="css/plaAB01.css">
+    <title>Plan Details - AB-G1-02 Weight Management Starter</title>
+    <link rel="stylesheet" href="css/plaAB02.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
     <link rel="stylesheet" href="css/headfooter_boton.css">
@@ -26,58 +26,56 @@
             <a href="calculadora.php">Calculator</a>
             <a href="servicios.php">Services</a>
             <a href="nosotros.php">About Us</a>
-            <a href="perfil.php">Profile</a>
         </nav>
         <a href="citas.php" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
             <i class="fa-regular fa-calendar-days"></i> Book Appointment
         </a>
     </header>
-    
+
     <div class="plan-container">
-        
         <a href="catalogo.php" class="back-btn">
             <i class="fa-solid fa-arrow-left"></i> Back to catalog
         </a>
 
         <div class="plan-header-block">
-            <div class="plan-badge green">AB-01</div>
+            <div class="plan-badge green">AB-G1-02</div>
             <div class="plan-title-area">
-                <h1>General Balanced Nutrition</h1>
-                <p class="plan-subtitle">A flexible mix-and-match guide adapted for all budgets. Choose the options that best fit your wallet.</p>
+                <h1>Weight Management Starter</h1>
+                <p class="plan-subtitle">Portion control guide for healthy weight reduction focused on high volume, low-calorie density meals.</p>
             </div>
         </div>
 
         <!-- MORNING SECTION -->
         <div class="time-section">
             <div class="time-header morning">
-                <h2><i class="fa-solid fa-sun"></i> Morning Options (Breakfast & Snacks)</h2>
+                <h2><i class="fa-solid fa-sun"></i> Morning Options (High-Satiety Deficit)</h2>
             </div>
             
             <div class="options-grid">
                 <div class="option-card budget">
                     <span class="price-tag green-tag">Budget</span>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5yuOcO_eiCBvU-9B8oj9CY-kUgFkj5A1J70wFSimz3UMGPZvV3Xst2b4&s=10" alt="Scrambled eggs with beans and tortillas" class="food-img">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=500" alt="Egg white omelet" class="food-img">
                     <div class="option-content">
-                        <h3>Traditional Plate</h3>
-                        <p>Two eggs scrambled with green beans or tomatoes, served with a side of cooked beans and two corn tortillas. Unsweetened coffee or tea.</p>
+                        <h3>Egg White & Zucchini Scramble</h3>
+                        <p>3 egg whites scrambled with diced zucchini and tomatoes, served with 1 slice of whole-wheat bread and black coffee.</p>
                     </div>
                 </div>
 
                 <div class="option-card moderate">
                     <span class="price-tag orange-tag">Moderate</span>
-                    <img src="https://cookveggielicious.com/wp-content/uploads/2019/04/vegan-banana-porridge-1.jpg" alt="Oatmeal with banana and milk" class="food-img">
+                    <img src="https://images.unsplash.com/photo-1517673400267-0251440c45dc?q=80&w=500" alt="Green detox smoothie" class="food-img">
                     <div class="option-content">
-                        <h3>Creamy Fruit Oatmeal</h3>
-                        <p>Rolled oats cooked with skim milk or water, seasoned with ground cinnamon. Topped with sliced banana or apple and a tablespoon of sunflower seeds.</p>
+                        <h3>Green Fiber Detox Blend</h3>
+                        <p>Blend of fresh kale, green apple slices, cucumber, celery, unsweetened almond milk, and 1 tablespoon of flaxseeds.</p>
                     </div>
                 </div>
 
                 <div class="option-card premium">
                     <span class="price-tag purple-tag">Full</span>
-                    <img src="https://images.pexels.com/photos/33848632/pexels-photo-33848632.jpeg" alt="Avocado toast with poached egg" class="food-img">
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=500" alt="Cottage cheese bowl" class="food-img">
                     <div class="option-content">
-                        <h3>Special Whole-Wheat Toast</h3>
-                        <p>Two slices of toasted whole-wheat bread topped with mashed avocado, two poached or scrambled eggs, and a cup of mixed berries (strawberries & blueberries) on the side.</p>
+                        <h3>Low-Fat Cottage & Berry Bowl</h3>
+                        <p>1 cup of low-fat cottage cheese topped with fresh raspberries, chia seeds, and unsweetened green tea on the side.</p>
                     </div>
                 </div>
             </div>
@@ -86,34 +84,34 @@
         <!-- AFTERNOON SECTION -->
         <div class="time-section">
             <div class="time-header afternoon">
-                <h2><i class="fa-solid fa-cloud-sun"></i> Afternoon Options (Lunch)</h2>
+                <h2><i class="fa-solid fa-cloud-sun"></i> Afternoon Options (Main Weight Loss Meals)</h2>
             </div>
             
             <div class="options-grid">
                 <div class="option-card budget">
                     <span class="price-tag green-tag">Budget</span>
-                    <img src="https://nutritionstudies.org/wp-content/uploads/2015/12/Best-Veggie-Chili-2.jpg" alt="Lentil stew with rice" class="food-img">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=500" alt="Steamed green vegetables with lentils" class="food-img">
                     <div class="option-content">
-                        <h3>Complete Legume Plate</h3>
-                        <p>A generous bowl of cooked lentils or chickpeas simmered with vegetables (carrots, onions, and tomatoes), served with a cup of white or brown rice and a side cabbage salad.</p>
+                        <h3>Steamed Greens & Lentil Bowl</h3>
+                        <p>A large bowl of steamed spinach, broccoli, and green beans served with 1/2 cup of seasoned brown lentils and lemon juice.</p>
                     </div>
                 </div>
 
                 <div class="option-card moderate">
                     <span class="price-tag orange-tag">Moderate</span>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBSDWuHCSm5WmYxZ6LlCu0P1v6wBPukbMXUM-4V-DGkRKAdipMtOOg4kI&s=10" alt="Grilled chicken with brown rice and veggies" class="food-img">
+                    <img src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?q=80&w=500" alt="Grilled chicken breast with quinoa and avocado" class="food-img">
                     <div class="option-content">
-                        <h3>Classic Chicken & Veggies</h3>
-                        <p>Seasoned grilled chicken breast served with half a cup of brown rice or natural mashed potatoes, plus a large portion of steamed broccoli and carrots.</p>
+                        <h3>Grilled Chicken, Quinoa & Avocado</h3>
+                        <p>Lean grilled chicken breast served alongside 1/2 cup of fluffy quinoa, steamed zucchini, and 1/4 sliced avocado.</p>
                     </div>
                 </div>
 
                 <div class="option-card premium">
                     <span class="price-tag purple-tag">Full</span>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8u2rw_i9mdTwzKRw706dCdC-kxVE0eTPiCt_x21Mtvw&s=10" alt="Salmon fillet with quinoa" class="food-img">
+                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=500" alt="Seared white fish with asparagus" class="food-img">
                     <div class="option-content">
-                        <h3>Fresh Salmon or Tuna with Quinoa</h3>
-                        <p>Pan-seared salmon or tuna fillet served with a cup of herb-cooked quinoa and a gourmet salad of leafy greens, asparagus, and walnuts.</p>
+                        <h3>Herb White Fish & Steamed Asparagus</h3>
+                        <p>Seared cod or tilapia fillet served with steamed green asparagus spears, cauliflower rice, and a splash of extra virgin olive oil.</p>
                     </div>
                 </div>
             </div>
@@ -122,34 +120,34 @@
         <!-- EVENING SECTION -->
         <div class="time-section">
             <div class="time-header night">
-                <h2><i class="fa-solid fa-moon"></i> Evening Options (Dinner & Light Desserts)</h2>
+                <h2><i class="fa-solid fa-moon"></i> Evening Options (Ultra-Light Dinners)</h2>
             </div>
             
             <div class="options-grid">
                 <div class="option-card budget">
                     <span class="price-tag green-tag">Budget</span>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0uWPgdZTpEC2hAVTZuL2mhiP8K6w_rc3jBowh_hc8dx5QO85rY7s8iQk&s=10" alt="Canned tuna salad" class="food-img">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=500" alt="Light vegetable soup" class="food-img">
                     <div class="option-content">
-                        <h3>Practical Tuna Salad</h3>
-                        <p>One can of drained tuna in water mixed with chopped tomatoes, cucumber, and onion. Serve with baked whole-wheat crackers or light corn tostadas.</p>
+                        <h3>Clear Vegetable Cleansing Soup</h3>
+                        <p>Warm homemade broth loaded with cabbage, celery, sliced carrots, and green beans designed for light night digestion.</p>
                     </div>
                 </div>
 
                 <div class="option-card moderate">
                     <span class="price-tag orange-tag">Moderate</span>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY0xUy_zRzAu9sZMsWf2nit-SVKt5w7cq2kIF0bEAxnlJdPs__3tf5kZA&s=10" alt="Chicken lettuce wraps" class="food-img">
+                    <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=500" alt="Turkey lettuce wraps" class="food-img">
                     <div class="option-content">
-                        <h3>Light Chicken or Cheese Wraps</h3>
-                        <p>Shredded chicken strips or fresh cheese wrapped in large romaine lettuce leaves or whole-wheat tortillas, paired with homemade tomato sauce.</p>
+                        <h3>Seasoned Turkey Lettuce Tacos</h3>
+                        <p>Lean ground turkey cooked with garlic and herbs, wrapped inside crisp romaine lettuce cups with chopped cucumber.</p>
                     </div>
                 </div>
 
                 <div class="option-card premium">
                     <span class="price-tag purple-tag">Full</span>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR44-D3z4D4lKIYRi6aFkubfGa_flsItAvxnTGtX_668bVda3a3ifqbY0c&s=10" alt="Tofu or turkey stir-fry with vegetables" class="food-img">
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=500" alt="Zucchini noodles with tofu" class="food-img">
                     <div class="option-content">
-                        <h3>Asian Tofu or Turkey Stir-Fry</h3>
-                        <p>Sautéed firm tofu cubes or turkey breast cooked in a wok with sesame oil, mushrooms, bell peppers, bean sprouts, and a touch of toasted almonds.</p>
+                        <h3>Sautéed Zucchini Noodles with Tofu</h3>
+                        <p>Fresh spiralized zucchini noodles lightly sautéed with cherry tomatoes, fresh basil, and pan-grilled tofu cubes.</p>
                     </div>
                 </div>
             </div>
@@ -175,6 +173,7 @@
                     <a href="expertos.php">Experts</a>
                     <a href="recetas.php">Recipes</a>
                     <a href="servicios.php">Services</a>
+                    <a href="perfil.php">Profile</a>
                 </div>
                 <div class="footer-col">
                     <h4>Services</h4>
@@ -254,7 +253,7 @@
         </div>
         <p class="panel-footer">You can change these options at any time.</p>
     </div>
-    
+
     <script src="js/artyom.window.min.js"></script>
     <script src="js/asistente.js"></script>
     <script src="js/script.js"></script>

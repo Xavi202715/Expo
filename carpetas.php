@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/carpetas.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nutritional Plans | Nutrition Express</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/carpetas.css">
     <link rel="stylesheet" href="css/headfooter_boton.css">
 </head>
 <body>
@@ -26,6 +28,7 @@
             <a href="calculadora.php">Calculator</a>
             <a href="servicios.php">Services</a>
             <a href="nosotros.php">About Us</a>
+            <a href="perfil.php">Profile</a>
         </nav>
         <a href="citas.php" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
             <i class="fa-regular fa-calendar-days"></i> Schedule Appointment
@@ -130,7 +133,7 @@
                     <span><i class="fa-solid fa-fire"></i> 1500 kcal</span>
                     <span><i class="fa-solid fa-calendar-days"></i> 45 days</span>
                 </div>
-                <button class="card-btn" on click="window.location.href='catalogo.php'">View Plan</button>
+                <button class="card-btn" onclick="window.location.href='catalogo.php'">View Plan</button>
             </div>
         </div>
 

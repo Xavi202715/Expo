@@ -28,6 +28,7 @@
             <a href="calculadora.php">Calculator</a>
             <a href="servicios.php">Services</a>
             <a href="nosotros.php">About Us</a>
+               <a href="perfil.php">Profile</a>
         </nav>
         <a href="citas.php" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
             <i class="fa-regular fa-calendar-days"></i> Schedule Appointment
@@ -212,28 +213,28 @@
     </section>
 
     <section class="values-section">
-        <h2>Nutrition for Everyone</h2>
-        <p class="values-main-sub">At Nutrition Express, we believe in inclusive, accessible, and respectful care. Everyone is welcome.</p>
-        <div class="values-grid">
-            <div class="value-item">
-                <i class="fa-solid fa-users-viewfinder"></i>
-                <h4>Non-discriminatory Care</h4>
-            </div>
-            <div class="value-item">
-                <i class="fa-regular fa-comment-dots"></i>
-                <h4>Clear and Accessible Language</h4>
-            </div>
-            <div class="value-item">
-                <i class="fa-solid fa-seedling"></i>
-                <h4>Vegetarian and Vegan Options</h4>
-            </div>
-            <div class="value-item">
-                <i class="fa-solid fa-wheelchair"></i>
-                <h4>Accommodations for Special Needs</h4>
-            </div>
-        </div>
-    </section>
-
+  <h2>Nutrition for Everyone</h2>
+  <p class="values-main-sub">At Nutrition Express, we believe in inclusive, accessible, and respectful care. Everyone is welcome.</p>
+  
+  <div class="values-grid">
+    <div class="value-item">
+      <div class="value-icon-box"><i class="fa-solid fa-users"></i></div>
+      <h4>Non-discriminatory Care</h4>
+    </div>
+    <div class="value-item">
+      <div class="value-icon-box"><i class="fa-solid fa-comments"></i></div>
+      <h4>Clear and Accessible Language</h4>
+    </div>
+    <div class="value-item">
+      <div class="value-icon-box"><i class="fa-solid fa-leaf"></i></div>
+      <h4>Vegetarian and Vegan Options</h4>
+    </div>
+    <div class="value-item">
+      <div class="value-icon-box"><i class="fa-solid fa-wheelchair"></i></div>
+      <h4>Accommodations for Special Needs</h4>
+    </div>
+  </div>
+</section>
     <footer class="main-footer">
         <div class="footer-top">
             <div class="footer-brand-column">

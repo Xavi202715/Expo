@@ -26,6 +26,7 @@
             <a href="calculadora.php">Calculator</a>
             <a href="servicios.php">Services</a>
             <a href="nosotros.php">About Us</a>
+            <a href="perfil.php">Profile</a>
         </nav>
         <a href="citas.php" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
             <i class="fa-regular fa-calendar-days"></i> Schedule Appointment

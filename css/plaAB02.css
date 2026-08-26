@@ -220,14 +220,3 @@ body.dark-mode .option-content p {
 body.dark-mode .back-btn {
   color: #4ade80; /* Verde más claro y visible sobre fondo oscuro */
 }
-.plan-badge {
-  font-size: 26px;
-  font-weight: bold;
-  color: white;
-  padding: 18px 28px;
-  border-radius: 18px;
-  white-space: nowrap; /* Impide que el texto se rompa en 2 renglones */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}

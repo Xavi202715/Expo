@@ -1,233 +1,363 @@
 /*==================================================
-        NUTRITION EXPRESS - VISTA PERFIL
+        NUTRITION EXPRESS - VISTA PERFIL (ACCESIBLE)
 ==================================================*/
 
 :root {
-    --blanco: #ffffff;
-    --negro: #202020;
-    --gris: #f7f7f7;
-    --principal: #BE8C4A;
-    --principalOscuro: #9d6e32;
-    --verde: #5A8D63;
-    --verdeClaro: #76b383;
-    --radio: 18px;
-    --sombra: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --bg-page: #f8fafb;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    
+    /* Branding Nutrition Express */
+    --brand-green: #388e3c;
+    --brand-green-light: #e8f5e9;
+    --brand-gold: #c5a059;
+    --brand-gold-light: #fef8ec;
+    --border-color: #f1f5f9;
+
+    --radius-lg: 1.25rem;
+    --radius-md: 0.75rem;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background: var(--gris);
-    color: var(--negro);
+    background-color: var(--bg-page);
+    color: var(--text-main);
     line-height: 1.6;
 }
 
-/* HEADER Y NAV */
-header {
-    width: 100%;
-    background: var(--blanco);
-    padding: 18px 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo { display: flex; align-items: center; gap: 15px; }
-.logo img { width: 60px; }
-.logo h2 { color: var(--principal); font-size: 24px; }
-
-nav ul { display: flex; gap: 35px; list-style: none; }
-nav a { color: var(--negro); font-weight: bold; transition: color 0.3s; }
-nav a:hover, nav a.activo { color: var(--principal); }
-
-.usuario { font-size: 32px; color: var(--principal); }
-
-/* ALERTA EXITO */
-.alerta-exito {
-    background: #d4edda;
-    color: #155724;
-    padding: 15px 20px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-}
-
-/* MAIN Y TARJETA CABECERA */
 main {
     width: 90%;
-    max-width: 1100px;
-    margin: auto;
-    padding: 40px 0;
+    max-width: 71.25rem; /* ~1140px relativo */
+    margin: 2.5rem auto;
 }
 
-.perfil-header-card {
-    background: var(--blanco);
-    padding: 30px;
-    border-radius: var(--radio);
-    box-shadow: var(--sombra);
+/* ALERTA ÉXITO */
+.alerta-exito {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
-    gap: 30px;
-    margin-bottom: 30px;
+    gap: 0.75rem;
+    font-weight: 600;
+    border-left: 0.3125rem solid #10b981;
+    font-size: 1rem;
+}
+
+/* --------------------------------------------------
+   CABECERA DEL PERFIL (HERO CARD)
+-------------------------------------------------- */
+.perfil-header-card {
+    background: var(--card-bg);
+    padding: 2.25rem 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    align-items: center;
+    gap: 2.25rem;
+    margin-bottom: 1.875rem;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.foto-contenedor {
     position: relative;
+    width: 7.5rem;  /* Aumentado ligeramente */
+    height: 7.5rem;
+    flex-shrink: 0;
 }
 
 .foto-contenedor img {
-    width: 130px;
-    height: 130px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--principal);
+    border: 3px solid var(--brand-green);
+    box-shadow: 0 4px 12px rgba(56, 142, 60, 0.2);
+    background-color: #f1f5f9;
+}
+
+.info-principal {
+    flex: 1;
 }
 
 .info-principal h1 {
-    font-size: 28px;
-    color: var(--negro);
-    margin-bottom: 5px;
+    font-size: 2rem; /* ~32px por defecto, escala dinámicamente */
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+    margin-bottom: 0.35rem;
 }
 
 .info-principal .correo {
-    color: #666;
-    margin-bottom: 15px;
+    color: var(--text-muted);
+    font-size: 1rem; /* Texto más grande */
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .tags {
     display: flex;
-    gap: 10px;
+    gap: 0.625rem;
     flex-wrap: wrap;
 }
 
 .badge {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.badge-meta { background: #fef3c7; color: #92400e; }
-.badge-dieta { background: #dcfce7; color: #166534; }
-
-.btn-editar {
-    margin-left: auto;
-    background: var(--verde);
-    color: var(--blanco);
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-weight: bold;
+    padding: 0.5rem 1.125rem;
+    border-radius: 2rem;
+    font-size: 0.9375rem; /* ~15px */
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    transition: background 0.3s, transform 0.2s;
+    gap: 0.5rem;
+}
+
+.badge-meta {
+    background: var(--brand-gold-light);
+    color: var(--brand-gold);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+}
+
+.badge-dieta {
+    background: var(--brand-green-light);
+    color: var(--brand-green);
+    border: 1px solid rgba(56, 142, 60, 0.2);
+}
+
+.btn-editar {
+    background: var(--brand-green);
+    color: #ffffff;
+    padding: 0.875rem 1.625rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 1rem; /* Botón con texto claro y accesible */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(56, 142, 60, 0.25);
 }
 
 .btn-editar:hover {
-    background: #487150;
+    background: #2e7d32;
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 142, 60, 0.35);
 }
 
-/* GRID Y TARJETAS DETALLE */
+/* --------------------------------------------------
+   GRID & TARJETAS DE INFORMACIÓN
+-------------------------------------------------- */
 .perfil-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    gap: 1.55rem;
 }
 
 .card {
-    background: var(--blanco);
-    padding: 25px;
-    border-radius: var(--radio);
-    box-shadow: var(--sombra);
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
 }
 
 .card h2 {
-    color: var(--principal);
-    font-size: 20px;
-    margin-bottom: 20px;
+    color: var(--brand-green);
+    font-size: 1.25rem; /* ~20px */
+    font-weight: 600;
+    margin-bottom: 1.375rem;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.75rem;
+    border-bottom: 2px solid var(--brand-green-light);
+    padding-bottom: 0.75rem;
+}
+
+.card h2 i {
+    background: var(--brand-green-light);
+    padding: 0.5rem;
+    border-radius: 0.625rem;
+    font-size: 1.125rem;
 }
 
 .datos-lista {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 1rem;
 }
 
 .datos-lista li {
-    font-size: 15px;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 8px;
+    font-size: 1rem; /* Aumentado a 16px base, escala con JS */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 0.75rem;
 }
 
 .datos-lista li:last-child {
     border-bottom: none;
+    padding-bottom: 0;
 }
 
-/* CARD IMC */
+.datos-lista strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.datos-lista span, .datos-lista i {
+    color: var(--text-muted);
+}
+
+/* TARJETA IMC */
 .imc-card {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .imc-resumen {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px 0;
+    justify-content: center;
+    margin: 1rem 0;
+    background: var(--bg-page);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
 }
 
 .imc-valor {
-    font-size: 42px;
-    font-weight: bold;
-    color: var(--verde);
+    font-size: 3.25rem; /* Novedad: IMC bien destacado */
+    font-weight: 700;
+    color: var(--brand-green);
+    line-height: 1;
 }
 
 .imc-estado {
-    font-weight: bold;
-    color: #555;
-    background: #eef7f0;
-    padding: 4px 16px;
-    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--brand-green);
+    background: #ffffff;
+    padding: 0.375rem 1.125rem;
+    border-radius: 1.25rem;
+    margin-top: 0.625rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .imc-desc {
-    font-size: 13px;
-    color: #777;
-    margin-top: 10px;
-}
-
-/* FOOTER */
-footer {
-    background: #f2ab39;
+    font-size: 0.875rem;
+    color: var(--text-muted);
     text-align: center;
-    padding: 25px;
-    margin-top: 40px;
-    font-weight: 500;
 }
-
-/* ACCESIBILIDAD */
-body.alto-contraste { background: #000; color: #fff; }
-body.alto-contraste header, body.alto-contraste .card, body.alto-contraste .perfil-header-card, body.alto-contraste footer { background: #121212; color: #fff; }
-body.alto-contraste h1, body.alto-contraste h2, body.alto-contraste nav a { color: #fff; }
-body.texto-grande { font-size: 18px; }
-body.reducir-movimiento * { animation: none !important; transition: none !important; }
 
 /* RESPONSIVE */
-@media (max-width: 850px) {
-    .perfil-header-card { flex-direction: column; text-align: center; }
-    .btn-editar { margin-left: 0; width: 100%; justify-content: center; }
-    .perfil-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+    .perfil-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .perfil-header-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.25rem;
+    }
+
+    .info-principal .correo {
+        justify-content: center;
+    }
+
+    .tags {
+        justify-content: center;
+    }
+
+    .btn-editar {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   🌙 REGLAS DE MODO OSCURO ESPECÍFICAS PARA PERFIL
+   ========================================================================== */
+
+body.dark-mode {
+    --bg-page: #121212;
+    --card-bg: #1e1e1e;
+    --text-main: #f1f1f1;
+    --text-muted: #a0aec0;
+    --border-color: #2d3748;
+    --brand-green-light: #1b2e1e;
+    --brand-gold-light: #2c2517;
+}
+
+/* 1. Cabecera y Tarjetas Principales */
+body.dark-mode .perfil-header-card,
+body.dark-mode .card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 2. Textos, Títulos y Varios */
+body.dark-mode .info-principal h1,
+body.dark-mode .datos-lista strong,
+body.dark-mode .card h2 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .info-principal .correo,
+body.dark-mode .datos-lista span,
+body.dark-mode .datos-lista i,
+body.dark-mode .imc-desc {
+    color: var(--text-muted) !important;
+}
+
+/* 3. Ajuste de Tarjeta IMC (Fondo interno) */
+body.dark-mode .imc-resumen {
+    background-color: #141414 !important;
+    border: 1px solid var(--border-color);
+}
+
+body.dark-mode .imc-estado {
+    background-color: #2a2a2a !important;
+    color: #81c784 !important;
+}
+
+/* 4. Badges / Etiquetas superiores */
+body.dark-mode .badge-meta {
+    background: var(--brand-gold-light) !important;
+    color: #e5c158 !important;
+    border-color: rgba(229, 193, 88, 0.3) !important;
+}
+
+body.dark-mode .badge-dieta {
+    background: var(--brand-green-light) !important;
+    color: #81c784 !important;
+    border-color: rgba(129, 199, 132, 0.3) !important;
+}
+
+/* 5. Separadores de listas */
+body.dark-mode .datos-lista li {
+    border-bottom-color: #2d3748 !important;
 }

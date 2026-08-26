@@ -391,3 +391,191 @@ body.dark-mode .zoom-buttons button {
     color: #ffffff !important;
     border-color: #ffffff !important;
 }
+/* ==========================================================================
+   AGREGAR AL INICIO: CONFIGURACIÓN PARA LARGE TEXT (FONT SIZE)
+   ========================================================================== */
+html {
+    font-size: 16px; /* Base inicial para que los rem funcionen */
+    transition: font-size 0.2s ease;
+}
+
+/* Escalado global: asegura que los textos de la página usen rem */
+body {
+    font-size: 1rem;
+}
+
+/* Forzar escalado responsivo en elementos específicos que usaban px fijos */
+.brand-title { font-size: 1.25rem !important; }
+.brand-sub { font-size: 1.125rem !important; }
+.nav-links a { font-size: 0.9375rem !important; }
+.footer-col h4 { font-size: 0.9375rem !important; }
+.footer-col a, .footer-brand-column p { font-size: 0.875rem !important; }
+.hero-left h1 { font-size: 2.5rem !important; }
+.hero-subtitle { font-size: 1.125rem !important; }
+.q-card-text h3, .doctor-info h3 { font-size: 1.25rem !important; }
+.q-card-text p, .doctor-info p { font-size: 0.875rem !important; }
+.experts-left-text h2, .recipes-header h2, .values-section h2 { font-size: 2rem !important; }
+
+
+/* ==========================================================================
+   🌙 ESTILOS DE MODO OSCURO (DARK MODE) COMPLETO Y CORREGIDO
+   ========================================================================== */
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #f1f1f1 !important;
+}
+
+/* Header, Footer y Topbar */
+body.dark-mode .top-accessibility-bar {
+    background-color: #1a1a1a !important;
+    border-bottom-color: #333333 !important;
+    color: #f1f1f1 !important;
+}
+
+body.dark-mode .main-header {
+    background-color: #1e1e1e !important;
+    border-bottom: 1px solid #333333 !important;
+}
+
+body.dark-mode .nav-links a {
+    color: #f1f1f1 !important;
+}
+
+body.dark-mode .nav-links a.active {
+    color: #ffffff !important;
+    border-bottom-color: #58a65c !important;
+}
+
+body.dark-mode .brand-title {
+    color: #ffffff !important;
+}
+
+body.dark-mode .main-footer {
+    background-color: #111e13 !important;
+}
+
+/* Secciones completas de la página */
+body.dark-mode .hero-container,
+body.dark-mode .quick-cards-section,
+body.dark-mode .experts-section-container,
+body.dark-mode .recipes-section,
+body.dark-mode .values-section {
+    background-color: #121212 !important;
+    color: #f1f1f1 !important;
+}
+
+/* Corrección de Títulos y Subtítulos que se invisibilizaban */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4,
+body.dark-mode .hero-subtitle,
+body.dark-mode .recipes-subtitle,
+body.dark-mode .values-main-sub,
+body.dark-mode .experts-left-text p,
+body.dark-mode .experts-left-text h2 {
+    color: #ffffff !important;
+}
+
+/* TODAS LAS TARJETAS (Cards reales de index.php) */
+body.dark-mode .q-card,
+body.dark-mode .doctor-card,
+body.dark-mode .recipe-horizontal-card,
+body.dark-mode .value-item {
+    background-color: #1e1e1e !important;
+    border: 1px solid #333333 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Texto interno de las tarjetas */
+body.dark-mode .q-card-text h3,
+body.dark-mode .q-card-text p,
+body.dark-mode .doctor-info h3,
+body.dark-mode .doctor-info .specialty,
+body.dark-mode .doctor-info .desc,
+body.dark-mode .recipe-content-container h3,
+body.dark-mode .recipe-duration,
+body.dark-mode .value-item h4 {
+    color: #e0e0e0 !important;
+}
+
+/* Botones secundarios e inputs */
+body.dark-mode .btn-outline-dark {
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .input-group {
+    background-color: #2a2a2a !important;
+}
+
+body.dark-mode .input-group input {
+    color: #ffffff !important;
+}
+
+/* Panel de Accesibilidad */
+body.dark-mode .access-panel {
+    background: #1e1e1e !important;
+    border-color: #444444 !important;
+}
+
+body.dark-mode .access-panel h3 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .accessibility-grid .access-item {
+    background: #2a2a2a !important;
+    border-color: #444444 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .accessibility-grid .access-item:hover {
+    background: #383838 !important;
+}
+
+body.dark-mode .access-item span {
+    color: #ffffff !important;
+}
+
+body.dark-mode .zoom-buttons button {
+    background: #2a2a2a !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+/* Forzar la tipografía global del header */
+.main-header, 
+.main-header * {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* Estilo exacto de los enlaces de navegación */
+.nav-links a {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important; /* Grosor idéntico a la imagen 2 */
+    color: #ffffff !important;
+    text-decoration: none;
+    padding-bottom: 5px;
+}
+
+/* Indicador de página activa (La rayita verde) */
+.nav-links a.active {
+    border-bottom: 3px solid #4b7f4b !important;
+}
+
+/* Botón Schedule Appointment exacto de la Imagen 2 */
+.schedule-btn, 
+.main-header .btn {
+    background-color: #2d6a4f !important; /* Verde oscuro */
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}

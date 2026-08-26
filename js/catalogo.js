@@ -49,27 +49,30 @@ if (search) search.addEventListener("input", filterPlans);
 if (condition) condition.addEventListener("change", filterPlans);
 if (level) level.addEventListener("change", filterPlans);
 
-/* REDIRECCIÓN DE PLANES (TUS ENLACES ORIGINALES) */
+/* REDIRECCIÓN DE PLANES */
 function openPlan(id) {
-  switch (id) {
-    case "AB-G1-01":
-      window.location.href = "plAB01.html";
-      break;
+  const planFiles = {
+    'AB-G1-01': 'plAB01.php',
+    'AB-G2-01': 'plAB02.php',
+    'AB-G1-02': 'plAB03.php',
+    'AB-G2-02': 'plAB04.php',
+    'AB-C1-01': 'plAB05.php',
+    'AB-C2-01': 'plAB06.php',
+    'AB-C1-02': 'plAB07.php',
+    'AB-C2-02': 'plAB08.php',
+    'AB-C1-03': 'plAB09.php',
+    'AB-C2-03': 'plAB10.php',
+    'AB-A3-01': 'plAB11.php',
+    'AB-A3-02': 'plAB12.php',
+    'AB-A3-03': 'plAB13.php',
+    'AB-A3-04': 'plAB14.php',
+    'AB-A3-05': 'plAB15.php'
+  };
 
-    case "AB-02":
-      window.location.href = "ab02.html";
-      break;
-
-    case "AB-03":
-      window.location.href = "ab03.html";
-      break;
-
-    case "AB-04":
-      window.location.href = "ab04.html";
-      break;
-
-    default:
-      alert("Este plan aún no está disponible.");
+  if (planFiles[id]) {
+    window.location.href = planFiles[id];
+  } else {
+    alert("Este plan aún no está disponible.");
   }
 }
 
