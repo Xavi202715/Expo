@@ -137,7 +137,7 @@ on your journey toward a healthier life.
 
 <div class="expert-photo">
 
-<img src="https://shopabctv.com/cdn/shop/products/GA-AGCT-CallieTorres-28-UpClose_720x.jpg?v=1644344256" alt="Calixta">
+<img src="img/doctora.webp" alt="Dr. Andrea López">
 
 <span class="status">
 Available
@@ -147,7 +147,7 @@ Available
 
 <div class="expert-content">
 
-<h3>Calixta Torres</h3>
+<h3>Andrea López</h3>
 
 <p class="speciality">
 Clinical Nutrition
@@ -183,7 +183,7 @@ Schedule Consultation
 
 <div class="expert-photo">
 
-<img src="https://shopabctv.com/cdn/shop/products/yangstandee_720x.png?v=1636996348">
+<img src="img/nutricionista 1.jpg">
 
 <span class="status">
 Available
@@ -193,7 +193,7 @@ Available
 
 <div class="expert-content">
 
-<h3>Cristina Yanos</h3>
+<h3>Sofía Herrera</h3>
 
 <p class="speciality">
 Sports Nutrition
@@ -229,7 +229,7 @@ Schedule Consultation
 
 <div class="expert-photo">
 
-<img src="https://shopabctv.com/cdn/shop/products/Grey_720x.png?v=1636996445">
+<img src="img/experto3.png">
 
 <span class="status">
 
@@ -279,7 +279,7 @@ Schedule Consultation
 
 <div class="expert-photo">
 
-<img src="https://shopabctv.com/cdn/shop/products/maggiestandee_720x.png?v=1636996413">
+<img src="img/experto4.jpg">
 
 <span class="status">
 
@@ -329,7 +329,7 @@ Schedule Consultation
 
 <div class="expert-photo">
 
-<img src="https://shopabctv.com/cdn/shop/products/bailey_720x.png?v=1636996462">
+<img src="img/experto5.jpg">
 
 <span class="status">
 
@@ -379,7 +379,7 @@ Schedule Consultation
 
 <div class="expert-photo">
 
-<img src="https://shopabctv.com/cdn/shop/products/Derek_720x.png?v=1636996365">
+<img src="img/doctor.avif">
 
 <span class="status">
 
@@ -391,7 +391,7 @@ Virtual Consultation
 
 <div class="expert-content">
 
-<h3>Derek Pastor</h3>
+<h3>Carlos Ramírez</h3>
 
 <p class="speciality">
 
