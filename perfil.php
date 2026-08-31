@@ -1,17 +1,17 @@
 <?php
-// perfil.php
+// profile.php
 session_start();
 
-// 1. INCLUIR LA CONEXIÓN A LA BASE DE DATOS
+// 1. INCLUDE DATABASE CONNECTION
 require_once 'db.php';
 
-// 2. Validar que exista la sesión iniciada
+// 2. Validate that the user session is active
 if (!isset($_SESSION['usuario_correo'])) {
     header('Location: login.php');
     exit;
 }
 
-// 3. Obtener los datos reales del usuario desde la BD
+// 3. Retrieve real user data from the database
 $correo_sesion = $_SESSION['usuario_correo'];
 
 $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE email = ?");
@@ -23,7 +23,7 @@ if ($resultado && $resultado->num_rows > 0) {
     $usuario = $resultado->fetch_assoc();
 } else {
     $usuario = [
-        'nombre' => $_SESSION['usuario_nombre'] ?? 'Usuario',
+        'nombre' => $_SESSION['usuario_nombre'] ?? 'User',
         'email'  => $correo_sesion,
         'edad' => null, 'sexo' => null, 'peso' => null, 'estatura' => null,
         'objetivo' => null, 'actividad' => null, 'alimentacion' => null,
@@ -32,35 +32,36 @@ if ($resultado && $resultado->num_rows > 0) {
     ];
 }
 
-// Función auxiliar para validar si un dato no está vacío y no es '0' o nulo
+// Helper function to validate if a value is not empty, '0', or null
 function tieneValor($val) {
     return isset($val) && trim((string)$val) !== '' && trim((string)$val) !== '0';
 }
 
-// 4. Calcular IMC si existen peso y estatura
+// 4. Calculate BMI if weight and height exist
 $imc = 0;
-$categoriaIMC = 'No registrado';
+$categoriaIMC = 'Not registered';
 if (tieneValor($usuario['peso']) && tieneValor($usuario['estatura']) && floatval($usuario['estatura']) > 0) {
     $peso = floatval($usuario['peso']);
     $estatura = floatval($usuario['estatura']);
     $imc = round($peso / ($estatura * $estatura), 1);
     
-    if ($imc < 18.5) $categoriaIMC = 'Bajo peso';
-    elseif ($imc < 25) $categoriaIMC = 'Peso saludable';
-    elseif ($imc < 30) $categoriaIMC = 'Sobrepeso';
-    else $categoriaIMC = 'Obesidad';
+    if ($imc < 18.5) $categoriaIMC = 'Underweight';
+    elseif ($imc < 25) $categoriaIMC = 'Healthy weight';
+    elseif ($imc < 30) $categoriaIMC = 'Overweight';
+    else $categoriaIMC = 'Obesity';
 }
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Perfil - Nutrition Express</title>
+    <title>My Profile - Nutrition Express</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/headfooter_boton.css">
+    <meta name="page-context" content="You are on your User Profile page. Here you can manage your account settings, personal details, and view your saved nutritional history.">
     <link rel="stylesheet" href="css/perfil.css">
 </head>
 <body>
@@ -92,14 +93,14 @@ if (tieneValor($usuario['peso']) && tieneValor($usuario['estatura']) && floatval
     <main>
         <?php if (isset($_GET['status']) && $_GET['status'] === 'success'): ?>
             <div id="mensajeExito" class="alerta-exito">
-                <i class="fa-solid fa-circle-check"></i> ¡Perfil actualizado con éxito!
+                <i class="fa-solid fa-circle-check"></i> Profile updated successfully!
             </div>
         <?php endif; ?>
 
-        <!-- HEADER DEL PERFIL DINÁMICO -->
+        <!-- DYNAMIC PROFILE HEADER -->
         <section class="perfil-header-card">
             <div class="foto-contenedor">
-                <img src="<?php echo (!empty($usuario['foto']) && file_exists($usuario['foto'])) ? htmlspecialchars($usuario['foto']) : 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; ?>" alt="Foto de perfil">
+                <img src="<?php echo (!empty($usuario['foto']) && file_exists($usuario['foto'])) ? htmlspecialchars($usuario['foto']) : 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; ?>" alt="Profile picture">
             </div>
             <div class="info-principal">
                 <h1><?php echo htmlspecialchars($usuario['nombre']); ?></h1>
@@ -107,61 +108,62 @@ if (tieneValor($usuario['peso']) && tieneValor($usuario['estatura']) && floatval
                 <div class="tags">
                     <span class="badge badge-meta">
                         <i class="fa-solid fa-bullseye"></i> 
-                        <?php echo !empty($usuario['objetivo']) ? htmlspecialchars($usuario['objetivo']) : 'Sin objetivo fijado'; ?>
+                        <?php echo !empty($usuario['objetivo']) ? htmlspecialchars($usuario['objetivo']) : 'No goal set'; ?>
                     </span>
                     <span class="badge badge-dieta">
                         <i class="fa-solid fa-leaf"></i> 
-                        <?php echo !empty($usuario['alimentacion']) ? htmlspecialchars($usuario['alimentacion']) : 'Sin tipo de dieta'; ?>
+                        <?php echo !empty($usuario['alimentacion']) ? htmlspecialchars($usuario['alimentacion']) : 'No diet type set'; ?>
                     </span>
                 </div>
             </div>
             <div class="accion-header">
-                <a href="editar-perfil.php" class="btn-editar"><i class="fa-solid fa-pen-to-square"></i> Editar Perfil</a>
+                <a href="editar-perfil.php" class="btn-editar"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</a>
             </div>
         </section>
 
-        <!-- GRID DE INFORMACIÓN REAL -->
+        <!-- USER INFORMATION GRID -->
         <div class="perfil-grid">
             
-         <!-- DATOS PERSONALES Y FÍSICOS -->
-<article class="card">
-    <h2><i class="fa-solid fa-user"></i> Datos Personales</h2>
-    <ul class="datos-lista">
-        <li><strong>Edad</strong> <span><?php echo tieneValor($usuario['edad']) ? htmlspecialchars($usuario['edad']) . ' años' : '<i>No especificado</i>'; ?></span></li>
-        <li><strong>Sexo</strong> <span><?php echo tieneValor($usuario['sexo']) ? htmlspecialchars($usuario['sexo']) : '<i>No especificado</i>'; ?></span></li>
-        <li><strong>Peso</strong> <span><?php echo tieneValor($usuario['peso']) ? htmlspecialchars($usuario['peso']) . ' kg' : '<i>No especificado</i>'; ?></span></li>
-        <li><strong>Estatura</strong> <span><?php echo tieneValor($usuario['estatura']) ? htmlspecialchars($usuario['estatura']) . ' m' : '<i>No especificado</i>'; ?></span></li>
-        <li><strong>Actividad</strong> <span><?php echo tieneValor($usuario['actividad']) ? htmlspecialchars($usuario['actividad']) : '<i>No especificado</i>'; ?></span></li>
-    </ul>
-</article>
-            <!-- RESUMEN DE SALUD / IMC -->
+            <!-- PERSONAL & PHYSICAL DATA -->
+            <article class="card">
+                <h2><i class="fa-solid fa-user"></i> Personal Details</h2>
+                <ul class="datos-lista">
+                    <li><strong>Age</strong> <span><?php echo tieneValor($usuario['edad']) ? htmlspecialchars($usuario['edad']) . ' years' : '<i>Not specified</i>'; ?></span></li>
+                    <li><strong>Gender</strong> <span><?php echo tieneValor($usuario['sexo']) ? htmlspecialchars($usuario['sexo']) : '<i>Not specified</i>'; ?></span></li>
+                    <li><strong>Weight</strong> <span><?php echo tieneValor($usuario['peso']) ? htmlspecialchars($usuario['peso']) . ' kg' : '<i>Not specified</i>'; ?></span></li>
+                    <li><strong>Height</strong> <span><?php echo tieneValor($usuario['estatura']) ? htmlspecialchars($usuario['estatura']) . ' m' : '<i>Not specified</i>'; ?></span></li>
+                    <li><strong>Activity Level</strong> <span><?php echo tieneValor($usuario['actividad']) ? htmlspecialchars($usuario['actividad']) : '<i>Not specified</i>'; ?></span></li>
+                </ul>
+            </article>
+
+            <!-- HEALTH SUMMARY / BMI -->
             <article class="card imc-card">
-                <h2><i class="fa-solid fa-heart-pulse"></i> Estado Físico (IMC)</h2>
+                <h2><i class="fa-solid fa-heart-pulse"></i> Physical Status (BMI)</h2>
                 <div class="imc-resumen">
                     <span class="imc-valor"><?php echo $imc > 0 ? $imc : '--'; ?></span>
                     <span class="imc-estado"><?php echo $categoriaIMC; ?></span>
                 </div>
                 <p class="imc-desc">
-                    <?php echo $imc > 0 ? 'Índice calculado según tu peso y estatura registrados.' : 'Ingresa tu peso y estatura en "Editar Perfil" para calcular tu IMC automáticamente.'; ?>
+                    <?php echo $imc > 0 ? 'Index calculated based on your recorded weight and height.' : 'Enter your weight and height in "Edit Profile" to automatically calculate your BMI.'; ?>
                 </p>
             </article>
 
-            <!-- PREFERENCIAS ALIMENTICIAS -->
+            <!-- DIETARY PREFERENCES -->
             <article class="card">
-                <h2><i class="fa-solid fa-utensils"></i> Hábitos y Preferencias</h2>
+                <h2><i class="fa-solid fa-utensils"></i> Habits & Preferences</h2>
                 <ul class="datos-lista">
-                    <li><strong>Frecuencia</strong> <span><?php echo !empty($usuario['comidas']) ? htmlspecialchars($usuario['comidas']) : '<i>No especificado</i>'; ?></span></li>
-                    <li><strong>Alimentos Favoritos</strong> <span><?php echo !empty($usuario['favoritos']) ? htmlspecialchars($usuario['favoritos']) : '<i>Ninguno agregado</i>'; ?></span></li>
-                    <li><strong>Alimentos a Evitar</strong> <span><?php echo !empty($usuario['evitar']) ? htmlspecialchars($usuario['evitar']) : '<i>Ninguno agregado</i>'; ?></span></li>
+                    <li><strong>Frequency</strong> <span><?php echo !empty($usuario['comidas']) ? htmlspecialchars($usuario['comidas']) : '<i>Not specified</i>'; ?></span></li>
+                    <li><strong>Favorite Foods</strong> <span><?php echo !empty($usuario['favoritos']) ? htmlspecialchars($usuario['favoritos']) : '<i>None added</i>'; ?></span></li>
+                    <li><strong>Foods to Avoid</strong> <span><?php echo !empty($usuario['evitar']) ? htmlspecialchars($usuario['evitar']) : '<i>None added</i>'; ?></span></li>
                 </ul>
             </article>
 
-            <!-- CONDICIONES DE SALUD -->
+            <!-- HEALTH CONDITIONS -->
             <article class="card">
-                <h2><i class="fa-solid fa-notes-medical"></i> Salud y Accesibilidad</h2>
+                <h2><i class="fa-solid fa-notes-medical"></i> Health & Accessibility</h2>
                 <ul class="datos-lista">
-                    <li><strong>Condiciones Médicas</strong> <span><?php echo !empty($usuario['condiciones']) ? htmlspecialchars($usuario['condiciones']) : '<i>Ninguna reportada</i>'; ?></span></li>
-                    <li><strong>Discapacidad / Limitación</strong> <span><?php echo !empty($usuario['discapacidad']) ? htmlspecialchars($usuario['discapacidad']) : '<i>Ninguna reportada</i>'; ?></span></li>
+                    <li><strong>Medical Conditions</strong> <span><?php echo !empty($usuario['condiciones']) ? htmlspecialchars($usuario['condiciones']) : '<i>None reported</i>'; ?></span></li>
+                    <li><strong>Disability / Limitation</strong> <span><?php echo !empty($usuario['discapacidad']) ? htmlspecialchars($usuario['discapacidad']) : '<i>None reported</i>'; ?></span></li>
                 </ul>
             </article>
 
@@ -264,25 +266,25 @@ if (tieneValor($usuario['peso']) && tieneValor($usuario['estatura']) && floatval
     <script src="js/asistente.js"></script>
     <script src="js/script.js"></script>
 
-    <!-- SCRIPT PARA TEMPORIZAR MENSAJE DE ÉXITO -->
+    <!-- SCRIPT TO FADE OUT SUCCESS MESSAGE -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const mensaje = document.getElementById('mensajeExito');
             
             if (mensaje) {
-                // Desaparece gradualmente a los 3 segundos
+                // Fades out after 3 seconds
                 setTimeout(() => {
                     mensaje.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
                     mensaje.style.opacity = '0';
                     mensaje.style.transform = 'translateY(-10px)';
                     
-                    // Se elimina del HTML al terminar la animación
+                    // Removes element from HTML after transition ends
                     setTimeout(() => {
                         mensaje.remove();
                     }, 500);
                 }, 3000);
 
-                // Quita "?status=success" de la URL sin recargar la página
+                // Cleans "?status=success" from URL without reloading
                 if (window.history.replaceState) {
                     const urlLimpia = window.location.protocol + "//" + window.location.host + window.location.pathname;
                     window.history.replaceState({ path: urlLimpia }, '', urlLimpia);
@@ -290,9 +292,5 @@ if (tieneValor($usuario['peso']) && tieneValor($usuario['estatura']) && floatval
             }
         });
     </script>
-
-    <script src="js/perfil.js"></script>
-    <script src="js/asistente.js"></script>
-    <script src="js/script.js"></script>
 </body>
 </html>

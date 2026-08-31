@@ -9,6 +9,7 @@
     <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="page-context" content="You are on the Nutrition Experts page. Here you can meet our certified dietitians and nutritionists, view their credentials, and book a consultation with them.">
 </head>
 <body>
     <header class="main-header">

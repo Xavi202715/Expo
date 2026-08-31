@@ -22,6 +22,7 @@ html, body {
     overflow-x: hidden !important; /* Corta cualquier cosa que intente salirse por la derecha */
     margin: 0 !important;
     padding: 0 !important;
+    padding-top: 85px !important; /* IMPORTANTE: Compensación por el header fijo */
     font-family: 'Segoe UI', system-ui, sans-serif;
     color: var(--dark-charcoal);
     background-color: #ffffff;
@@ -42,16 +43,25 @@ html, body {
 .bg-black-box { background: black; }
 .bg-gold-box { background: var(--gold-ochre); }
 
-/* NAVBAR */
+/* NAVBAR (SOLUCIÓN A: FIXED + SEMITRANSPARENTE) */
 .main-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 9999 !important; /* Asegura que quede siempre por encima de todo el contenido */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 40px;
-    background: white;
+    background: rgba(255, 255, 255, 0.85) !important; /* Transparencia */
+    backdrop-filter: blur(10px) !important; /* Desenfoque de fondo */
+    -webkit-backdrop-filter: blur(10px) !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: background-color 0.3s ease;
 }
+
 .logo-area { display: flex; align-items: center; gap: 12px; cursor: pointer; font-size: 1.3rem; font-weight: bold; color: #8b6d3b; line-height: 1.2; }
 .logo-area img { max-height: 60px !important; width: auto !important; display: inline-block !important; }
 .logo-text { display: flex; flex-direction: column; line-height: 1; }
@@ -124,7 +134,7 @@ html, body {
     cursor: pointer !important;
     background: #2e6f40 !important; 
     color: white !important;
-    z-index: 99999 !important; /* Prioridad absoluta por encima de todo */
+    z-index: 99999 !important; /* Prioridad absoluta */
     box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
     display: flex !important;
     align-items: center !important;
@@ -136,9 +146,9 @@ html, body {
 .access-panel {
     position: fixed !important;
     right: 25px !important;
-    bottom: 95px !important; /* Lo separa perfectamente por encima del botón redondo */
+    bottom: 95px !important;
     width: 300px !important;
-    height: auto !important; /* Evita que crezca hacia abajo */
+    height: auto !important;
     background: white !important;
     border-radius: 12px !important;
     padding: 20px !important;
@@ -147,7 +157,7 @@ html, body {
     z-index: 99998 !important;
     border: 1px solid #e0dcd5 !important;
     box-sizing: border-box !important;
-    margin: 0 !important; /* Elimina cualquier empuje residual */
+    margin: 0 !important;
 }
 
 .access-panel.active {
@@ -278,7 +288,7 @@ body.focus-visible-mode *:focus {
 
 
 /* ==========================================================================
-   🌙 ESTILOS DE MODO OSCURO (DARK MODE) DE FORMA GLOBAL
+   🌙 ESTILOS DE MODO OSCURO (DARK MODE) COMPLETO
    ========================================================================== */
 body.dark-mode {
     background-color: #121212 !important;
@@ -293,7 +303,7 @@ body.dark-mode .top-accessibility-bar {
 }
 
 body.dark-mode .main-header {
-    background-color: #1e1e1e !important;
+    background-color: rgba(30, 30, 30, 0.85) !important; /* Transparencia oscura */
     border-bottom: 1px solid #333333 !important;
 }
 
@@ -362,7 +372,7 @@ body.dark-mode .main-footer {
     background-color: #162419 !important;
 }
 
-/* Adaptación del Panel de Accesibilidad cuando el Modo Oscuro está activo */
+/* Adaptación del Panel de Accesibilidad */
 body.dark-mode .access-panel {
     background: #1e1e1e !important;
     border-color: #444444 !important;
@@ -391,20 +401,20 @@ body.dark-mode .zoom-buttons button {
     color: #ffffff !important;
     border-color: #ffffff !important;
 }
+
 /* ==========================================================================
-   AGREGAR AL INICIO: CONFIGURACIÓN PARA LARGE TEXT (FONT SIZE)
+   CONFIGURACIÓN PARA LARGE TEXT (FONT SIZE)
    ========================================================================== */
 html {
-    font-size: 16px; /* Base inicial para que los rem funcionen */
+    font-size: 16px;
     transition: font-size 0.2s ease;
 }
 
-/* Escalado global: asegura que los textos de la página usen rem */
 body {
     font-size: 1rem;
 }
 
-/* Forzar escalado responsivo en elementos específicos que usaban px fijos */
+/* Escalado responsivo */
 .brand-title { font-size: 1.25rem !important; }
 .brand-sub { font-size: 1.125rem !important; }
 .nav-links a { font-size: 0.9375rem !important; }
@@ -416,45 +426,7 @@ body {
 .q-card-text p, .doctor-info p { font-size: 0.875rem !important; }
 .experts-left-text h2, .recipes-header h2, .values-section h2 { font-size: 2rem !important; }
 
-
-/* ==========================================================================
-   🌙 ESTILOS DE MODO OSCURO (DARK MODE) COMPLETO Y CORREGIDO
-   ========================================================================== */
-body.dark-mode {
-    background-color: #121212 !important;
-    color: #f1f1f1 !important;
-}
-
-/* Header, Footer y Topbar */
-body.dark-mode .top-accessibility-bar {
-    background-color: #1a1a1a !important;
-    border-bottom-color: #333333 !important;
-    color: #f1f1f1 !important;
-}
-
-body.dark-mode .main-header {
-    background-color: #1e1e1e !important;
-    border-bottom: 1px solid #333333 !important;
-}
-
-body.dark-mode .nav-links a {
-    color: #f1f1f1 !important;
-}
-
-body.dark-mode .nav-links a.active {
-    color: #ffffff !important;
-    border-bottom-color: #58a65c !important;
-}
-
-body.dark-mode .brand-title {
-    color: #ffffff !important;
-}
-
-body.dark-mode .main-footer {
-    background-color: #111e13 !important;
-}
-
-/* Secciones completas de la página */
+/* Secciones en Dark Mode */
 body.dark-mode .hero-container,
 body.dark-mode .quick-cards-section,
 body.dark-mode .experts-section-container,
@@ -464,7 +436,7 @@ body.dark-mode .values-section {
     color: #f1f1f1 !important;
 }
 
-/* Corrección de Títulos y Subtítulos que se invisibilizaban */
+/* Corrección de Títulos y Subtítulos */
 body.dark-mode h1, 
 body.dark-mode h2, 
 body.dark-mode h3, 
@@ -477,7 +449,7 @@ body.dark-mode .experts-left-text h2 {
     color: #ffffff !important;
 }
 
-/* TODAS LAS TARJETAS (Cards reales de index.php) */
+/* TODAS LAS TARJETAS */
 body.dark-mode .q-card,
 body.dark-mode .doctor-card,
 body.dark-mode .recipe-horizontal-card,
@@ -513,60 +485,88 @@ body.dark-mode .input-group input {
     color: #ffffff !important;
 }
 
-/* Panel de Accesibilidad */
-body.dark-mode .access-panel {
-    background: #1e1e1e !important;
-    border-color: #444444 !important;
-}
-
-body.dark-mode .access-panel h3 {
-    color: #ffffff !important;
-}
-
-body.dark-mode .accessibility-grid .access-item {
-    background: #2a2a2a !important;
-    border-color: #444444 !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode .accessibility-grid .access-item:hover {
-    background: #383838 !important;
-}
-
-body.dark-mode .access-item span {
-    color: #ffffff !important;
-}
-
-body.dark-mode .zoom-buttons button {
-    background: #2a2a2a !important;
-    color: #ffffff !important;
-    border-color: #ffffff !important;
-}
-
-/* Forzar la tipografía global del header */
+/* Tipografía global del header */
 .main-header, 
 .main-header * {
     font-family: 'Poppins', sans-serif !important;
 }
 
-/* Estilo exacto de los enlaces de navegación */
+/* Estilo de enlaces de navegación */
 .nav-links a {
     font-size: 0.95rem !important;
-    font-weight: 700 !important; /* Grosor idéntico a la imagen 2 */
+    font-weight: 700 !important;
     color: #ffffff !important;
     text-decoration: none;
     padding-bottom: 5px;
 }
 
-/* Indicador de página activa (La rayita verde) */
+/* Indicador de página activa */
 .nav-links a.active {
     border-bottom: 3px solid #4b7f4b !important;
 }
 
-/* Botón Schedule Appointment exacto de la Imagen 2 */
+/* Botón Schedule Appointment */
 .schedule-btn, 
 .main-header .btn {
-    background-color: #2d6a4f !important; /* Verde oscuro */
+    background-color: #2d6a4f !important;
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   🔧 CORRECCIÓN DE NAVEGACIÓN (MODO CLARO Y MODO OSCURO)
+   ========================================================================== */
+
+/* Tipografía global del header */
+.main-header, 
+.main-header * {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* Enlaces de navegación (MODO CLARO: texto oscuro) */
+.nav-links a {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: var(--dark-charcoal) !important; /* Tono oscuro visible sobre fondo blanco */
+    text-decoration: none;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--forest-green) !important;
+}
+
+/* Indicador de página activa */
+.nav-links a.active {
+    color: var(--dark-charcoal) !important;
+    border-bottom: 3px solid #4b7f4b !important;
+}
+
+/* Enlaces de navegación (MODO OSCURO: texto blanco) */
+body.dark-mode .nav-links a {
+    color: #ffffff !important;
+}
+
+body.dark-mode .nav-links a.active {
+    color: #ffffff !important;
+    border-bottom-color: #58a65c !important;
+}
+
+/* Botón Schedule Appointment */
+.schedule-btn, 
+.main-header .btn,
+.header-btn-schedule {
+    background-color: #2d6a4f !important;
     color: #ffffff !important;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;

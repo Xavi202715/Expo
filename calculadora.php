@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="page-context" content="You are on the Nutrition Calculator. Here you can upload food photos, speak, or type meals to analyze their macros with AI.">
 </head>
 <body>
 
@@ -29,9 +30,7 @@
             <a href="servicios.php">Services</a>
             <a href="nosotros.php">About Us</a>
             <a href="perfil.php">Profile</a>
-</nav>
-        
-
+        </nav>
 
         <a href="citas.php" class="header-btn-schedule" id="headerScheduleBtn" style="text-align: center; text-decoration: none; display: inline-block;">
             <i class="fa-regular fa-calendar-days"></i> Schedule Appointment
@@ -41,22 +40,68 @@
     <main class="app-container">
         <header class="app-header">
             <h1>NutriScan AI</h1>
-            <p>Discover what's on your plate instantly.</p>
+            <p>Discover what's on your plate instantly or describe your meal.</p>
         </header>
 
-        <section class="upload-section">
-            <label for="imageUpload" class="btn-upload">
+        <!-- SECCIÓN DE SELECCIÓN POR PESTAÑAS (ACCESIBILIDAD) -->
+        <div class="input-tabs" role="tablist" aria-label="Input Method Selection">
+            <button class="tab-btn active" data-target="panel-image" role="tab" aria-selected="true" id="tab-image">
+                📷 Photo / Camera
+            </button>
+            <button class="tab-btn" data-target="panel-text" role="tab" aria-selected="false" id="tab-text">
+                ✍️ Text / Keyboard
+            </button>
+            <button class="tab-btn" data-target="panel-voice" role="tab" aria-selected="false" id="tab-voice">
+                🎙️ Voice Input
+            </button>
+        </div>
+
+        <!-- PANEL 1: FOTO / CÁMARA -->
+        <section id="panel-image" class="tab-panel upload-section" role="tabpanel" aria-labelledby="tab-image">
+            <label for="imageUpload" class="btn-upload" tabindex="0" role="button">
                 <span class="icon">📸</span> Take Photo or Upload
             </label>
             <input type="file" id="imageUpload" accept="image/*" capture="environment">
         </section>
 
+    <!-- PANEL 2: TEXTO / TECLADO CON MICRÓFONO INTEGRADO -->
+<section id="panel-text" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-text">
+    <div class="text-input-container">
+        <label for="foodTextInput" style="font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; display: block;">
+            Describe your food or meal:
+        </label>
+        
+        <!-- Envoltorio para la caja de texto y el botón de voz integrado -->
+        <div class="input-with-mic-wrapper">
+            <textarea id="foodTextInput" class="food-textarea" placeholder="e.g., A plate of grilled chicken breast with steamed broccoli..."></textarea>
+            <button id="btnInlineMic" type="button" class="btn-inline-mic" title="Dictate meal by voice" aria-label="Dictate text">
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+        </div>
+
+        <button id="btnAnalyzeText" class="btn-upload" type="button" style="margin-top: 15px;">
+            ✨ Analyze Meal
+        </button>
+    </div>
+</section>
+
+        <!-- PANEL 3: VOZ -->
+        <section id="panel-voice" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-voice">
+            <div style="text-align: center;">
+                <p style="margin-bottom: 15px; color: var(--text-muted);">Click the button below and describe what you are eating clearly:</p>
+                <button id="btnVoiceRecord" class="btn-voice" type="button">
+                    🎤 Dictate Food
+                </button>
+            </div>
+        </section>
+
+        <!-- INDICADOR DE CARGA / SPINNER -->
         <section class="loader-section hidden" id="loaderSection">
             <div class="spinner"></div>
             <p>AI is analyzing your meal...</p>
         </section>
 
-        <!-- Contenedor responsivo en grid -->
+        <!-- CONTENEDOR DE RESULTADOS -->
         <div class="content-grid">
             <section class="preview-section hidden" id="previewSection">
                 <img id="imagePreview" alt="Food preview">
@@ -83,6 +128,12 @@
                 <div class="ingredients-box">
                     <h3>Detected ingredients:</h3>
                     <ul id="ingredientsList"></ul>
+                </div>
+
+                <!-- SECCIÓN DE RECOMENDACIONES DE LA IA -->
+                <div class="recommendations-box" style="margin-top: 20px;">
+                    <h3>💡 Healthy Recommendation / Substitutions:</h3>
+                    <p id="recommendationsText">Loading recommendations...</p>
                 </div>
             </section>
         </div>
@@ -125,7 +176,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Nutrition Express. All rights reserved.</p>
+            <p>&copy; 2026 Nutrition Express. All rights reserved.</p>
             <div class="footer-legal">
                 <a href="AVISO_PRIVACIDAD.html">Privacy Notice</a>
                 <a href="TERMINOS_CONDICIONES.html">Terms and Conditions</a>
@@ -188,7 +239,7 @@
 
     <script src="js/artyom.window.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/asistente.js"></script>
+
     <script src="js/calculadora.js"></script>
 </body>
 </html>

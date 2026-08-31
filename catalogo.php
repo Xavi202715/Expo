@@ -272,51 +272,7 @@
                         </div>
                     </div>
 
-                    <!-- AB-C1-02 -->
-                    <div class="card" data-condition="hipertension" data-level="basico" data-severity="1">
-                        <button class="pin-btn" title="Pin Plan" onclick="togglePinCard(this)">
-                            <i class="fa-solid fa-thumbtack"></i>
-                        </button>
-                        <div class="left ab orange">AB-C1-02</div>
-                        <div class="middle">
-                            <h3>Heart-Healthy DASH Start</h3>
-                            <p>Introduction to low-sodium cooking rich in potassium foods.</p>
-                            <div class="meal-preview orange">
-                                <strong>Meal idea</strong>
-                                <span>Tomato basil salad, grilled turkey breast, and baked apple.</span>
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <div><span>Duration</span><strong>30 days</strong></div>
-                            <div><span>Follow-up</span><strong>Weekly</strong></div>
-                        </div>
-                        <div class="right">
-                            <button onclick="openPlan('AB-C1-02')">View Plan</button>
-                        </div>
-                    </div>
-
-                    <!-- AB-C2-02 -->
-                    <div class="card" data-condition="hipertension" data-level="intermedio" data-severity="2">
-                        <button class="pin-btn" title="Pin Plan" onclick="togglePinCard(this)">
-                            <i class="fa-solid fa-thumbtack"></i>
-                        </button>
-                        <div class="left ab orange">AB-C2-02</div>
-                        <div class="middle">
-                            <h3>Hypertension & Sodium Care</h3>
-                            <p>Cardiovascular focus with reduced sodium and elevated potassium.</p>
-                            <div class="meal-preview orange">
-                                <strong>Meal idea</strong>
-                                <span>Herb seasoned chicken, steamed zucchini, and brown rice.</span>
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <div><span>Duration</span><strong>45 days</strong></div>
-                            <div><span>Follow-up</span><strong>Weekly</strong></div>
-                        </div>
-                        <div class="right">
-                            <button onclick="openPlan('AB-C2-02')">View Plan</button>
-                        </div>
-                    </div>
+                   
 
                     <!-- AB-C1-03 -->
                     <div class="card" data-condition="colesterol" data-level="basico" data-severity="1">
@@ -446,52 +402,7 @@
                         </div>
                     </div>
 
-                    <!-- AB-A3-04 -->
-                    <div class="card" data-condition="hipertension" data-level="avanzado" data-severity="3">
-                        <button class="pin-btn" title="Pin Plan" onclick="togglePinCard(this)">
-                            <i class="fa-solid fa-thumbtack"></i>
-                        </button>
-                        <div class="left ab red">AB-A3-04</div>
-                        <div class="middle">
-                            <h3>Advanced DASH Protocol</h3>
-                            <p>Precision arterial pressure management and vascular protection.</p>
-                            <div class="meal-preview red">
-                                <strong>Meal idea</strong>
-                                <span>Steamed trout, spinach & pomegranate salad, and flaxseeds.</span>
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <div><span>Duration</span><strong>60 days</strong></div>
-                            <div><span>Follow-up</span><strong>Weekly</strong></div>
-                        </div>
-                        <div class="right">
-                            <button onclick="openPlan('AB-A3-04')">View Plan</button>
-                        </div>
-                    </div>
-
-                    <!-- AB-A3-05 -->
-                    <div class="card" data-condition="colesterol" data-level="avanzado" data-severity="3">
-                        <button class="pin-btn" title="Pin Plan" onclick="togglePinCard(this)">
-                            <i class="fa-solid fa-thumbtack"></i>
-                        </button>
-                        <div class="left ab red">AB-A3-05</div>
-                        <div class="middle">
-                            <h3>Advanced Omega & Lipid Shield</h3>
-                            <p>High plant sterols and Omega-3 protocol for lipid optimization.</p>
-                            <div class="meal-preview red">
-                                <strong>Meal idea</strong>
-                                <span>Mackerel fillet, chia pudding, walnuts, and green leaf salad.</span>
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <div><span>Duration</span><strong>60 days</strong></div>
-                            <div><span>Follow-up</span><strong>Weekly</strong></div>
-                        </div>
-                        <div class="right">
-                            <button onclick="openPlan('AB-A3-05')">View Plan</button>
-                        </div>
-                    </div>
-
+                   
                 </div>
             </section>
 

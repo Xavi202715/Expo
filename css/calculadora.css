@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CALCULADORA.CSS (COMPLETO Y REVISADO)
+   CALCULADORA.CSS (ACTUALIZADO CON CENTRADO Y MODO OSCURO MEJORADO)
    ========================================================================== */
 
 /* Variables de color y tipografía */
@@ -30,8 +30,6 @@ body {
     margin-top: auto;
 }
 
-/* ALINEACIÓN EXACTA DE TEXTO Y NAVEGACIÓN */
-
 /* Contenedor principal de la app */
 .app-container {
     background: var(--card-bg);
@@ -43,9 +41,34 @@ body {
     padding: 40px;
 }
 
-/* Botón de subida */
+/* Encabezado centrado */
+.app-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.app-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+.app-header p {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* Botón de subida centrado */
 input[type="file"] {
     display: none;
+}
+
+.upload-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
 }
 
 .btn-upload {
@@ -59,18 +82,13 @@ input[type="file"] {
     align-items: center;
     gap: 10px;
     transition: background 0.3s ease, transform 0.2s ease;
-    width: fit-content;
-    margin: 0 auto 20px auto;
+    margin: 0 auto;
     justify-content: center;
 }
 
 .btn-upload:hover {
     background-color: var(--primary-hover);
     transform: translateY(-2px);
-}
-
-.upload-section {
-    text-align: center;
 }
 
 /* Reorganización del contenido */
@@ -127,7 +145,7 @@ input[type="file"] {
     100% { transform: rotate(360deg); }
 }
 
-/* Resultados (Unidades rem aplicadas para accesibilidad) */
+/* Resultados */
 .results-section {
     text-align: left;
 }
@@ -192,25 +210,304 @@ input[type="file"] {
     display: none !important;
 }
 
-/* Modo Oscuro adaptado */
-body.dark-mode .app-container {
+/* =========================================================
+   MODO OSCURO (Dark Mode)
+   ========================================================= */
+body.dark-mode .app-container,
+body.dark .app-container {
     background-color: #1e1e1e !important;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
 }
 
 body.dark-mode .app-header h1,
+body.dark .app-header h1,
 body.dark-mode #foodName,
+body.dark #foodName,
 body.dark-mode .ingredients-box h3,
-body.dark-mode #ingredientsList li {
+body.dark .ingredients-box h3,
+body.dark-mode #ingredientsList li,
+body.dark #ingredientsList li {
     color: #ffffff !important;
 }
 
+body.dark-mode #foodName,
+body.dark #foodName {
+    border-bottom-color: #333333 !important;
+}
+
 body.dark-mode .app-header p,
-body.dark-mode .macro-label {
+body.dark .app-header p,
+body.dark-mode .macro-label,
+body.dark .macro-label {
     color: #b0b0b0 !important;
 }
 
 body.dark-mode .macro-card,
-body.dark-mode #ingredientsList li {
+body.dark .macro-card,
+body.dark-mode #ingredientsList li,
+body.dark #ingredientsList li {
     background-color: #2a2a2a !important;
+}
+
+body.dark-mode .spinner,
+body.dark .spinner {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-left-color: var(--primary-color);
+}
+
+/* ==========================================================================
+   NUEVAS SECCIONES: ACCESIBILIDAD (PESTAÑAS, TEXTO Y VOZ)
+   ========================================================================== */
+
+/* Pestañas de navegación */
+.input-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tab-btn {
+    background: var(--bg-color);
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tab-btn:hover {
+    color: var(--text-main);
+}
+
+.tab-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Paneles de entrada */
+.tab-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 25px auto;
+}
+
+/* Formulario de texto y voz */
+.text-input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.food-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 2px solid #E5E7EB;
+    background: var(--bg-color);
+    color: var(--text-main);
+    font-size: 1rem;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.food-textarea:focus {
+    border-color: var(--primary-color);
+}
+
+/* Botón del micrófono */
+.btn-voice {
+    background-color: #EF4444;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-voice.recording {
+    animation: pulse 1.5s infinite;
+    background-color: #DC2626;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Caja de recomendaciones de Gemini */
+.recommendations-box {
+    margin-top: 20px;
+    background: rgba(79, 70, 229, 0.08);
+    border-left: 4px solid var(--primary-color);
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.recommendations-box h3 {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+.recommendations-box p {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+/* Modo Oscuro para las nuevas funciones */
+body.dark-mode .tab-btn,
+body.dark .tab-btn {
+    background-color: #2a2a2a;
+    color: #b0b0b0;
+}
+
+body.dark-mode .tab-btn.active,
+body.dark .tab-btn.active {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+body.dark-mode .food-textarea,
+body.dark .food-textarea {
+    background-color: #2a2a2a;
+    border-color: #333333;
+    color: #ffffff;
+}
+
+body.dark-mode .recommendations-box,
+body.dark .recommendations-box {
+    background: rgba(79, 70, 229, 0.2);
+}
+
+/* Corregir distribución a 2 columnas o ancho completo centrado */
+.results-section {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Macros distribuidos a lo ancho */
+.macros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Estilos y Contraste de la Caja de Recomendaciones */
+.recommendations-box {
+    background-color: #2a2438;
+    border-left: 4px solid #8b5cf6;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 25px;
+}
+
+.recommendations-box h3 {
+    color: #a78bfa !important; /* Morado claro para el título */
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.recommendations-box p {
+    color: #ffffff !important; /* Blanco puro para visibilidad */
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+/* 1. Si la vista previa de la imagen está oculta, los resultados ocupan el 100% de la card */
+.content-grid:has(.preview-section.hidden) .results-section,
+.preview-section.hidden + .results-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: 1 / -1 !important;
+}
+
+/* 2. Forzar a que la sección de resultados ocupe todo el ancho interno */
+.results-section {
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* 3. Distribuir las 3 tarjetas de macros a lo largo de toda la fila */
+.macros-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px;
+    width: 100% !important;
+}
+
+/* 4. Extender las cajas de ingredientes y recomendaciones a ancho completo */
+.ingredients-box,
+.ingredients-box li,
+.recommendations-box {
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* Envoltorio de texto + micrófono */
+.input-with-mic-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-with-mic-wrapper .food-textarea {
+    width: 100%;
+    padding-right: 50px; /* Deja espacio a la derecha para no tapar el texto con el botón */
+    box-sizing: border-box;
+}
+
+/* Botón de micrófono integrado dentro del textarea */
+.btn-inline-mic {
+    position: absolute;
+    right: 12px;
+    bottom: 15px;
+    background-color: #8b5cf6;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.btn-inline-mic:hover {
+    background-color: #7c3aed;
+    transform: scale(1.08);
+}
+
+/* Estado escuchando / grabando */
+.btn-inline-mic.listening {
+    background-color: #ef4444;
+    animation: pulseMic 1.2s infinite;
+}
+
+@keyframes pulseMic {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
 }

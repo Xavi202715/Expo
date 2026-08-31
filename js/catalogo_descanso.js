@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".card");
   const sections = document.querySelectorAll(".plan-section");
 
-  /* FILTRO DE PLANES */
+  /* FILTRO DE PLANES DE DESCANSO */
   function filterPlans() {
     const text = search ? search.value.toLowerCase().trim() : "";
     const c = condition ? condition.value : "all";
     const l = level ? level.value : "all";
 
-    // 1. Filtrar cada tarjeta individualmente
+    // 1. Filtrar tarjeta por tarjeta
     cards.forEach(card => {
       const titleElement = card.querySelector("h3");
       const title = titleElement ? titleElement.innerText.toLowerCase() : "";
@@ -20,11 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const matchCondition = (c === "all" || card.dataset.condition === c);
       const matchLevel = (l === "all" || card.dataset.level === l);
 
-      // Usamos "flex" en lugar de "grid" para preservar el layout de las tarjetas
       card.style.display = (matchText && matchCondition && matchLevel) ? "flex" : "none";
     });
 
-    // 2. Ocultar la sección entera y su línea divisoria si no hay tarjetas visibles
+    // 2. Ocultar secciones vacías y divisores
     sections.forEach(section => {
       const visibleCards = Array.from(section.querySelectorAll(".card")).filter(
         card => card.style.display !== "none"
@@ -51,22 +50,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (level) level.addEventListener("change", filterPlans);
 });
 
-/* REDIRECCIÓN DE PLANES */
-/* REDIRECCIÓN DE PLANES CON PHP UNIVERSAL */
-function openPlan(id) {
-  if (id) {
-    // Redirige al PHP universal pasando el ID como parámetro GET
-    window.location.href = `detalle_plan.php?id=${encodeURIComponent(id)}`;
+/* REDIRECCIÓN ESPECÍFICA A DETALLE DESCANSO */
+function openPlan(planId) {
+  if (planId) {
+    window.location.href = 'detalle_descanso.php?id=' + encodeURIComponent(planId);
   } else {
-    alert("Código de plan no válido.");
+    alert("Plan no encontrado.");
   }
 }
 
-/* MARCADOR DE FAVORITOS / PLANES FIJADOS */
-/* MARCADOR DE FAVORITOS / PLANES FIJADOS */
+/* MARCADOR / FAVORITO PARA DESCANSO */
 function toggleBookmark(planCode, planTitle, planLevel, btnElement) {
-  console.log("¡Clic detectado en el pin del plan:", planCode);
-
   fetch('api/guardar_favorito.php', {
     method: 'POST',
     headers: {
@@ -75,17 +69,12 @@ function toggleBookmark(planCode, planTitle, planLevel, btnElement) {
     body: JSON.stringify({
       plan_code: planCode,
       plan_title: planTitle,
-      plan_level: planLevel
+      plan_level: planLevel,
+      tipo: 'descanso'
     })
   })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  })
+  .then(response => response.json())
   .then(data => {
-    console.log("Respuesta del servidor:", data);
     if (data.success) {
       const icon = btnElement.querySelector('i');
       if (data.is_favorite) {
@@ -102,11 +91,22 @@ function toggleBookmark(planCode, planTitle, planLevel, btnElement) {
         }
       }
     } else {
-      alert(data.message || 'Error al guardar el estado del plan.');
+      // Toggle local si aún no está conectado a BD
+      const icon = btnElement.querySelector('i');
+      btnElement.classList.toggle('active');
+      if (icon) {
+        icon.classList.toggle('fa-solid');
+        icon.classList.toggle('fa-regular');
+      }
     }
   })
   .catch(err => {
-    console.error('Error al cambiar favorito:', err);
-    alert('No se pudo procesar la solicitud. Inténtalo más tarde.');
+    // Cambio local en caso de no tener backend listo
+    const icon = btnElement.querySelector('i');
+    btnElement.classList.toggle('active');
+    if (icon) {
+      icon.classList.toggle('fa-solid');
+      icon.classList.toggle('fa-regular');
+    }
   });
 }

@@ -118,7 +118,7 @@
                 <div class="details">
                 
                 </div>
-                <button class="card-btn" onclick="window.location.href='catalogo.php'">View Plan</button>
+                <button class="card-btn" onclick="window.location.href='catalogo_ejercicio.php'">View Plan</button>
             </div>
         </div>
 
@@ -130,57 +130,13 @@
                 <h3>Rest</h3>
                 <p>Discover the importance of good rest and find recommendations to improve your sleep quality, promote body recovery, and maintain a healthy lifestyle.</p>
                 <div class="details">
-                    <span><i class="fa-solid fa-fire"></i> 1500 kcal</span>
-                    <span><i class="fa-solid fa-calendar-days"></i> 45 days</span>
+                
                 </div>
-                <button class="card-btn" onclick="window.location.href='catalogo.php'">View Plan</button>
+                <button class="card-btn" onclick="window.location.href='catalogo_descanso.php'">View Plan</button>
             </div>
         </div>
 
-        <div class="plan-card">
-            <div class="card-image">
-                <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=600" alt="Cardiovascular Health">
-            </div>
-            <div class="card-body">
-                <h3>Wellness</h3>
-                <p>Find recommendations to care for your physical and emotional health, reduce stress, and maintain habits that promote a balanced, healthy lifestyle.</p>
-                <div class="details">
-                    <span><i class="fa-solid fa-fire"></i> 1700 kcal</span>
-                    <span><i class="fa-solid fa-calendar-days"></i> 30 days</span>
-                </div>
-                <button class="card-btn">View Plan</button>
-            </div>
-        </div>
-
-        <div class="plan-card">
-            <div class="card-image">
-                <img src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?q=80&w=600" alt="Blood Sugar Control">
-            </div>
-            <div class="card-body">
-                <h3>Sugar Control</h3>
-                <p>Low glycemic index to keep sugar levels stable throughout the day.</p>
-                <div class="details">
-                    <span><i class="fa-solid fa-fire"></i> 1600 kcal</span>
-                    <span><i class="fa-solid fa-calendar-days"></i> 30 days</span>
-                </div>
-                <button class="card-btn">View Plan</button>
-            </div>
-        </div>
-
-        <div class="plan-card">
-            <div class="card-image">
-                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=600" alt="Vegetarian Nutrition">
-            </div>
-            <div class="card-body">
-                <h3>Vegetarian Nutrition</h3>
-                <p>Plant-based diet with complete protein and vitamin balance.</p>
-                <div class="details">
-                    <span><i class="fa-solid fa-fire"></i> 1900 kcal</span>
-                    <span><i class="fa-solid fa-calendar-days"></i> 30 days</span>
-                </div>
-                <button class="card-btn">View Plan</button>
-            </div>
-        </div>
+      
 
     </div>
 </section>

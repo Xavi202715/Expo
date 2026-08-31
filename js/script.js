@@ -164,6 +164,18 @@ function playBeepSound() {
     }
 }
 
+// 5. Cierre suave del widget flotante de Plan Favorito
+function closeFloatingWidget() {
+    const widget = document.getElementById('floatingPlanWidget');
+    if (widget) {
+        widget.style.opacity = '0';
+        widget.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => {
+            widget.style.display = 'none';
+        }, 300);
+    }
+}
+
 // Restore settings on load
 (function loadAccessibilitySettings() {
     const savedSize = localStorage.getItem('fontSize');

@@ -1,0 +1,398 @@
+/* Protocol Detail Layout */
+.guide-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    color: #2e7d32;
+}
+
+/* Banner */
+.hero-banner {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.hero-banner img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 20px;
+    color: #ffffff;
+}
+
+.hero-overlay h1 {
+    margin: 8px 0 4px 0;
+}
+
+.hero-overlay p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.badge-code {
+    background: #2e7d32;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.protocol-meta {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.meta-tag {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.protocol-summary {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Timeline */
+.section-title {
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    margin: 30px 0 20px 0;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 20px;
+    border-left: 3px solid #2e7d32;
+}
+
+.timeline-step {
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.timeline-step::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #2e7d32;
+}
+
+.time-badge {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #2e7d32;
+    text-transform: uppercase;
+}
+
+.step-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 4px 0;
+}
+
+.step-desc {
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Video & Checklist */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.checklist-box {
+    background: #f4fbf7;
+    border: 1px solid #c8e6c9;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    color: #2e7d32;
+    cursor: pointer;
+}
+
+.checklist-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+/* Quitar subrayado por defecto a los enlaces del header */
+.main-header a {
+    text-decoration: none !important;
+}
+
+.logo-area, 
+.logo-area *,
+.header-btn-schedule, 
+.header-btn-schedule * {
+    text-decoration: none !important;
+}
+
+/* Mantener solo la línea verde decorativa del menú activo */
+.nav-links a {
+    text-decoration: none;
+}
+
+/* Corrección para la visibilidad en Dark Mode */
+body.dark-mode .guide-container,
+body.dark-mode .step-title,
+body.dark-mode .step-desc,
+body.dark-mode .protocol-summary,
+body.dark-mode .section-title {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .guide-container {
+    background-color: #1e1e1e !important;
+}
+
+body.dark-mode .step-title {
+    color: #ffffff !important;
+}
+
+body.dark-mode .step-desc {
+    color: #cccccc !important;
+}
+
+body.dark-mode .checklist-box {
+    background-color: #263238 !important;
+    border-color: #37474f !important;
+}
+
+body.dark-mode .checklist-item {
+    color: #81c784 !important;
+}
+
+/* Estilo para el enlace interactivo de respiración */
+.breathing-link {
+    color: #2e7d32;
+    text-decoration: underline !important;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.breathing-link:hover {
+    color: #1b5e20;
+}
+
+body.dark-mode .breathing-link {
+    color: #81c784;
+}
+
+/* Modal Popup para el Video */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+}
+
+body.dark-mode .modal-content {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+/* Tarjeta Interactiva de Respiración */
+.breathing-card {
+    background: #f4fbf7;
+    border: 1px solid #c8e6c9;
+    padding: 20px 25px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.breathing-info h3 {
+    margin: 0 0 5px 0;
+    color: #2e7d32;
+    font-size: 1.1rem;
+}
+
+.breathing-info p {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.btn-start-breathing {
+    background: #2e7d32;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-start-breathing:hover {
+    background: #1b5e20;
+}
+
+/* Animación del Círculo en el Modal */
+.breathing-circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
+    margin: 10px 0 20px 0;
+}
+
+.breathing-circle {
+    width: 110px;
+    height: 110px;
+    background: #2e7d32;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 0 15px rgba(46, 125, 50, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Fases de Animación CSS */
+.breathing-circle.inhale {
+    transform: scale(1.7);
+    background-color: #2196f3;
+    transition: transform 4s linear, background-color 0.5s ease;
+}
+
+.breathing-circle.hold {
+    transform: scale(1.7);
+    background-color: #ff9800;
+    transition: background-color 0.5s ease;
+}
+
+.breathing-circle.exhale {
+    transform: scale(1);
+    background-color: #4caf50;
+    transition: transform 8s linear, background-color 0.5s ease;
+}
+
+/* Compatibilidad Dark Mode */
+body.dark-mode .breathing-card {
+    background-color: #111827 !important;
+    border-color: #1f2937 !important;
+}
+
+body.dark-mode .breathing-info h3 {
+    color: #81c784 !important;
+}
+
+body.dark-mode .breathing-info p {
+    color: #9ca3af !important;
+}
+
+body.dark-mode #breathingSubtext {
+    color: #d1d5db !important;
+}
+
+/* Estilo para Links de Video de YouTube */
+a.breathing-link {
+    color: #2e7d32;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+a.breathing-link:hover {
+    color: #1b5e20;
+}
+
+a.breathing-link i {
+    font-size: 0.85em;
+    margin-right: 4px;
+}
+
+body.dark-mode a.breathing-link {
+    color: #81c784 !important;
+}

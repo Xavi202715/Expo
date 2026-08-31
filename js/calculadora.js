@@ -1,12 +1,10 @@
 // ==========================================
-// CONFIGURACIÓN DE GEMINI AI
+// CONFIGURACIÓN DE GEMINI AI & ACCESIBILIDAD
 // ==========================================
 const GEMINI_API_KEY = "AQ.Ab8RN6J67tH1irzTGxB8Ub9IV9kxN5w5hzGLR71X14HDIEkY_g"; 
-
-// Usamos el modelo exacto que te funciona a ti: gemini-3.6-flash
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
 
-// Elementos del DOM
+// Elementos del DOM - General
 const imageUpload = document.getElementById('imageUpload');
 const previewSection = document.getElementById('previewSection');
 const imagePreview = document.getElementById('imagePreview');
@@ -19,9 +17,139 @@ const calValue = document.getElementById('calValue');
 const protValue = document.getElementById('protValue');
 const fatValue = document.getElementById('fatValue');
 const ingredientsList = document.getElementById('ingredientsList');
+const recommendationsText = document.getElementById('recommendationsText');
 
-if (imageUpload) {
-    imageUpload.addEventListener('change', handleImageUpload);
+// Elementos - Accesibilidad (Texto y Voz)
+const foodTextInput = document.getElementById('foodTextInput');
+const btnAnalyzeText = document.getElementById('btnAnalyzeText');
+const btnVoiceRecord = document.getElementById('btnVoiceRecord');
+const btnInlineMic = document.getElementById('btnInlineMic'); // Botón integrado en la barra de texto
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+// Reconocimiento de Voz (Web Speech API)
+let recognition = null;
+let isRecording = false;
+let activeMicSource = null; // Guarda qué botón inició la grabación ('tab' o 'inline')
+
+if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.lang = 'es-ES'; // Idioma de escucha (puedes cambiar a 'en-US' si lo prefieres)
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        console.log("Texto detectado:", transcript);
+        
+        // Escribir el texto detectado en el textarea
+        if (foodTextInput) {
+            foodTextInput.value = transcript;
+        }
+
+        const currentSource = activeMicSource;
+        stopRecordingUI();
+
+        // Si fue invocado desde la pestaña exclusiva de voz, procesa automáticamente.
+        // Si fue desde el micrófono integrado en el texto, el usuario puede revisar antes de dar clic en Analyze.
+        if (currentSource === 'tab') {
+            processFoodText(transcript);
+        }
+    };
+
+    recognition.onerror = (event) => {
+        console.error("Error en reconocimiento de voz:", event.error);
+        stopRecordingUI();
+        alert("No se pudo procesar la voz. Intenta escribir directamente en el cuadro de texto.");
+    };
+
+    recognition.onend = () => {
+        stopRecordingUI();
+    };
+}
+
+// Inicialización de Eventos
+document.addEventListener('DOMContentLoaded', () => {
+    // Manejo de Pestañas (Imagen / Texto / Voz)
+    if (tabBtns.length > 0) {
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanels.forEach(p => p.classList.add('hidden'));
+
+                btn.classList.add('active');
+                const targetPanel = document.getElementById(btn.dataset.target);
+                if (targetPanel) targetPanel.classList.remove('hidden');
+            });
+        });
+    }
+
+    // Evento Subir Imagen
+    if (imageUpload) imageUpload.addEventListener('change', handleImageUpload);
+
+    // Evento Analizar Texto
+    if (btnAnalyzeText) {
+        btnAnalyzeText.addEventListener('click', () => {
+            const description = foodTextInput ? foodTextInput.value.trim() : '';
+            if (!description) {
+                alert("Please write or dictate a food description first.");
+                return;
+            }
+            processFoodText(description);
+        });
+    }
+
+    // Evento Grabar Voz (Pestaña principal de voz)
+    if (btnVoiceRecord) {
+        btnVoiceRecord.addEventListener('click', () => toggleVoiceRecording('tab'));
+    }
+
+    // Evento Grabar Voz (Microfonito integrado en la caja de texto)
+    if (btnInlineMic) {
+        btnInlineMic.addEventListener('click', () => toggleVoiceRecording('inline'));
+    }
+});
+
+function toggleVoiceRecording(source = 'tab') {
+    if (!recognition) {
+        alert("Your browser does not support Speech Recognition. Please use text input.");
+        return;
+    }
+
+    if (!isRecording) {
+        try {
+            activeMicSource = source;
+            recognition.start();
+            isRecording = true;
+
+            if (source === 'inline' && btnInlineMic) {
+                btnInlineMic.classList.add('listening');
+            } else if (btnVoiceRecord) {
+                btnVoiceRecord.classList.add('recording');
+                btnVoiceRecord.textContent = "🎙️ Listening... (Click to stop)";
+            }
+        } catch (e) {
+            console.error("Error al iniciar el micrófono:", e);
+        }
+    } else {
+        recognition.stop();
+        stopRecordingUI();
+    }
+}
+
+function stopRecordingUI() {
+    isRecording = false;
+    activeMicSource = null;
+
+    if (btnInlineMic) {
+        btnInlineMic.classList.remove('listening');
+    }
+
+    if (btnVoiceRecord) {
+        btnVoiceRecord.classList.remove('recording');
+        btnVoiceRecord.textContent = "🎤 Dictate Food";
+    }
 }
 
 function handleImageUpload(event) {
@@ -38,7 +166,6 @@ function handleImageUpload(event) {
     analyzeFoodWithGemini(file);
 }
 
-// Convierte la imagen a base64 para enviarla a Gemini
 function fileToGenerativePart(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -56,36 +183,11 @@ function fileToGenerativePart(file) {
     });
 }
 
+// Procesar entrada por Imagen
 async function analyzeFoodWithGemini(imageFile) {
     try {
         const imagePart = await fileToGenerativePart(imageFile);
-
-        const promptText = `
-        Analiza detenidamente la imagen adjunta.
-
-        SI NO ES COMIDA NI UN ALIMENTO PREPARADO (por ejemplo: un animal vivo, una persona, un vehículo, un objeto, etc.):
-        Responde ÚNICAMENTE con este JSON:
-        {
-            "es_comida": false,
-            "error_mensaje": "La imagen no parece contener alimentos o platillos comestibles."
-        }
-
-        SI ES COMIDA O UN PLATILLO:
-        Analiza sus macronutrientes aproximados e ingredientes y responde ÚNICAMENTE con este JSON:
-        {
-            "es_comida": true,
-            "platillo": "Nombre del platillo detectado",
-            "ingredientes": ["Ingrediente 1", "Ingrediente 2"],
-            "macros": {
-                "calorias": 500,
-                "proteina": "30g",
-                "grasas": "20g",
-                "carbohidratos": "40g"
-            }
-        }
-
-        Regla estricta: Devuelve SOLO el texto JSON crudo, sin bloques de código markdown (\`\`\`json) ni texto adicional.
-        `;
+        const promptText = getSystemPrompt();
 
         const requestBody = {
             contents: [
@@ -98,57 +200,119 @@ async function analyzeFoodWithGemini(imageFile) {
             ]
         };
 
-        let response;
-        let retries = 3; // Intentos si el servidor responde con 503 (Alta Demanda)
-
-        while (retries > 0) {
-            response = await fetch(GEMINI_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestBody)
-            });
-
-            // Si Google responde 503 (Alta demanda temporal), esperamos 2 segundos y reintentamos automáticamente
-            if (response.status === 503 && retries > 1) {
-                console.warn(`Servidor de Google en alta demanda (503). Reintentando... (${retries - 1} intentos restantes)`);
-                retries--;
-                await new Promise(resolve => setTimeout(resolve, 2000));
-            } else {
-                break;
-            }
-        }
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            console.error("Error devuelto por la API de Google:", data);
-            const message = data.error?.message || response.statusText;
-            throw new Error(`Error API (${response.status}): ${message}`);
-        }
-
-        if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
-            throw new Error("Respuesta inválida o incompleta de la IA.");
-        }
-
-        const rawText = data.candidates[0].content.parts[0].text;
-        const cleanJsonString = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
-        const parsedResult = JSON.parse(cleanJsonString);
-
-        if (!parsedResult.es_comida) {
-            alert(parsedResult.error_mensaje || "La imagen subida no parece ser un alimento.");
-            if (loaderSection) loaderSection.classList.add('hidden');
-            return;
-        }
-
-        displayResults(parsedResult);
-
+        await sendToGemini(requestBody);
     } catch (error) {
-        console.error("Error al procesar la imagen:", error);
-        alert(`Ocurrió un error:\n${error.message}`);
-        if (loaderSection) loaderSection.classList.add('hidden');
+        handleApiError(error);
     }
+}
+
+// Procesar entrada por Texto o Voz
+async function processFoodText(description) {
+    if (previewSection) previewSection.classList.add('hidden');
+    if (resultsSection) resultsSection.classList.add('hidden');
+    if (loaderSection) loaderSection.classList.remove('hidden');
+
+    try {
+        const promptText = `${getSystemPrompt()}\n\nFood description provided by the user: "${description}"`;
+
+        const requestBody = {
+            contents: [
+                {
+                    parts: [
+                        { text: promptText }
+                    ]
+                }
+            ]
+        };
+
+        await sendToGemini(requestBody);
+    } catch (error) {
+        handleApiError(error);
+    }
+}
+
+// Prompt unificado
+function getSystemPrompt() {
+    return `
+    Carefully analyze the input (image or text description).
+
+    IF IT IS NOT FOOD OR AN EDIBLE MEAL:
+    Respond ONLY with this raw JSON:
+    {
+        "es_comida": false,
+        "error_mensaje": "The provided input does not contain or describe edible food."
+    }
+
+    IF IT IS FOOD OR A DISH:
+    Analyze its estimated macronutrients, ingredients, and provide 1-2 healthy substitution/improvement recommendations.
+    Respond ONLY with this raw JSON:
+    {
+        "es_comida": true,
+        "platillo": "Detected dish name in English",
+        "ingredientes": ["Ingredient 1 in English", "Ingredient 2 in English"],
+        "macros": {
+            "calorias": 500,
+            "proteina": "30g",
+            "grasas": "20g",
+            "carbohidratos": "40g"
+        },
+        "recomendacion": "Brief healthy recommendation or healthier alternative in English."
+    }
+
+    CRITICAL RULE:
+    - All text values (dish name, ingredients, error message, recommendation) MUST BE STRICTLY IN ENGLISH.
+    - Return ONLY raw JSON text, without markdown code blocks (\`\`\`json) or extra text.
+    `;
+}
+
+// Envío a la API con retry
+async function sendToGemini(requestBody) {
+    let response;
+    let retries = 4;
+
+    while (retries > 0) {
+        response = await fetch(GEMINI_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestBody)
+        });
+
+        if (response.status === 503 && retries > 1) {
+            retries--;
+            await new Promise(resolve => setTimeout(resolve, 2000));
+        } else {
+            break;
+        }
+    }
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        const message = data.error?.message || response.statusText;
+        throw new Error(`API Error (${response.status}): ${message}`);
+    }
+
+    if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
+        throw new Error("Invalid or incomplete response from AI.");
+    }
+
+    const rawText = data.candidates[0].content.parts[0].text;
+    const cleanJsonString = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+    const parsedResult = JSON.parse(cleanJsonString);
+
+    if (!parsedResult.es_comida) {
+        alert(parsedResult.error_mensaje || "The input does not appear to be food.");
+        if (loaderSection) loaderSection.classList.add('hidden');
+        return;
+    }
+
+    displayResults(parsedResult);
+}
+
+function handleApiError(error) {
+    console.error("Processing error:", error);
+    alert(`An error occurred:\n${error.message}`);
+    if (loaderSection) loaderSection.classList.add('hidden');
 }
 
 function displayResults(data) {
@@ -167,5 +331,9 @@ function displayResults(data) {
             li.textContent = ingrediente;
             ingredientsList.appendChild(li);
         });
+    }
+
+    if (recommendationsText && data.recomendacion) {
+        recommendationsText.textContent = data.recomendacion;
     }
 }
