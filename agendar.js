@@ -1,5 +1,5 @@
 // =====================================================
-// ELEMENTOS
+// ELEMENTS
 // =====================================================
 
 const formulario =
@@ -48,11 +48,15 @@ const verDatos =
     document.getElementById("verDatos");
 
 
+// =====================================================
+// APPOINTMENT DATA
+// =====================================================
+
 let datosCita = {};
 
 
 // =====================================================
-// FECHA MÍNIMA = HOY
+// DATE
 // =====================================================
 
 const fecha =
@@ -75,7 +79,7 @@ fecha.min =
 
 
 // =====================================================
-// ESTADO INICIAL
+// INITIAL STATE
 // =====================================================
 
 grupoEspecialista.style.display = "none";
@@ -92,26 +96,30 @@ lugar.required = false;
 
 
 // =====================================================
-// CAMBIO DE MODALIDAD
+// APPOINTMENT TYPE CHANGE
 // =====================================================
 
 modalidad.addEventListener("change", function () {
 
 
-    // ==========================================
+    // =================================================
     // VIRTUAL
-    // ==========================================
+    // =================================================
 
     if (this.value === "Virtual") {
 
+        // Show specialist
         grupoEspecialista.style.display = "flex";
 
+        // Hide location
         grupoLugar.style.display = "none";
 
+        // Required fields
         especialista.required = true;
 
         lugar.required = false;
 
+        // Clear location
         lugar.value = "";
 
         informacionLugar.style.display = "none";
@@ -124,22 +132,27 @@ modalidad.addEventListener("change", function () {
     }
 
 
-    // ==========================================
-    // PRESENCIAL
-    // ==========================================
+    // =================================================
+    // IN-PERSON
+    // =================================================
 
-    else if (this.value === "Presencial") {
+    else if (this.value === "In-Person") {
 
+        // Hide specialist
         grupoEspecialista.style.display = "none";
 
+        // Show location
         grupoLugar.style.display = "flex";
 
+        // Required fields
         especialista.required = false;
 
         lugar.required = true;
 
+        // Clear specialist
         especialista.value = "";
 
+        // Hide previous location information
         informacionLugar.style.display = "none";
 
         contenedorMapa.style.display = "none";
@@ -150,9 +163,9 @@ modalidad.addEventListener("change", function () {
     }
 
 
-    // ==========================================
-    // NINGUNA
-    // ==========================================
+    // =================================================
+    // NO TYPE SELECTED
+    // =================================================
 
     else {
 
@@ -181,19 +194,20 @@ modalidad.addEventListener("change", function () {
 
 
 // =====================================================
-// CAMBIO DE LUGAR
+// LOCATION CHANGE
 // =====================================================
 
 lugar.addEventListener("change", function () {
 
 
+    // Get selected option
     const opcion =
         this.options[this.selectedIndex];
 
 
-    // ==========================================
-    // NO HAY LUGAR
-    // ==========================================
+    // =================================================
+    // NO LOCATION SELECTED
+    // =================================================
 
     if (!this.value) {
 
@@ -209,9 +223,9 @@ lugar.addEventListener("change", function () {
     }
 
 
-    // ==========================================
-    // DATOS
-    // ==========================================
+    // =================================================
+    // GET LOCATION DATA
+    // =================================================
 
     const nombre =
         opcion.value;
@@ -220,9 +234,9 @@ lugar.addEventListener("change", function () {
         opcion.dataset.direccion;
 
 
-    // ==========================================
-    // MOSTRAR DATOS
-    // ==========================================
+    // =================================================
+    // SHOW LOCATION INFORMATION
+    // =================================================
 
     nombreLugar.textContent =
         nombre;
@@ -234,15 +248,15 @@ lugar.addEventListener("change", function () {
         "block";
 
 
-    // ==========================================
+    // =================================================
     // GOOGLE MAPS
-    // ==========================================
+    // =================================================
 
     const direccionCodificada =
         encodeURIComponent(direccion);
 
 
-    // URL PARA ABRIR GOOGLE MAPS
+    // Google Maps external URL
 
     const urlGoogleMaps =
         `https://www.google.com/maps/search/?api=1&query=${direccionCodificada}`;
@@ -252,9 +266,9 @@ lugar.addEventListener("change", function () {
         urlGoogleMaps;
 
 
-    // ==========================================
-    // MAPA EMBEBIDO
-    // ==========================================
+    // =================================================
+    // EMBEDDED MAP
+    // =================================================
 
     const urlMapa =
         `https://www.google.com/maps?q=${direccionCodificada}&output=embed`;
@@ -264,6 +278,8 @@ lugar.addEventListener("change", function () {
         urlMapa;
 
 
+    // Show map
+
     contenedorMapa.style.display =
         "block";
 
@@ -271,7 +287,7 @@ lugar.addEventListener("change", function () {
 
 
 // =====================================================
-// ENVIAR FORMULARIO
+// SUBMIT FORM
 // =====================================================
 
 formulario.addEventListener("submit", function(e) {
@@ -279,19 +295,23 @@ formulario.addEventListener("submit", function(e) {
     e.preventDefault();
 
 
+    // Variable for the selected location
+
     let opcionLugar = null;
 
 
-    if (modalidad.value === "Presencial") {
+    // Get location only for in-person appointments
+
+    if (modalidad.value === "In-Person") {
 
         opcionLugar =
             lugar.options[lugar.selectedIndex];
     }
 
 
-    // ==========================================
-    // CREAR DATOS
-    // ==========================================
+    // =================================================
+    // CREATE APPOINTMENT DATA
+    // =================================================
 
     datosCita = {
 
@@ -310,18 +330,18 @@ formulario.addEventListener("submit", function(e) {
         especialista:
             modalidad.value === "Virtual"
                 ? especialista.value
-                : "No aplica",
+                : "Not applicable",
 
         lugar:
-            modalidad.value === "Presencial"
+            modalidad.value === "In-Person"
                 ? lugar.value
-                : "Consulta virtual",
+                : "Virtual consultation",
 
         direccion:
-            modalidad.value === "Presencial" &&
+            modalidad.value === "In-Person" &&
             opcionLugar
                 ? opcionLugar.dataset.direccion
-                : "La consulta será realizada de manera virtual.",
+                : "The consultation will be conducted virtually.",
 
         fecha:
             document.getElementById("fecha").value,
@@ -334,9 +354,9 @@ formulario.addEventListener("submit", function(e) {
     };
 
 
-    // ==========================================
-    // MOSTRAR MODAL
-    // ==========================================
+    // =================================================
+    // SHOW SUCCESS MODAL
+    // =================================================
 
     modal.style.display =
         "flex";
@@ -345,43 +365,44 @@ formulario.addEventListener("submit", function(e) {
 
 
 // =====================================================
-// VER DATOS
+// VIEW APPOINTMENT DETAILS
 // =====================================================
 
 verDatos.addEventListener("click", function() {
 
+
     alert(
 
-`DATOS DE LA CITA
+`APPOINTMENT DETAILS
 
-Nombre:
+Full Name:
 ${datosCita.nombre}
 
-Correo:
+Email:
 ${datosCita.correo}
 
-Teléfono:
+Phone:
 ${datosCita.telefono}
 
-Modalidad:
+Appointment Type:
 ${datosCita.modalidad}
 
-Especialista:
+Specialist:
 ${datosCita.especialista}
 
-Lugar:
+Location:
 ${datosCita.lugar}
 
-Dirección:
+Address:
 ${datosCita.direccion}
 
-Fecha:
+Date:
 ${datosCita.fecha}
 
-Hora:
+Time:
 ${datosCita.hora}
 
-Motivo:
+Reason for Consultation:
 ${datosCita.motivo}`
 
     );
@@ -390,22 +411,36 @@ ${datosCita.motivo}`
 
 
 // =====================================================
-// CERRAR MODAL
+// CLOSE MODAL
 // =====================================================
 
 cerrarModal.addEventListener("click", function() {
 
+
+    // Hide modal
+
     modal.style.display =
         "none";
+
+
+    // Reset form
 
     formulario.reset();
 
 
+    // Hide specialist
+
     grupoEspecialista.style.display =
         "none";
 
+
+    // Hide location
+
     grupoLugar.style.display =
         "none";
+
+
+    // Reset required fields
 
     especialista.required =
         false;
@@ -413,14 +448,26 @@ cerrarModal.addEventListener("click", function() {
     lugar.required =
         false;
 
+
+    // Hide location information
+
     informacionLugar.style.display =
         "none";
+
+
+    // Hide map
 
     contenedorMapa.style.display =
         "none";
 
+
+    // Clear map
+
     mapa.src =
         "";
+
+
+    // Reset Google Maps button
 
     botonMapa.href =
         "#";

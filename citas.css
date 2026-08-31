@@ -1,8 +1,12 @@
+/* =========================================
+   RESET
+========================================= */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
     font-family: 'Poppins', sans-serif;
 }
 
@@ -21,14 +25,77 @@ body {
 
     justify-content: center;
 
-    align-items: center;
+    align-items: flex-start;
 
-    padding: 40px;
+    /*
+       Extra space at the top so the
+       Back button never overlaps the form.
+    */
+
+    padding: 110px 40px 40px;
 }
 
 
 /* =========================================
-   CONTENEDOR
+   BACK BUTTON
+========================================= */
+
+.boton-regresar {
+
+    position: fixed;
+
+    top: 25px;
+
+    left: 25px;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    background: #44764B;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, .15);
+
+    transition:
+        background .3s,
+        box-shadow .3s;
+}
+
+
+/*
+   Important:
+   We do NOT move the button when hovering.
+   This keeps it completely fixed.
+*/
+
+.boton-regresar:hover {
+
+    background: #365f3c;
+
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, .20);
+}
+
+
+/* =========================================
+   MAIN CONTAINER
 ========================================= */
 
 .container {
@@ -53,7 +120,7 @@ body {
 
 
 /* =========================================
-   IZQUIERDA
+   LEFT SIDE
 ========================================= */
 
 .left {
@@ -76,6 +143,8 @@ body {
 
     font-size: 45px;
 
+    line-height: 1.2;
+
     margin-bottom: 20px;
 }
 
@@ -90,18 +159,11 @@ body {
 }
 
 
-.decoracion {
 
-    font-size: 90px;
-
-    text-align: center;
-
-    margin-top: 40px;
-}
 
 
 /* =========================================
-   DERECHA
+   RIGHT SIDE
 ========================================= */
 
 .right {
@@ -129,7 +191,7 @@ body {
 
 
 /* =========================================
-   CAMPOS DINÁMICOS
+   DYNAMIC FIELDS
 ========================================= */
 
 #grupoEspecialista,
@@ -175,9 +237,15 @@ textarea {
 
     background: white;
 
-    transition: .3s;
+    transition:
+        border-color .3s,
+        box-shadow .3s;
 }
 
+
+/* =========================================
+   INPUT FOCUS
+========================================= */
 
 input:focus,
 select:focus,
@@ -190,14 +258,20 @@ textarea:focus {
 }
 
 
+/* =========================================
+   TEXTAREA
+========================================= */
+
 textarea {
 
     resize: vertical;
+
+    min-height: 100px;
 }
 
 
 /* =========================================
-   INFORMACIÓN DEL LUGAR
+   LOCATION INFORMATION
 ========================================= */
 
 .ubicacion {
@@ -249,7 +323,7 @@ textarea {
 
 
 /* =========================================
-   BOTÓN MAPS
+   GOOGLE MAPS BUTTON
 ========================================= */
 
 #botonMapa {
@@ -268,7 +342,9 @@ textarea {
 
     font-size: 13px;
 
-    transition: .3s;
+    transition:
+        background .3s,
+        box-shadow .3s;
 }
 
 
@@ -276,12 +352,13 @@ textarea {
 
     background: #365f3c;
 
-    transform: translateY(-1px);
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.15);
 }
 
 
 /* =========================================
-   MAPA
+   MAP
 ========================================= */
 
 .mapa-container {
@@ -316,7 +393,7 @@ textarea {
 
 
 /* =========================================
-   BOTÓN CONFIRMAR
+   CONFIRM BUTTON
 ========================================= */
 
 .boton-confirmar {
@@ -339,7 +416,9 @@ textarea {
 
     cursor: pointer;
 
-    transition: .3s;
+    transition:
+        background .3s,
+        box-shadow .3s;
 }
 
 
@@ -347,7 +426,8 @@ textarea {
 
     background: #e68613;
 
-    transform: translateY(-2px);
+    box-shadow:
+        0 5px 12px rgba(247,148,29,.25);
 }
 
 
@@ -369,9 +449,13 @@ textarea {
 
     align-items: center;
 
-    z-index: 1000;
+    z-index: 10000;
 }
 
+
+/* =========================================
+   MODAL CONTENT
+========================================= */
 
 .modal-contenido {
 
@@ -391,6 +475,10 @@ textarea {
         0 10px 30px rgba(0,0,0,.3);
 }
 
+
+/* =========================================
+   SUCCESS CHECK
+========================================= */
 
 .check {
 
@@ -416,6 +504,10 @@ textarea {
 }
 
 
+/* =========================================
+   MODAL TEXT
+========================================= */
+
 .modal-contenido h2 {
 
     margin-bottom: 10px;
@@ -431,7 +523,7 @@ textarea {
 
 
 /* =========================================
-   BOTONES MODAL
+   MODAL BUTTONS
 ========================================= */
 
 .botones {
@@ -462,21 +554,29 @@ textarea {
 }
 
 
+/* =========================================
+   VIEW DETAILS
+========================================= */
+
 #verDatos {
 
     background: #0d6efd;
 }
 
 
-#cerrarModal {
-
-    background: #6c757d;
-}
-
-
 #verDatos:hover {
 
     background: #0b5ed7;
+}
+
+
+/* =========================================
+   CLOSE MODAL
+========================================= */
+
+#cerrarModal {
+
+    background: #6c757d;
 }
 
 
@@ -487,14 +587,14 @@ textarea {
 
 
 /* =========================================
-   RESPONSIVE
+   RESPONSIVE - TABLET
 ========================================= */
 
-@media(max-width:900px) {
+@media (max-width: 900px) {
 
     body {
 
-        padding: 20px;
+        padding: 100px 20px 20px;
 
         align-items: flex-start;
     }
@@ -532,11 +632,27 @@ textarea {
 }
 
 
-@media(max-width:500px) {
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 500px) {
 
     body {
 
-        padding: 10px;
+        padding: 80px 10px 10px;
+    }
+
+
+    .boton-regresar {
+
+        top: 15px;
+
+        left: 15px;
+
+        padding: 8px 14px;
+
+        font-size: 13px;
     }
 
 
@@ -549,6 +665,14 @@ textarea {
     .left h1 {
 
         font-size: 32px;
+    }
+
+
+    .left p {
+
+        font-size: 14px;
+
+        line-height: 25px;
     }
 
 
