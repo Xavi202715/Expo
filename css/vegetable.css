@@ -1,0 +1,257 @@
+/* ESTILOS EXCLUSIVOS PARA LA SECCIÓN DE VEGETALES */
+.vegetable-page-section {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* HERO SECTION */
+.vegetable-page-section .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 8%;
+    gap: 40px;
+    background-color: #f9fbf9;
+}
+
+.vegetable-page-section .hero-image {
+    flex: 1;
+}
+
+.vegetable-page-section .hero-image img {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+    display: block;
+}
+
+.vegetable-page-section .hero-text {
+    flex: 1;
+}
+
+.vegetable-page-section .hero-text h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.vegetable-page-section .hero-text span {
+    color: #44764B;
+}
+
+.vegetable-page-section .hero-text p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #666666;
+    margin-bottom: 0;
+}
+
+/* INFORMACIÓN DE SECCIÓN */
+.vegetable-page-section .information {
+    padding: 50px 8%;
+}
+
+.vegetable-page-section .information h2 {
+    font-size: 30px;
+    color: #44764B;
+    margin-bottom: 18px;
+    margin-left: 0;
+    text-align: left;
+}
+
+.vegetable-page-section .information p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555555;
+    margin-bottom: 15px;
+}
+
+/* TARJETAS (CARDS GRID) */
+.vegetable-page-section .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.vegetable-page-section .veg-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.vegetable-page-section .veg-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.vegetable-page-section .card-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.vegetable-page-section .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.vegetable-page-section .card-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.vegetable-page-section .card-content h3 {
+    font-size: 18px;
+    color: #44764B;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.vegetable-page-section .card-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666666;
+    margin: 0;
+}
+
+/* ESTILOS EXCLUSIVOS - TARJETAS Y CONTENIDO VEGETAL */
+.veg-page-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Hero Section */
+.veg-hero-block {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 60px 8% !important;
+    gap: 40px !important;
+    background-color: #f9fbf9 !important;
+}
+
+.veg-hero-img-box {
+    flex: 1 !important;
+}
+
+.veg-hero-img-box img {
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.veg-hero-text-box {
+    flex: 1 !important;
+}
+
+.veg-hero-text-box h1 {
+    font-size: 48px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 20px !important;
+    color: #333333 !important;
+}
+
+.veg-hero-text-box h1 span {
+    color: #44764B !important;
+}
+
+.veg-hero-text-box p {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+    color: #666666 !important;
+}
+
+/* Content Section */
+.veg-content-block {
+    padding: 50px 8% !important;
+}
+
+.veg-content-block h2 {
+    font-size: 30px !important;
+    color: #44764B !important;
+    margin-bottom: 20px !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+}
+
+.veg-intro-text {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    color: #555555 !important;
+    margin-bottom: 15px !important;
+}
+
+/* Grid System para las Tarjetas */
+.veg-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 30px !important;
+    margin-top: 40px !important;
+}
+
+/* Tarjeta individual */
+.veg-card-item {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border: 1px solid #eaeaea !important;
+}
+
+.veg-card-item:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+.veg-card-thumb {
+    width: 100% !important;
+    height: 190px !important;
+    overflow: hidden !important;
+}
+
+.veg-card-thumb img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.veg-card-body {
+    padding: 20px !important;
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.veg-card-body h3 {
+    font-size: 18px !important;
+    color: #44764B !important;
+    margin: 0 0 10px 0 !important;
+    line-height: 1.4 !important;
+}
+
+.veg-card-body p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: #666666 !important;
+    margin: 0 !important;
+}

@@ -1,0 +1,401 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    padding: 20px 20px 0 20px;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   CONTENEDOR Y ENCABEZADO CENTRADO
+========================================== */
+
+.container {
+    max-width: 1300px;
+    width: 100%;
+    margin: auto;
+    padding-bottom: 70px;
+}
+
+.top {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.top h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.top p {
+    font-size: 1.125rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   FILTROS
+========================================== */
+
+.filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.filters input,
+.filters select {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 1rem;
+    color: #333;
+    background: white;
+}
+
+/* ==========================================
+   SECCIONES Y TÍTULOS DE CATEGORÍAS
+========================================== */
+
+.sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 100%;
+}
+
+.plan-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-title h2 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title.green-category h2::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background-color: #2e7d32;
+    border-radius: 4px;
+}
+
+.section-title.orange-category h2::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background-color: #f39c12;
+    border-radius: 4px;
+}
+
+.section-title.red-category h2::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background-color: #d9534f;
+    border-radius: 4px;
+}
+
+.section-divider {
+    border: none;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 10px 0;
+}
+
+/* ==========================================
+   CUADRÍCULA DE CARDS
+========================================== */
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* ==========================================
+   CARD DE DESCANSO CON IMAGEN
+========================================== */
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #eef2f5;
+    border-radius: 16px;
+    padding: 16px;
+    min-height: 420px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.card-image {
+    width: 100%;
+    height: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* BADGES Y BOTÓN PIN */
+
+.left {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    padding: 6px 12px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 6px;
+    z-index: 2;
+}
+
+.green { background: #2e7d32; }
+.orange { background: #db8e12; }
+.red { background: #d9534f; }
+
+.pin-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    color: #444;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 3;
+}
+
+.pin-btn:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.card.pinned .pin-btn {
+    color: #f39c12;
+}
+
+/* INFORMACIÓN INTERNA */
+
+.middle {
+    flex-grow: 1;
+    margin-bottom: 15px;
+}
+
+.middle h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 8px;
+}
+
+.middle p {
+    font-size: 0.875rem;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+.meal-preview {
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.meal-preview.green {
+    background: #f4f7f5;
+    border-left: 4px solid #2e7d32;
+}
+.meal-preview.green strong { color: #2e7d32; }
+
+.meal-preview.orange {
+    background: #fef9e7;
+    border-left: 4px solid #f39c12;
+}
+.meal-preview.orange strong { color: #d68910; }
+
+.meal-preview.red {
+    background: #fdf2f2;
+    border-left: 4px solid #d9534f;
+}
+.meal-preview.red strong { color: #c9302c; }
+
+.meal-preview span {
+    font-size: 0.8125rem;
+    color: #444;
+}
+
+/* INFO INFERIOR Y BOTONES */
+
+.card-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 12px;
+    margin-top: auto;
+}
+
+.card-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.card-info div:last-child {
+    text-align: right;
+}
+
+.card-info span {
+    font-size: 0.75rem;
+    color: #777;
+}
+
+.card-info strong {
+    font-size: 0.875rem;
+    color: #222;
+}
+
+.right {
+    margin-top: 14px;
+}
+
+.right button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.9375rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.right button.btn-green { background: #4b7f52; }
+.right button.btn-green:hover { background: #2e7d32; }
+
+.right button.btn-orange { background: #e09422; }
+.right button.btn-orange:hover { background: #d68910; }
+
+.right button.btn-red { background: #d9534f; }
+.right button.btn-red:hover { background: #c9302c; }
+
+/* ==========================================
+   MODO OSCURO (DARK MODE)
+========================================== */
+
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #f1f1f1 !important;
+}
+
+body.dark-mode .card {
+    background-color: #1e1e1e !important;
+    border-color: #333333 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .top h1,
+body.dark-mode .middle h3,
+body.dark-mode .card-info strong,
+body.dark-mode .section-title h2 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .top p,
+body.dark-mode .middle p,
+body.dark-mode .card-info span,
+body.dark-mode .meal-preview span {
+    color: #b0b0b0 !important;
+}
+
+body.dark-mode .filters input,
+body.dark-mode .filters select {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+    border-color: #444444 !important;
+}
+
+body.dark-mode .meal-preview.green {
+    background-color: #1b2e1e !important;
+}
+
+body.dark-mode .meal-preview.orange {
+    background-color: #332613 !important;
+}
+
+body.dark-mode .meal-preview.red {
+    background-color: #381a1a !important;
+}
+
+body.dark-mode .card-info {
+    border-top-color: #333333 !important;
+}
+
+/* ==========================================
+   MEDIA QUERIES (RESPONSIVE)
+========================================== */
+
+@media (max-width: 1100px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+}

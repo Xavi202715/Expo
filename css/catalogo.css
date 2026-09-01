@@ -1,0 +1,546 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    padding: 20px 20px 0 20px;
+    overflow-x: hidden;
+}
+
+
+/* ==========================================
+   CONTENEDOR
+========================================== */
+
+.container {
+    max-width: 1300px;
+    width: 100%;
+    margin: auto;
+    padding-bottom: 70px;
+}
+
+
+/* ==========================================
+   TOP
+========================================== */
+
+.top {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.top h1 {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.top p {
+    font-size: 1.125rem; /* 18px */
+    color: #555;
+    max-width: 700px; /* Limita el ancho para que se lea mejor centrado */
+    margin: 0 auto;
+}
+
+/* ==========================================
+   FILTROS
+========================================== */
+
+.filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.filters input,
+.filters select {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 1rem; /* 16px */
+    color: #333;
+    background: white;
+}
+
+
+/* ==========================================
+   SECCIONES
+========================================== */
+
+.sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 100%;
+}
+
+.plan-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* ==========================================
+   TÍTULOS DE SECCIÓN
+========================================== */
+
+.section-title {
+    font-size: 1.375rem; /* 22px */
+    font-weight: 700;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title.green-category::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background-color: #2e7d32;
+    border-radius: 4px;
+}
+
+.section-title.orange-category::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background-color: #f39c12;
+    border-radius: 4px;
+}
+
+.section-title.red-category::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background-color: #e74c3c;
+    border-radius: 4px;
+}
+
+
+/* ==========================================
+   LÍNEA SEPARADORA
+========================================== */
+
+.section-divider {
+    border: none;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 10px 0;
+}
+
+
+/* ==========================================
+   CUADRÍCULA DE CARDS
+========================================== */
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: 100%;
+    align-items: stretch;
+}
+
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #eef2f5;
+    border-radius: 16px;
+    padding: 28px 20px 18px 20px;
+    min-height: 350px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ==========================================
+   CÓDIGO DEL PLAN (BADGE SUPERIOR)
+========================================== */
+
+.left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 50px;
+    padding: 6px 12px;
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-size: 1rem; /* 16px */
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    z-index: 2;
+}
+
+.green {
+    background: #2e7d32;
+}
+
+.orange {
+    background: #db8e12;
+}
+
+.red {
+    background: #b92c1d;
+}
+
+
+/* ==========================================
+   INFORMACIÓN PRINCIPAL
+========================================== */
+
+.middle {
+    padding: 0;
+    margin-top: 48px;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+
+.middle h3 {
+    font-size: 1.25rem; /* 20px */
+    font-weight: bold;
+    color: #111;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    white-space: normal;
+}
+
+.middle p {
+    font-size: 0.875rem; /* 14px */
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+
+/* ==========================================
+   IDEA DE COMIDA (MEAL PREVIEW)
+========================================== */
+
+.meal-preview {
+    background: #f4f7f5;
+    border-left: 4px solid #2e7d32;
+    border-radius: 8px;
+    padding: 11px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.meal-preview strong {
+    font-size: 0.8125rem; /* 13px */
+    color: #2e7d32;
+}
+
+.meal-preview span {
+    font-size: 0.8125rem; /* 13px */
+    line-height: 1.4;
+    color: #444;
+}
+
+.meal-preview.orange {
+    background: #fef9e7;
+    border-left: 4px solid #f39c12;
+}
+.meal-preview.orange strong {
+    color: #d68910;
+}
+
+.meal-preview.red {
+    background: #fdf2f2;
+    border-left: 4px solid #e74c3c;
+}
+.meal-preview.red strong {
+    color: #c0392b;
+}
+
+
+/* ==========================================
+   INFORMACIÓN INFERIOR
+========================================== */
+
+.card-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 13px;
+    margin-top: auto;
+}
+
+.card-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.card-info div:last-child {
+    text-align: right;
+}
+
+.card-info span {
+    font-size: 0.75rem; /* 12px */
+    color: #777;
+}
+
+.card-info strong {
+    font-size: 0.875rem; /* 14px */
+    color: #222;
+}
+
+
+/* ==========================================
+   BOTÓN
+========================================== */
+
+.right {
+    display: block;
+    border: none;
+    padding: 0;
+    margin-top: 13px;
+}
+
+.right button {
+    width: 100%;
+    padding: 12px;
+    margin: 0;
+    border: none;
+    border-radius: 10px;
+    background: #111;
+    color: white;
+    font-size: 0.9375rem; /* 15px */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.right button:hover {
+    background: #2e7d32;
+}
+
+/* Hover de botón por categoría */
+.plan-section:has(.green-category) .right button:hover,
+.card .right button.btn-green:hover {
+    background: #2e7d32;
+}
+
+.plan-section:has(.orange-category) .right button:hover,
+.card .right button.btn-orange:hover {
+    background: #f39c12;
+}
+
+.plan-section:has(.red-category) .right button:hover,
+.card .right button.btn-red:hover {
+    background: #e74c3c;
+}
+
+
+/* ==========================================
+   BOTÓN DE PIN / MARCADOR
+========================================== */
+
+.bookmark-btn, .pin-btn {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #888;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    z-index: 3;
+}
+
+.bookmark-btn:hover, .pin-btn:hover {
+    color: #111;
+    transform: scale(1.15);
+}
+
+.bookmark-btn.active, .pin-btn.active {
+    color: #ffd700;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ==========================================
+   REGLAS PARA "LARGE TEXT" (ACCESIBILIDAD)
+========================================== */
+
+body.large-text .middle h3,
+body.accessibility-large .middle h3 {
+    font-size: 1.5rem !important; /* Aumenta el título */
+}
+
+body.large-text .middle p,
+body.accessibility-large .middle p {
+    font-size: 1.05rem !important; /* Aumenta el texto descriptivo */
+}
+
+body.large-text .meal-preview span,
+body.large-text .meal-preview strong,
+body.accessibility-large .meal-preview span,
+body.accessibility-large .meal-preview strong {
+    font-size: 0.95rem !important; /* Aumenta la idea de comida */
+}
+
+body.large-text .card-info strong,
+body.accessibility-large .card-info strong {
+    font-size: 1rem !important; /* Aumenta datos como '30 days' */
+}
+
+body.large-text .card-info span,
+body.accessibility-large .card-info span {
+    font-size: 0.875rem !important; /* Aumenta los labels 'Duration' */
+}
+
+
+/* ==========================================
+   ESTILOS DE MODO OSCURO (DARK MODE)
+========================================== */
+
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #f1f1f1 !important;
+}
+
+body.dark-mode .card {
+    background-color: #1e1e1e !important;
+    border-color: #333333 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .top h1,
+body.dark-mode .middle h3,
+body.dark-mode .card-info strong {
+    color: #ffffff !important;
+}
+
+body.dark-mode .top p,
+body.dark-mode .middle p,
+body.dark-mode .card-info span {
+    color: #b0b0b0 !important;
+}
+
+body.dark-mode .section-title {
+    color: #ffffff !important;
+}
+
+body.dark-mode .filters input,
+body.dark-mode .filters select {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+    border-color: #444444 !important;
+}
+
+body.dark-mode .meal-preview span {
+    color: #dddddd !important;
+}
+
+body.dark-mode .meal-preview.green {
+    background-color: #1b2e1e !important;
+}
+
+body.dark-mode .meal-preview.orange {
+    background-color: #332613 !important;
+}
+
+body.dark-mode .meal-preview.red {
+    background-color: #331919 !important;
+}
+
+body.dark-mode .card-info {
+    border-top-color: #333333 !important;
+}
+
+body.dark-mode .bookmark-btn, 
+body.dark-mode .pin-btn {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body.dark-mode .bookmark-btn.active, 
+body.dark-mode .pin-btn.active {
+    color: #ffe082;
+}
+
+
+/* ==========================================
+   MEDIA QUERIES (RESPONSIVE)
+========================================== */
+
+@media (max-width: 1100px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .filters {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card {
+        min-height: auto;
+        padding: 28px 20px 18px 20px;
+    }
+
+    .middle h3 {
+        font-size: 1.25rem;
+    }
+
+    .card-info {
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    body {
+        padding: 15px 12px 0 12px;
+    }
+
+    .top h1 {
+        font-size: 1.875rem;
+    }
+
+    .top p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+    }
+}

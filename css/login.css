@@ -1,0 +1,295 @@
+body{
+margin:0;
+font-family:Segoe UI,sans-serif;
+background:#fff;
+}
+
+/*nav*/
+.imglogo{
+    width: 75px;
+    height: auto;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:1.3rem;
+    font-weight:bold;
+    color:#8b6d3f;
+}
+
+nav{
+    display:flex;
+    gap:35px;
+    padding: 10px;
+    margin-top: 7px;
+}
+
+nav a{
+    text-decoration:none;
+    color:black;
+    font-weight:600;
+}
+nav a:hover{
+    color: #f7b64a;
+}
+.user img{
+    width: 50px;
+    height: auto;
+    padding-top: 15px;
+}
+
+.active{
+    border-bottom:3px solid orange;
+    padding-bottom:5px;
+}
+
+.user{
+    font-size:2rem;
+}
+
+
+
+.auth-container{
+display:flex;
+min-height:100vh;
+}
+
+.auth-left{
+flex:1;
+background:#f9f5ef;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:40px;
+
+}
+
+.auth-right{
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:60px;
+}
+
+.logo{
+width:150px;
+}
+
+
+
+h1{
+    font-size: 45px;
+}
+
+.decoration{
+    font-size: 20px;
+    
+}
+
+h1 span{
+color:#4b7f4b;
+
+}
+
+.input-box{
+display:flex;
+align-items:center;
+border:2px solid #b56d3b;
+border-radius:10px;
+padding:12px;
+margin-bottom:15px;
+}
+
+.input-box input{
+border:none;
+outline:none;
+flex:1;
+padding-left:10px;
+}
+
+.options{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+font-size:14px;
+}
+
+button{
+background:#b56d3b;
+color:white;
+border:none;
+padding:14px;
+border-radius:25px;
+cursor:pointer;
+}
+
+.social-buttons{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+
+.social-buttons button{
+flex:1;
+background:white;
+color:black;
+border:1px solid #ddd;
+}
+
+.access-btn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    font-size:28px;
+    cursor:pointer;
+    background:#4b7f4b;
+    color:white;
+    z-index:1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: transform 0.2s;
+}
+.access-btn:hover { transform: scale(1.05); }
+
+.access-panel{
+    position:fixed;
+    right:20px;
+    bottom:95px;
+    width:300px;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 0 25px rgba(0,0,0,.25);
+    display:none;
+    z-index:999;
+    border: 1px solid #e0dcd5;
+}
+
+.access-panel.active{
+    display:flex;
+    flex-direction:column;
+}
+
+.access-panel h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #333;
+}
+
+.accessibility-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.access-item {
+    background: #fcfbfa;
+    border: 1px solid #e0dcd5;
+    border-radius: 12px;
+    padding: 12px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    min-height: 85px;
+    text-align: center;
+    width: 100%;
+}
+.access-item:hover { background: #f5f1ea; }
+
+.access-item span {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #2c2a29;
+}
+
+.access-icon {
+    font-size: 1.3rem;
+    color: #b56d3b;
+}
+
+.text-icon { font-size: 1.5rem; font-weight: 800; }
+.letter-space { letter-spacing: 2px; font-weight: bold; }
+
+/* Zoom del contenedor integrado (+/-) */
+.zoom-buttons {
+    display: none;
+    gap: 6px;
+}
+.zoom-buttons.active { display: flex; }
+.zoom-buttons button {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #b56d3b;
+    background: white;
+    color: #b56d3b;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.panel-footer {
+    font-size: 0.72rem;
+    color: #777;
+    text-align: center;
+    margin-top: 12px;
+}
+
+
+/* 1. Alto Contraste */
+body.high-contrast-mode {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+body.high-contrast-mode .auth-left, 
+body.high-contrast-mode header,
+body.high-contrast-mode .access-panel,
+body.high-contrast-mode .access-item {
+    background-color: #111 !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+}
+body.high-contrast-mode input {
+    background: #000 !important;
+    color: #fff !important;
+}
+body.high-contrast-mode h1, body.high-contrast-mode h1 span, body.high-contrast-mode h2, body.high-contrast-mode .access-item span, body.high-contrast-mode .access-icon {
+    color: #fff !important;
+}
+
+/* 2. Modo Dislexia */
+body.dyslexia-mode, body.dyslexia-mode * {
+    font-family: 'OpenDyslexic', sans-serif !important;
+}
+
+/* 3. Espaciado Extra */
+body.extra-spacing-mode * {
+    letter-spacing: 2px !important;
+    line-height: 1.8 !important;
+}
+
+/* 4. Enfoque Altamente Visible */
+body.focus-visible-mode *:focus {
+    outline: 5px dashed #0056b3 !important;
+    outline-offset: 3px !important;
+}
+
+
+@media(max-width:768px){
+    .auth-container{ flex-direction:column; }
+    .auth-right{ padding:30px; }
+    header { flex-direction: column; gap: 15px; }
+}

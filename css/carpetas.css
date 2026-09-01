@@ -1,0 +1,364 @@
+/* ==========================================
+   CONFIGURACIÓN GENERAL
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #fafafa;
+    overflow-x: hidden;
+}
+
+/* Nota: Los estilos de .main-header, nav, logo y footer 
+   se cargan desde headfooter_boton.css para mantener consistencia */
+
+/* ==========================================
+   HERO SECTIONS - ESTILO NIKE CARRUSEL
+   ========================================== */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
+    background: #000;
+}
+
+.hero-carousel input[type="radio"] {
+    display: none;
+}
+
+.slides-container {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.slide {
+    width: 33.3333%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 10%;
+    background-size: cover;
+    background-position: center;
+}
+
+.slide-1 { background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2000'); }
+.slide-2 { background-image: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2000'); }
+.slide-3 { background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2000'); }
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    color: white;
+}
+
+.hero-tag {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: #f7b64a;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin-bottom: 35px;
+}
+
+.nike-btn {
+    background: white;
+    color: black;
+    border: none;
+    padding: 16px 40px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.nike-btn:hover {
+    background: #f1f1f1;
+    transform: scale(1.03);
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 12px;
+}
+
+.dot {
+    width: 35px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.3s ease;
+}
+
+#slide1:checked ~ .slides-container { transform: translateX(0%); }
+#slide2:checked ~ .slides-container { transform: translateX(-33.3333%); }
+#slide3:checked ~ .slides-container { transform: translateX(-66.6666%); }
+
+#slide1:checked ~ .carousel-dots .dot:nth-child(1),
+#slide2:checked ~ .carousel-dots .dot:nth-child(2),
+#slide3:checked ~ .carousel-dots .dot:nth-child(3) {
+    background: white;
+}
+
+/* ==========================================
+   RECOMENDADO
+   ========================================== */
+.recommended {
+    padding: 60px 10%;
+}
+
+.recommended h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.recommended-card {
+    background: white;
+    border-left: 8px solid #4b7f4b;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.05);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.recommended-card i {
+    color: #f7b64a;
+    font-size: 3rem;
+}
+
+/* ==========================================
+   NUEVO ESTILO DE TARJETAS (CARDS)
+   ========================================== */
+.plans-section {
+    padding: 70px 10%;
+}
+
+.plans-section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #222;
+    margin-bottom: 40px;
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.plan-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.plan-card:hover .card-image img {
+    transform: scale(1.08);
+}
+
+.card-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-body h3 {
+    font-size: 1.3rem;
+    color: #222;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.card-body p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.details span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #b56d3b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.details i {
+    color: #4b7f4b;
+}
+
+.card-btn {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    width: 100%;
+}
+
+.card-btn:hover {
+    background: #4b7f4b;
+}
+
+/* Soporte para Dark Mode en Cards */
+body.dark-mode .plan-card,
+body.dark-mode .recommended-card,
+body.dark-mode .benefit-card {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .card-body h3,
+body.dark-mode .plans-section h2 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .card-body p {
+    color: #cccccc !important;
+}
+
+body.dark-mode .card-btn {
+    background: #4b7f4b;
+    color: white;
+}
+
+body.dark-mode .card-btn:hover {
+    background: #f7b64a;
+    color: #222;
+}
+
+/* ==========================================
+   PROGRESO Y BENEFICIOS
+   ========================================== */
+.benefits {
+    padding: 70px 10%;
+}
+
+.benefits h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.benefit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,.04);
+}
+
+.benefit-card i {
+    font-size: 2.5rem;
+    color: #4b7f4b;
+    margin-bottom: 15px;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media(max-width: 768px) {
+    .hero-carousel {
+        height: 70vh;
+    }
+
+    .hero-content h1 {
+        font-size: 2.3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .recommended-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
