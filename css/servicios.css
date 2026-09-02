@@ -1,0 +1,414 @@
+.hero{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:70px 8%;
+
+}
+
+.hero-text{
+
+width:50%;
+
+}
+
+.hero-text h1{
+
+font-size:58px;
+
+line-height:65px;
+
+margin-bottom:20px;
+
+}
+
+.hero-text span{
+
+color:#44764B;
+
+}
+
+.hero-text p{
+
+font-size:18px;
+
+line-height:32px;
+
+color:#666;
+
+margin-bottom:35px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+gap:20px;
+
+}
+.com-page {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* BADGES Y PALETA SECUNDARIA */
+.com-page .tag-green { background: #edf6ee !important; color: var(--forest-green) !important; }
+.com-page .tag-orange { background: #fbeee9 !important; color: var(--terracotta) !important; }
+.com-page .tag-gold { background: #f7f1e5 !important; color: var(--gold-ochre) !important; }
+.com-page .tag-blue { background: #eef4f9 !important; color: #2b6cb0 !important; }
+
+.com-page .q-link { 
+    font-size: 14px; 
+    font-weight: 700; 
+    text-decoration: none; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 6px; 
+}
+.com-page .link-gold { color: var(--gold-ochre) !important; }
+
+/* 1. SECCIÓN RETOS DE LA COMUNIDAD */
+.com-page .challenges-section {
+    padding: 60px 80px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.com-page .section-title-box { 
+    margin-bottom: 35px; 
+}
+
+.com-page .section-title-box h2 { 
+    font-size: 32px; 
+    font-weight: 800; 
+    margin-bottom: 8px; 
+    color: var(--dark-charcoal); 
+}
+
+.com-page .section-title-box p { 
+    font-size: 15px; 
+    color: #666; 
+}
+
+.com-page .challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.com-page .challenge-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.com-page .challenge-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.com-page .challenge-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.com-page .challenge-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.com-page .challenge-icon { 
+    font-size: 22px; 
+    color: var(--dark-charcoal); 
+}
+
+.com-page .challenge-card h3 { 
+    font-size: 18px; 
+    font-weight: 700; 
+    margin-bottom: 8px; 
+    color: var(--dark-charcoal);
+}
+
+.com-page .challenge-card p { 
+    font-size: 14px; 
+    color: #666; 
+    line-height: 1.4; 
+    margin-bottom: 18px; 
+}
+
+.com-page .challenge-meta { 
+    font-size: 13px; 
+    font-weight: 700; 
+    color: #777; 
+    margin-bottom: 20px; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+
+.com-page .btn-challenge-join {
+    background: var(--bg-cream);
+    border: 1px solid var(--gold-ochre);
+    color: var(--dark-charcoal);
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.com-page .btn-challenge-join:hover {
+    background: var(--gold-ochre);
+    color: #ffffff;
+}
+
+/* historias de éxito y comunidad */
+.com-page .community-split-section {
+    background-color: var(--light-gray);
+    padding: 60px 80px;
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.com-page .stories-column { width: 55%; }
+.com-page .stories-column h2 { font-size: 30px; font-weight: 800; margin-bottom: 4px; color: var(--dark-charcoal); }
+.com-page .stories-column .subtitle { font-size: 14px; color: #666; margin-bottom: 25px; }
+
+.com-page .story-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    position: relative;
+    border: 1px solid #e0e0e0;
+}
+
+.com-page .quote-mark { font-size: 40px; color: var(--gold-ochre); line-height: 1; font-family: Georgia, serif; }
+.com-page .story-quote { font-size: 15px; font-style: italic; color: var(--dark-charcoal); margin-bottom: 12px; line-height: 1.4; }
+.com-page .story-author { font-weight: 700; font-size: 13px; color: var(--forest-green); display: block; margin-bottom: 15px; }
+.com-page .story-metrics { display: flex; gap: 12px; flex-wrap: wrap; }
+.com-page .metric-pill { background: var(--bg-cream); border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 20px; font-size: 12px; color: #555; }
+.com-page .metric-pill strong { color: var(--dark-charcoal); }
+
+.com-page .disclaimer { font-size: 11px; color: #888; font-style: italic; margin-top: 10px; }
+
+.com-page .feed-column { width: 45%; }
+.com-page .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.com-page .feed-header h2 { font-size: 30px; font-weight: 800; color: var(--dark-charcoal); }
+.com-page .live-dot { color: #22c55e; font-weight: bold; font-size: 13px; }
+
+/* caja pa crear publicaciones */
+.com-page .feed-publish-box {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.com-page .feed-publish-box input,
+.com-page .feed-publish-box textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.com-page .feed-publish-box textarea {
+    resize: vertical;
+    min-height: 60px;
+    margin-top: 8px;
+}
+
+.com-page .btn-publish {
+    background: var(--forest-green);
+    color: #ffffff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: background 0.2s ease;
+}
+
+.com-page .btn-publish:hover {
+    background: #2e5537;
+}
+
+.com-page .feed-list { display: flex; flex-direction: column; gap: 15px; }
+.com-page .feed-item {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.com-page .feed-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--forest-green);
+    color: #ffffff;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.com-page .feed-avatar.alt-1 { background: var(--terracotta); }
+.com-page .feed-avatar.alt-2 { background: var(--gold-ochre); }
+.com-page .feed-avatar.alt-3 { background: #2b6cb0; }
+
+.com-page .feed-content p { font-size: 14px; color: var(--dark-charcoal); line-height: 1.3; margin: 0; }
+.com-page .feed-time { font-size: 11px; color: #888; margin-top: 4px; display: block; }
+
+/* 4 Y 5. INSPIRACIÓN SEMANAL Y ENCUESTAS */
+.com-page .inspiration-poll-container {
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.com-page .weekly-inspiration-card {
+    background: var(--bg-cream);
+    border: 1px solid #eae5d9;
+    border-radius: 20px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.com-page .tag-gold-pill { 
+    background: #f7f1e5; 
+    color: var(--gold-ochre); 
+    font-size: 12px; 
+    font-weight: 700; 
+    padding: 4px 12px; 
+    border-radius: 15px; 
+    align-self: flex-start; 
+    margin-bottom: 15px; 
+}
+
+.com-page .weekly-inspiration-card h2 { font-size: 26px; font-weight: 800; margin-bottom: 15px; color: var(--dark-charcoal); }
+.com-page .inspiration-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--terracotta); }
+.com-page .inspiration-body p { font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 20px; }
+
+.com-page .community-poll-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.com-page .community-poll-card h2 { font-size: 26px; font-weight: 800; margin-bottom: 6px; color: var(--dark-charcoal); }
+.com-page .poll-question { font-size: 14px; color: #666; margin-bottom: 20px; }
+
+.com-page .poll-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
+.com-page .poll-option-btn {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.com-page .poll-option-btn:hover { border-color: var(--forest-green); color: var(--forest-green); }
+.com-page .poll-option-btn.active-option {
+    background: var(--forest-green) !important;
+    color: #ffffff !important;
+    border-color: var(--forest-green) !important;
+}
+
+.com-page .poll-result-box {
+    background: #edf6ee;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--forest-green);
+}
+.com-page .poll-result-box i { font-size: 20px; }
+.com-page .poll-result-box p { font-size: 13px; color: var(--dark-charcoal); margin: 0; }
+
+.com-page .progress-section {
+    padding: 0 80px 60px 80px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.com-page .progress-container-card {
+    background: linear-gradient(135deg, #1a365d, #2a4365);
+    color: #ffffff;
+    border-radius: 24px;
+    padding: 45px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.com-page .progress-left { max-width: 40%; }
+.com-page .progress-left h2 { font-size: 30px; font-weight: 800; margin-bottom: 12px; color: #ffffff; }
+.com-page .progress-left p { font-size: 14px; opacity: 0.85; line-height: 1.5; color: #ffffff; }
+
+.com-page .progress-right { width: 55%; display: flex; flex-direction: column; gap: 18px; }
+.com-page .progress-bar-group { display: flex; flex-direction: column; gap: 6px; }
+.com-page .bar-labels { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; opacity: 0.95; color: #ffffff; }
+.com-page .bar-track { background: rgba(255, 255, 255, 0.2); height: 10px; border-radius: 10px; overflow: hidden; }
+.com-page .bar-fill { background: var(--gold-ochre); height: 100%; border-radius: 10px; }
+
+@media (max-width: 992px) {
+    .com-page .challenges-section, 
+    .com-page .community-split-section, 
+    .com-page .inspiration-poll-container, 
+    .com-page .progress-section {
+        padding: 40px 20px;
+    }
+    .com-page .community-split-section { flex-direction: column; }
+    .com-page .stories-column, .com-page .feed-column { width: 100%; }
+    .com-page .inspiration-poll-container { grid-template-columns: 1fr; }
+    .com-page .progress-container-card { flex-direction: column; text-align: center; gap: 30px; }
+    .com-page .progress-left, .com-page .progress-right { width: 100%; max-width: 100%; }
+}

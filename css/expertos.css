@@ -527,7 +527,7 @@ color:#777;
 
 width:100%;
 
-background:#F7941D;
+background:#3a6b45;
 
 color:white;
 
@@ -543,73 +543,54 @@ font-size:16px;
 
 .book-btn:hover{
 
-background:#df8316;
+background: #1ca862;
 
 transform:scale(1.04);
 
 }
-/*================ CTA =================*/
+/*================ CTA =================*/  
 
-.cta{
+/*================ CTA =================*/ 
 
-margin:100px 8%;
-
-background:linear-gradient(135deg,#44764B,#5D9C68);
-
-color:white;
-
-padding:70px;
-
-border-radius:30px;
-
-text-align:center;
-
+.cta {
+  margin: 100px 8%;
+  background: linear-gradient(135deg, #2E4D34, #44764B); /* Verde profundo corporativo */
+  color: white;
+  padding: 70px;
+  border-radius: 30px;
+  text-align: center;
 }
 
-.cta h2{
-
-font-size:42px;
-
-margin-bottom:20px;
-
+.cta h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: #ffffff;
 }
 
-.cta p{
-
-font-size:18px;
-
-max-width:700px;
-
-margin:auto;
-
-margin-bottom:35px;
-
-line-height:30px;
-
+.cta p {
+  font-size: 18px;
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 35px;
+  line-height: 30px;
+  color: #e0e0e0; /* Texto secundario legible */
 }
 
-.cta button{
-
-background:#F7941D;
-
-padding:16px 45px;
-
-color:white;
-
-border-radius:50px;
-
-font-size:18px;
-
-font-weight:600;
-
+.cta button {
+  background: #B88B4A; /* Dorado del logo (resalta sobre el fondo verde) */
+  padding: 16px 45px;
+  color: white;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: .3s;
 }
 
-.cta button:hover{
-
-transform:translateY(-4px);
-
+.cta button:hover {
+  background: #a2783d;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
-
 /*================ MODAL =================*/
 
 .modal{

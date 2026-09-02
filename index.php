@@ -1,30 +1,23 @@
 <?php
-session_start();
-require_once 'db.php'; // Tu conexión a la BD
-
-$showReminder = false;
-$userName = '';
-
-// Evaluamos si el usuario ha iniciado sesión
-if (isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];
-
-    try {
-        // Consultar si el usuario tiene recordatorio o plan activo
-        $stmt = $pdo->prepare("SELECT name, active_reminder FROM usuarios WHERE id = ?");
-        $stmt->execute([$userId]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user && isset($user['active_reminder']) && (int)$user['active_reminder'] === 1) {
-            $showReminder = true;
-            $userName = $user['name'] ?? 'Usuario';
-        }
-    } catch (PDOException $e) {
-        // Registrar error en log sin interrumpir la experiencia del usuario
-        error_log("Error en consulta index.php: " . $e->getMessage());
-    }
+// Iniciar sesión si es necesario
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
+
+// Inicializar variables por defecto
+$showReminder = false;
+$userName = 'Usuario';
+
+// Ejemplo: Consulta a base de datos o verificación de sesión
+/*
+if (isset($_SESSION['user_id'])) {
+    // Aquí realizar la consulta a la BD para obtener el estado del recordatorio
+    // $showReminder = $resultado['mostrar_recordatorio'];
+    // $userName = $_SESSION['user_name'];
+}
+*/
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -58,7 +51,7 @@ if (isset($_SESSION['user_id'])) {
             <a href="expertos1.php">Experts</a>
             <a href="carpetas.php">Plans</a>
             <a href="calculadora.php">Calculator</a>
-            <a href="servicios.php">Services</a>
+            <a href="servicios.php">Community</a>
             <a href="nosotros.php">About Us</a>
             <a href="perfil.php">Profile</a>
         </nav>
@@ -365,13 +358,13 @@ if (isset($_SESSION['user_id'])) {
     </div>
 
     <!-- Modal de Recordatorio PHP -->
-    <?php if ($showReminder): ?>
+    <?php if (!empty($showReminder)): ?>
     <div id="reminderModal" class="reminder-modal-overlay active">
         <div class="reminder-modal-card">
             <div class="reminder-modal-icon">
                 <i class="fa-solid fa-bell-concierge"></i>
             </div>
-            <h3>¡Hola, <?php echo htmlspecialchars($userName, ENT_QUOTES, 'UTF-8'); ?>!</h3>
+            <h3>¡Hola, <?php echo htmlspecialchars($userName ?? 'Usuario', ENT_QUOTES, 'UTF-8'); ?>!</h3>
             <p>Tienes un plan de nutrición o avance pendiente. ¿Deseas continuar donde lo dejaste?</p>
             
             <div class="reminder-modal-actions">

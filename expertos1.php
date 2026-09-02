@@ -25,7 +25,7 @@
             <a href="expertos1.php" class="active">Experts</a>
             <a href="carpetas.php  ">Plans</a>
             <a href="calculadora.php">Calculator</a>
-            <a href="servicios.php">Services</a>
+            <a href="servicios.php">Commmunity</a>
             <a href="nosotros.php">About Us</a>
             <a href="perfil.php">Profile</a>
         </nav>
