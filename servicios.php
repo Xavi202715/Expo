@@ -273,7 +273,7 @@ $resultado = $conn->query("SELECT * FROM comentarios ORDER BY id DESC");
                 <div class="progress-left">
                     <h2>Your personal Journey</h2>
                     <p>Track your general progress across your lifestyle habits. Connect with tools you already use.</p>
-                    <button class="btn-green-fill" style="margin-top: 15px;">View My Progress</button>
+                    <button class="btn-green-fill">View My Progress</button>
                 </div>
                 
                 <div class="progress-right">
@@ -375,45 +375,59 @@ $resultado = $conn->query("SELECT * FROM comentarios ORDER BY id DESC");
         ♿
     </button>
 
+    <!-- Panel de Accesibilidad -->
+    <button id="accessibilityBtn" class="access-btn" title="Accessibility Options" onclick="toggleAccessPanel()">♿</button>
+
     <div id="accessibilityPanel" class="access-panel">
         <h3>Quick Accessibility</h3>
         <div class="accessibility-grid">
             <div class="access-item" id="textAccessItem" onclick="toggleZoomButtons(event)">
                 <div class="access-icon text-icon">A</div>
                 <div class="zoom-buttons" id="zoomContainer">
-                    <button type="button" onclick="changeFontSize(1, event)" title="Increase text size">+</button>
-                    <button type="button" onclick="changeFontSize(-1, event)" title="Decrease text size">-</button>
+                    <button type="button" onclick="changeFontSize(1, event)" title="Increase font size">+</button>
+                    <button type="button" onclick="changeFontSize(-1, event)" title="Decrease font size">-</button>
                 </div>
                 <span>Large Text</span>
             </div>
 
-            <div class="access-item" role="button" onclick="toggleContrast()">
+            <div class="access-item" role="button" tabindex="0" onclick="toggleContrast()">
                 <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
-                <span>High Contrast</span>
+                <span style="font-size: 13px;">High Contrast</span>
             </div>
 
-            <div class="access-item" role="button" onclick="speakText()">
-                <div class="access-icon"><i class="fa-solid fa-volume-high"></i></div>
-                <span>Read Aloud</span>
+            <div class="access-item" role="button" tabindex="0" onclick="toggleDarkMode()">
+                <div class="access-icon"><i class="fa-solid fa-moon"></i></div>
+                <span>Dark Mode</span>
             </div>
 
-            <div class="access-item" role="button" onclick="toggleDyslexia()">
+            <div class="access-item" role="button" tabindex="0" onclick="resetAccessibility()">
+                <div class="access-icon"><i class="fa-solid fa-rotate-left"></i></div>
+                <span>Reset All</span>
+            </div>
+
+            <div class="access-item" role="button" tabindex="0" onclick="readSelectedText()">
+    <div class="access-icon"><i class="fa-solid fa-volume-high"></i></div>
+    <span>Read Aloud</span>
+</div>
+
+            <div class="access-item" role="button" tabindex="0" onclick="toggleDyslexia()">
                 <div class="access-icon"><i class="fa-solid fa-book-open"></i></div>
                 <span>Dyslexia Mode</span>
             </div>
 
-            <div class="access-item" role="button" onclick="toggleLetterSpacing()">
+            <div class="access-item" role="button" tabindex="0" onclick="toggleLetterSpacing()">
                 <div class="access-icon letter-space">AAA</div>
                 <span>More Spacing</span>
             </div>
 
-            <div class="access-item" role="button" onclick="toggleFocusVisible()">
+            <div class="access-item" role="button" tabindex="0" onclick="toggleFocusVisible()">
                 <div class="access-icon"><i class="fa-solid fa-expand"></i></div>
                 <span>Visible Focus</span>
             </div>
         </div>
         <p class="panel-footer">You can change these options at any time.</p>
     </div>
+
 
 <script src="js/artyom.window.min.js"></script>
 

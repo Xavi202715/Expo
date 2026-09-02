@@ -1,175 +1,162 @@
-.hero{
+/* ==========================================================================
+   VARIABLES Y ESTILOS BASE (Soporte Modo Oscuro + Texto Dinámico)
+   ========================================================================== */
 
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:70px 8%;
-
+/* Hero Section con unidades relativas (rem) */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4.375rem 8%;
 }
 
-.hero-text{
+.hero-text { width: 50%; }
 
-width:50%;
-
+.hero-text h1 {
+    font-size: 3.625rem; /* ~58px */
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
 }
 
-.hero-text h1{
+.hero-text span { color: var(--forest-green, #44764B); }
 
-font-size:58px;
-
-line-height:65px;
-
-margin-bottom:20px;
-
+.hero-text p {
+    font-size: 1.125rem; /* ~18px */
+    line-height: 1.75;
+    color: var(--text-secondary, #666666);
+    margin-bottom: 2.1875rem;
 }
 
-.hero-text span{
+.hero-buttons { display: flex; gap: 1.25rem; }
 
-color:#44764B;
+/* ==========================================================================
+   COM-PAGE & MODO OSCURO (DARK MODE FIXES)
+   ========================================================================== */
 
-}
-
-.hero-text p{
-
-font-size:18px;
-
-line-height:32px;
-
-color:#666;
-
-margin-bottom:35px;
-
-}
-
-.hero-buttons{
-
-display:flex;
-
-gap:20px;
-
-}
 .com-page {
     width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
 }
 
-/* BADGES Y PALETA SECUNDARIA */
+/* Badges y Paleta */
 .com-page .tag-green { background: #edf6ee !important; color: var(--forest-green) !important; }
 .com-page .tag-orange { background: #fbeee9 !important; color: var(--terracotta) !important; }
 .com-page .tag-gold { background: #f7f1e5 !important; color: var(--gold-ochre) !important; }
 .com-page .tag-blue { background: #eef4f9 !important; color: #2b6cb0 !important; }
 
+/* Soporte de badges en modo oscuro */
+body.dark-mode .com-page .tag-green, body.dark-theme .com-page .tag-green { background: rgba(68, 118, 75, 0.2) !important; }
+body.dark-mode .com-page .tag-orange, body.dark-theme .com-page .tag-orange { background: rgba(224, 122, 95, 0.2) !important; }
+body.dark-mode .com-page .tag-gold, body.dark-theme .com-page .tag-gold { background: rgba(212, 163, 89, 0.2) !important; }
+body.dark-mode .com-page .tag-blue, body.dark-theme .com-page .tag-blue { background: rgba(43, 108, 176, 0.2) !important; }
+
 .com-page .q-link { 
-    font-size: 14px; 
+    font-size: 0.875rem; 
     font-weight: 700; 
     text-decoration: none; 
     display: inline-flex; 
     align-items: center; 
-    gap: 6px; 
+    gap: 0.375rem; 
 }
 .com-page .link-gold { color: var(--gold-ochre) !important; }
 
-/* 1. SECCIÓN RETOS DE LA COMUNIDAD */
+/* 1. SECCIÓN RETOS */
 .com-page .challenges-section {
-    padding: 60px 80px;
+    padding: 3.75rem 5rem;
     width: 100%;
     box-sizing: border-box;
 }
 
-.com-page .section-title-box { 
-    margin-bottom: 35px; 
-}
+.com-page .section-title-box { margin-bottom: 2.1875rem; }
 
 .com-page .section-title-box h2 { 
-    font-size: 32px; 
+    font-size: 2rem; /* 32px */
     font-weight: 800; 
-    margin-bottom: 8px; 
-    color: var(--dark-charcoal); 
+    margin-bottom: 0.5rem; 
+    color: var(--text-primary, var(--dark-charcoal)); 
 }
 
 .com-page .section-title-box p { 
-    font-size: 15px; 
-    color: #666; 
+    font-size: 0.9375rem; 
+    color: var(--text-secondary, #666); 
 }
 
 .com-page .challenges-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+    gap: 1.5625rem;
 }
 
+/* Tarjeta adaptable */
 .com-page .challenge-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    padding: 25px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 1.125rem;
+    padding: 1.5625rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.03);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .com-page .challenge-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    transform: translateY(-0.25rem);
+    box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.06);
 }
 
 .com-page .challenge-card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
 }
 
 .com-page .challenge-badge {
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1.25rem;
 }
 
 .com-page .challenge-icon { 
-    font-size: 22px; 
-    color: var(--dark-charcoal); 
+    font-size: 1.375rem; 
+    color: var(--text-primary, var(--dark-charcoal)); 
 }
 
 .com-page .challenge-card h3 { 
-    font-size: 18px; 
+    font-size: 1.125rem; 
     font-weight: 700; 
-    margin-bottom: 8px; 
-    color: var(--dark-charcoal);
+    margin-bottom: 0.5rem; 
+    color: var(--text-primary, var(--dark-charcoal));
 }
 
 .com-page .challenge-card p { 
-    font-size: 14px; 
-    color: #666; 
+    font-size: 0.875rem; 
+    color: var(--text-secondary, #666666); 
     line-height: 1.4; 
-    margin-bottom: 18px; 
+    margin-bottom: 1.125rem; 
 }
 
 .com-page .challenge-meta { 
-    font-size: 13px; 
+    font-size: 0.8125rem; 
     font-weight: 700; 
-    color: #777; 
-    margin-bottom: 20px; 
+    color: var(--text-muted, #777777); 
+    margin-bottom: 1.25rem; 
     display: flex; 
     align-items: center; 
-    gap: 8px; 
+    gap: 0.5rem; 
 }
 
 .com-page .btn-challenge-join {
-    background: var(--bg-cream);
+    background: var(--bg-cream, #f9f6f0);
     border: 1px solid var(--gold-ochre);
-    color: var(--dark-charcoal);
-    padding: 10px 16px;
-    border-radius: 12px;
+    color: var(--text-primary, var(--dark-charcoal));
+    padding: 0.625rem 1rem;
+    border-radius: 0.75rem;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 0.8125rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -182,102 +169,102 @@ gap:20px;
     color: #ffffff;
 }
 
-/* historias de éxito y comunidad */
+/* 2. HISTORIAS Y COMUNIDAD */
 .com-page .community-split-section {
-    background-color: var(--light-gray);
-    padding: 60px 80px;
+    background-color: var(--section-bg-alt, var(--light-gray));
+    padding: 3.75rem 5rem;
     display: flex;
-    gap: 50px;
+    gap: 3.125rem;
     width: 100%;
     box-sizing: border-box;
 }
 
 .com-page .stories-column { width: 55%; }
-.com-page .stories-column h2 { font-size: 30px; font-weight: 800; margin-bottom: 4px; color: var(--dark-charcoal); }
-.com-page .stories-column .subtitle { font-size: 14px; color: #666; margin-bottom: 25px; }
+.com-page .stories-column h2 { font-size: 1.875rem; font-weight: 800; margin-bottom: 0.25rem; color: var(--text-primary, var(--dark-charcoal)); }
+.com-page .stories-column .subtitle { font-size: 0.875rem; color: var(--text-secondary, #666); margin-bottom: 1.5625rem; }
 
 .com-page .story-card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 25px;
-    margin-bottom: 20px;
+    background: var(--card-bg, #ffffff);
+    border-radius: 1rem;
+    padding: 1.5625rem;
+    margin-bottom: 1.25rem;
     position: relative;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border-color, #e0e0e0);
 }
 
-.com-page .quote-mark { font-size: 40px; color: var(--gold-ochre); line-height: 1; font-family: Georgia, serif; }
-.com-page .story-quote { font-size: 15px; font-style: italic; color: var(--dark-charcoal); margin-bottom: 12px; line-height: 1.4; }
-.com-page .story-author { font-weight: 700; font-size: 13px; color: var(--forest-green); display: block; margin-bottom: 15px; }
-.com-page .story-metrics { display: flex; gap: 12px; flex-wrap: wrap; }
-.com-page .metric-pill { background: var(--bg-cream); border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 20px; font-size: 12px; color: #555; }
-.com-page .metric-pill strong { color: var(--dark-charcoal); }
+.com-page .quote-mark { font-size: 2.5rem; color: var(--gold-ochre); line-height: 1; font-family: Georgia, serif; }
+.com-page .story-quote { font-size: 0.9375rem; font-style: italic; color: var(--text-primary, var(--dark-charcoal)); margin-bottom: 0.75rem; line-height: 1.4; }
+.com-page .story-author { font-weight: 700; font-size: 0.8125rem; color: var(--forest-green); display: block; margin-bottom: 0.9375rem; }
+.com-page .story-metrics { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.com-page .metric-pill { background: var(--bg-cream, #f9f6f0); border: 1px solid var(--border-color, #e2e8f0); padding: 0.375rem 0.75rem; border-radius: 1.25rem; font-size: 0.75rem; color: var(--text-secondary, #555); }
+.com-page .metric-pill strong { color: var(--text-primary, var(--dark-charcoal)); }
 
-.com-page .disclaimer { font-size: 11px; color: #888; font-style: italic; margin-top: 10px; }
+.com-page .disclaimer { font-size: 0.6875rem; color: var(--text-muted, #888); font-style: italic; margin-top: 0.625rem; }
 
 .com-page .feed-column { width: 45%; }
-.com-page .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-.com-page .feed-header h2 { font-size: 30px; font-weight: 800; color: var(--dark-charcoal); }
-.com-page .live-dot { color: #22c55e; font-weight: bold; font-size: 13px; }
+.com-page .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5625rem; }
+.com-page .feed-header h2 { font-size: 1.875rem; font-weight: 800; color: var(--text-primary, var(--dark-charcoal)); }
+.com-page .live-dot { color: #22c55e; font-weight: bold; font-size: 0.8125rem; }
 
-/* caja pa crear publicaciones */
+/* Feed Publish Box */
 .com-page .feed-publish-box {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 14px;
-    padding: 16px;
-    margin-bottom: 20px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e0e0e0);
+    border-radius: 0.875rem;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .com-page .feed-publish-box input,
 .com-page .feed-publish-box textarea {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
+    padding: 0.625rem 0.75rem;
+    background: var(--input-bg, #ffffff);
+    color: var(--text-primary, #000000);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 0.5rem;
     font-family: inherit;
-    font-size: 13px;
+    font-size: 0.8125rem;
     outline: none;
     box-sizing: border-box;
 }
 
 .com-page .feed-publish-box textarea {
     resize: vertical;
-    min-height: 60px;
-    margin-top: 8px;
+    min-height: 3.75rem;
+    margin-top: 0.5rem;
 }
 
 .com-page .btn-publish {
     background: var(--forest-green);
     color: #ffffff;
     border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
+    padding: 0.625rem 1rem;
+    border-radius: 0.5rem;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 0.8125rem;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 0.625rem;
     width: 100%;
     transition: background 0.2s ease;
 }
 
-.com-page .btn-publish:hover {
-    background: #2e5537;
-}
+.com-page .btn-publish:hover { background: #2e5537; }
 
-.com-page .feed-list { display: flex; flex-direction: column; gap: 15px; }
+.com-page .feed-list { display: flex; flex-direction: column; gap: 0.9375rem; }
 .com-page .feed-item {
-    background: #ffffff;
-    padding: 16px;
-    border-radius: 14px;
+    background: var(--card-bg, #ffffff);
+    padding: 1rem;
+    border-radius: 0.875rem;
     display: flex;
     align-items: center;
-    gap: 15px;
-    border: 1px solid #e0e0e0;
+    gap: 0.9375rem;
+    border: 1px solid var(--border-color, #e0e0e0);
 }
 
 .com-page .feed-avatar {
-    width: 42px;
-    height: 42px;
+    width: 2.625rem;
+    height: 2.625rem;
     border-radius: 50%;
     background: var(--forest-green);
     color: #ffffff;
@@ -291,89 +278,75 @@ gap:20px;
 .com-page .feed-avatar.alt-2 { background: var(--gold-ochre); }
 .com-page .feed-avatar.alt-3 { background: #2b6cb0; }
 
-.com-page .feed-content p { font-size: 14px; color: var(--dark-charcoal); line-height: 1.3; margin: 0; }
-.com-page .feed-time { font-size: 11px; color: #888; margin-top: 4px; display: block; }
+.com-page .feed-content p { font-size: 0.875rem; color: var(--text-primary, var(--dark-charcoal)); line-height: 1.3; margin: 0; }
+.com-page .feed-time { font-size: 0.6875rem; color: var(--text-muted, #888); margin-top: 0.25rem; display: block; }
 
-/* 4 Y 5. INSPIRACIÓN SEMANAL Y ENCUESTAS */
+/* 3. INSPIRACIÓN Y ENCUESTAS */
 .com-page .inspiration-poll-container {
-    padding: 60px 80px;
+    padding: 3.75rem 5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 35px;
+    gap: 2.1875rem;
     width: 100%;
     box-sizing: border-box;
 }
 
 .com-page .weekly-inspiration-card {
-    background: var(--bg-cream);
-    border: 1px solid #eae5d9;
-    border-radius: 20px;
-    padding: 35px;
+    background: var(--bg-cream, #f9f6f0);
+    border: 1px solid var(--border-color, #eae5d9);
+    border-radius: 1.25rem;
+    padding: 2.1875rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.com-page .tag-gold-pill { 
-    background: #f7f1e5; 
-    color: var(--gold-ochre); 
-    font-size: 12px; 
-    font-weight: 700; 
-    padding: 4px 12px; 
-    border-radius: 15px; 
-    align-self: flex-start; 
-    margin-bottom: 15px; 
-}
-
-.com-page .weekly-inspiration-card h2 { font-size: 26px; font-weight: 800; margin-bottom: 15px; color: var(--dark-charcoal); }
-.com-page .inspiration-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--terracotta); }
-.com-page .inspiration-body p { font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 20px; }
+.com-page .weekly-inspiration-card h2 { font-size: 1.625rem; font-weight: 800; margin-bottom: 0.9375rem; color: var(--text-primary, var(--dark-charcoal)); }
+.com-page .inspiration-body h4 { font-size: 0.875rem; font-weight: 700; margin-bottom: 0.375rem; color: var(--terracotta); }
+.com-page .inspiration-body p { font-size: 0.875rem; color: var(--text-secondary, #555); line-height: 1.5; margin-bottom: 1.25rem; }
 
 .com-page .community-poll-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 35px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 1.25rem;
+    padding: 2.1875rem;
+    box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.02);
 }
 
-.com-page .community-poll-card h2 { font-size: 26px; font-weight: 800; margin-bottom: 6px; color: var(--dark-charcoal); }
-.com-page .poll-question { font-size: 14px; color: #666; margin-bottom: 20px; }
+.com-page .community-poll-card h2 { font-size: 1.625rem; font-weight: 800; margin-bottom: 0.375rem; color: var(--text-primary, var(--dark-charcoal)); }
+.com-page .poll-question { font-size: 0.875rem; color: var(--text-secondary, #666); margin-bottom: 1.25rem; }
 
-.com-page .poll-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
+.com-page .poll-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5625rem; }
 .com-page .poll-option-btn {
-    background: #ffffff;
-    border: 1px solid #ccc;
-    padding: 12px;
-    border-radius: 10px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #ccc);
+    color: var(--text-primary, #333);
+    padding: 0.75rem;
+    border-radius: 0.625rem;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 0.8125rem;
     cursor: pointer;
     text-align: center;
     transition: all 0.2s ease;
 }
 
 .com-page .poll-option-btn:hover { border-color: var(--forest-green); color: var(--forest-green); }
-.com-page .poll-option-btn.active-option {
-    background: var(--forest-green) !important;
-    color: #ffffff !important;
-    border-color: var(--forest-green) !important;
-}
 
 .com-page .poll-result-box {
-    background: #edf6ee;
-    padding: 15px;
-    border-radius: 12px;
+    background: var(--poll-result-bg, #edf6ee);
+    padding: 0.9375rem;
+    border-radius: 0.75rem;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
     color: var(--forest-green);
 }
-.com-page .poll-result-box i { font-size: 20px; }
-.com-page .poll-result-box p { font-size: 13px; color: var(--dark-charcoal); margin: 0; }
+.com-page .poll-result-box i { font-size: 1.25rem; }
+.com-page .poll-result-box p { font-size: 0.8125rem; color: var(--text-primary, var(--dark-charcoal)); margin: 0; }
 
+/* 4. PROGRESO */
 .com-page .progress-section {
-    padding: 0 80px 60px 80px;
+    padding: 0 5rem 3.75rem 5rem;
     width: 100%;
     box-sizing: border-box;
 }
@@ -381,34 +354,76 @@ gap:20px;
 .com-page .progress-container-card {
     background: linear-gradient(135deg, #1a365d, #2a4365);
     color: #ffffff;
-    border-radius: 24px;
-    padding: 45px 50px;
+    border-radius: 1.5rem;
+    padding: 2.8125rem 3.125rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 50px;
+    gap: 3.125rem;
 }
 
 .com-page .progress-left { max-width: 40%; }
-.com-page .progress-left h2 { font-size: 30px; font-weight: 800; margin-bottom: 12px; color: #ffffff; }
-.com-page .progress-left p { font-size: 14px; opacity: 0.85; line-height: 1.5; color: #ffffff; }
+.com-page .progress-left h2 { font-size: 1.875rem; font-weight: 800; margin-bottom: 0.75rem; color: #ffffff; }
+.com-page .progress-left p { font-size: 0.875rem; opacity: 0.85; line-height: 1.5; color: #ffffff; }
 
-.com-page .progress-right { width: 55%; display: flex; flex-direction: column; gap: 18px; }
-.com-page .progress-bar-group { display: flex; flex-direction: column; gap: 6px; }
-.com-page .bar-labels { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; opacity: 0.95; color: #ffffff; }
-.com-page .bar-track { background: rgba(255, 255, 255, 0.2); height: 10px; border-radius: 10px; overflow: hidden; }
-.com-page .bar-fill { background: var(--gold-ochre); height: 100%; border-radius: 10px; }
+.com-page .progress-right { width: 55%; display: flex; flex-direction: column; gap: 1.125rem; }
+.com-page .progress-bar-group { display: flex; flex-direction: column; gap: 0.375rem; }
+.com-page .bar-labels { display: flex; justify-content: space-between; font-size: 0.8125rem; font-weight: 700; opacity: 0.95; color: #ffffff; }
+.com-page .bar-track { background: rgba(255, 255, 255, 0.2); height: 0.625rem; border-radius: 0.625rem; overflow: hidden; }
+.com-page .bar-fill { background: var(--gold-ochre); height: 100%; border-radius: 0.625rem; }
 
-@media (max-width: 992px) {
-    .com-page .challenges-section, 
-    .com-page .community-split-section, 
-    .com-page .inspiration-poll-container, 
-    .com-page .progress-section {
-        padding: 40px 20px;
-    }
-    .com-page .community-split-section { flex-direction: column; }
-    .com-page .stories-column, .com-page .feed-column { width: 100%; }
-    .com-page .inspiration-poll-container { grid-template-columns: 1fr; }
-    .com-page .progress-container-card { flex-direction: column; text-align: center; gap: 30px; }
-    .com-page .progress-left, .com-page .progress-right { width: 100%; max-width: 100%; }
+/* ==========================================================================
+   REGLAS EXPLICITAS PARA MODO OSCURO (Manejo de clase .dark-mode o .dark-theme)
+   ========================================================================== */
+body.dark-mode, body.dark-theme, [data-theme="dark"] {
+    --card-bg: #1e1e1e;
+    --border-color: #333333;
+    --text-primary: #f0f0f0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #888888;
+    --bg-cream: #282828;
+    --section-bg-alt: #121212;
+    --input-bg: #2a2a2a;
+    --poll-result-bg: #1b3322;
+}
+
+/* Contenedor de progreso con paleta verde bosque alineada al sitio */
+.com-page .progress-container-card {
+    background: linear-gradient(135deg, #1c3522, #2d5034);
+    color: #ffffff;
+    border-radius: 1.5rem;
+    padding: 2.8125rem 3.125rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3.125rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Estilo para el botón dentro del banner */
+.com-page .btn-green-fill {
+    margin-top: 1.25rem;
+    background-color: var(--gold-ochre, #d4a359);
+    color: #1c3522;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.625rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.com-page .btn-green-fill:hover {
+    background-color: #c29247;
+    transform: translateY(-2px);
+}
+
+/* Ajuste para que el contenedor respire bien en Modo Oscuro */
+body.dark-mode .com-page .progress-container-card,
+body.dark-theme .com-page .progress-container-card,
+[data-theme="dark"] .com-page .progress-container-card {
+    background: linear-gradient(135deg, #142418, #1e3824);
+    border: 1px solid #333333;
 }

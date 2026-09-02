@@ -127,9 +127,9 @@ if (isset($_SESSION['user_id'])) {
                 <i class="fa-regular fa-book"></i>
             </div>
             <div class="q-card-text">
-                <h3>Resources</h3>
-                <p>Guides, tips, and tools for your well-being.</p>
-                <a href="recursos.php" class="q-link link-blue" style="text-decoration: none; display: inline-block;">View Resources &rarr;</a>
+                <h3>Community</h3>
+                <p>Connect with others, share experiences, and join support groups.</p>
+                <a href="servicios.php" class="q-link link-blue" style="text-decoration: none; display: inline-block;">View Resources &rarr;</a>
             </div>
         </div>
     </section>

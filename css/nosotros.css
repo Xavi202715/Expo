@@ -419,17 +419,24 @@
   color: rgba(255,255,255,.9);
 }
 
+/* Reemplaza esta regla dentro de la sección CTA */
 .cta button {
-  background: #F7941D;
+  background: #ffffff;
+  color: #44764B;
   padding: 1rem 2.8125rem;
-  color: #ffffff;
   border-radius: 3.125rem;
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.15);
 }
 
 .cta button:hover {
   transform: translateY(-0.25rem);
+  background: #FAF9F7;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
 }
 
 .about-black {
