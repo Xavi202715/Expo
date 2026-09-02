@@ -127,17 +127,33 @@ function scrollPage(direction) {
     }
 }
 
-// 2. Lectura de Texto Seleccionado con el Mouse
+// Variable para guardar la última selección de texto activa
+let lastSelectedText = "";
+
+// Escuchar constantemente la selección de texto del usuario
+document.addEventListener("selectionchange", () => {
+    const selection = window.getSelection().toString().trim();
+    if (selection.length > 0) {
+        lastSelectedText = selection;
+    }
+});
+
+// Función para leer el texto seleccionado
 function readSelectedText(currentLang = 'en-US') {
-    const selectedText = window.getSelection().toString().trim();
-    if (selectedText.length > 0) {
+    // Si hay texto seleccionado en el instante o usó la última selección guardada
+    const currentSelection = window.getSelection().toString().trim();
+    const textToRead = currentSelection || lastSelectedText;
+
+    if (textToRead.length > 0) {
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(selectedText);
+        const utterance = new SpeechSynthesisUtterance(textToRead);
         utterance.lang = currentLang;
         window.speechSynthesis.speak(utterance);
         return true;
+    } else {
+        alert("Please select/highlight some text first!");
+        return false;
     }
-    return false;
 }
 
 // 3. Resumen y Lectura del Título Principal

@@ -493,10 +493,11 @@
                 <span>Reset All</span>
             </div>
 
-            <div class="access-item" role="button" onclick="speakText()">
-                <div class="access-icon"><i class="fa-solid fa-volume-high"></i></div>
-                <span>Read Aloud</span>
-            </div>
+           
+            <div class="access-item" role="button" tabindex="0" onclick="readSelectedText()">
+    <div class="access-icon"><i class="fa-solid fa-volume-high"></i></div>
+    <span>Read Aloud</span>
+</div>
 
             <div class="access-item" role="button" onclick="toggleDyslexia()">
                 <div class="access-icon"><i class="fa-solid fa-book-open"></i></div>

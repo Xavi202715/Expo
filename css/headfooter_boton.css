@@ -579,3 +579,163 @@ body.dark-mode .nav-links a.active {
     gap: 8px;
     cursor: pointer;
 }
+/* ==========================================================================
+   ♿ BOTÓN Y PANEL DE ACCESIBILIDAD TOTALMENTE AISLADOS Y FLOTANTES
+   ========================================================================== */
+.access-btn {
+    position: fixed !important;
+    right: 25px !important;
+    bottom: 25px !important;
+    width: 60px !important;
+    height: 60px !important;
+    border: none !important;
+    border-radius: 50% !important;
+    font-size: 26px !important;
+    cursor: pointer !important;
+    background: #2e6f40 !important; 
+    color: white !important;
+    z-index: 99999 !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.2s ease !important;
+}
+.access-btn:hover { transform: scale(1.1) !important; }
+
+.access-panel {
+    position: fixed !important;
+    right: 25px !important;
+    bottom: 95px !important;
+    width: 300px !important;
+    height: auto !important;
+    background: white !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.25) !important;
+    display: none !important;
+    z-index: 99998 !important;
+    border: 1px solid #e0dcd5 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    font-size: 16px !important; /* Bloquea el rem dentro del panel */
+}
+
+.access-panel.active {
+    display: block !important;
+}
+
+.access-panel h3 { 
+    margin: 0 0 15px 0 !important; 
+    text-align: center !important; 
+    font-family: sans-serif !important; 
+    color: #333 !important; 
+    font-size: 18px !important; /* Tamaño fijo en px */
+}
+
+.accessibility-grid { 
+    display: grid !important; 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 10px !important; 
+}
+
+.accessibility-grid .access-item {
+    background: #fcfbfa !important; 
+    color: #2c2a29 !important; 
+    border: 1px solid #e0dcd5 !important;
+    border-radius: 12px !important; 
+    padding: 12px 6px !important; 
+    display: flex !important;
+    flex-direction: column !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    gap: 8px !important; 
+    cursor: pointer !important; 
+    min-height: 85px !important; 
+    text-align: center !important;
+    width: 100% !important; 
+    box-sizing: border-box !important; 
+    font-family: sans-serif !important;
+    font-size: 14px !important; /* Base fija para los elementos */
+}
+.accessibility-grid .access-item:hover { background: #f5f1ea !important; }
+
+.access-item span { 
+    font-size: 12px !important; /* Tamaño fijo en px */
+    font-weight: 600 !important; 
+}
+
+.access-icon { 
+    font-size: 20px !important; /* Tamaño fijo en px */
+    color: #b56d3b !important; 
+}
+
+.text-icon { 
+    font-size: 24px !important; /* Tamaño fijo en px */
+    font-weight: 800 !important; 
+}
+
+.letter-space { 
+    letter-spacing: 2px !important; 
+    font-weight: bold !important; 
+}
+
+.zoom-buttons { 
+    display: none !important; 
+    gap: 6px !important; 
+}
+.zoom-buttons.active { 
+    display: flex !important; 
+}
+.zoom-buttons button {
+    width: 26px !important; 
+    height: 26px !important; 
+    padding: 0 !important; 
+    border-radius: 50% !important;
+    border: 1px solid #b56d3b !important; 
+    background: white !important; 
+    color: #b56d3b !important;
+    font-weight: bold !important; 
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important; /* Tamaño fijo en px */
+}
+
+.panel-footer { 
+    font-size: 11px !important; /* Tamaño fijo en px */
+    color: #777 !important; 
+    text-align: center !important; 
+    margin-top: 12px !important; 
+    font-family: sans-serif !important; 
+}
+/* ==========================================================================
+   MODOS ALTERNOS Y ACCESIBILIDAD (CORREGIDO)
+   ========================================================================== */
+
+/* Se aplica a todo el cuerpo, EXCEPTO a los íconos de FontAwesome */
+body.dyslexia-mode *:not(i):not(.fa-solid):not(.fa) { 
+    font-family: 'OpenDyslexic', sans-serif !important; 
+}
+
+/* Mantiene aislada la tipografía del panel de accesibilidad para que no se rompa */
+body.dyslexia-mode .access-panel,
+body.dyslexia-mode .access-panel * {
+    font-family: sans-serif !important;
+}
+
+/* ==========================================================================
+   MODO DISLEXIA (FORZADO CON EXCEPCIONES)
+   ========================================================================== */
+body.dyslexia-mode, 
+body.dyslexia-mode *:not(i):not([class*="fa-"]):not(.access-icon) { 
+    font-family: 'OpenDyslexic', sans-serif !important; 
+}
+
+/* Protege la fuente de los íconos de FontAwesome */
+body.dyslexia-mode i,
+body.dyslexia-mode [class*="fa-"],
+body.dyslexia-mode .access-icon i {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "FontAwesome" !important;
+}
