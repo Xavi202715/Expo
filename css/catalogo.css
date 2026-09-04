@@ -5,21 +5,22 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* ==========================================
+   LAYOUT PRINCIPAL (Igual al de Ejercicios)
+========================================== */
+
 body {
     background: #f4f6f8;
-    padding: 20px 20px 0 20px;
+    margin: 0;
+    padding: 0; /* Sin padding en el body */
     overflow-x: hidden;
 }
 
-
-/* ==========================================
-   CONTENEDOR
-========================================== */
-
 .container {
-    max-width: 1300px;
+    max-width: 1200px; /* Ancho máximo idéntico */
     width: 100%;
-    margin: auto;
+    margin: 30px auto; /* Centra el contenedor dejando el margen dinámico afuera */
+    padding: 0 20px;   /* Pequeño colchón de seguridad para pantallas medianas */
     padding-bottom: 70px;
 }
 

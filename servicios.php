@@ -340,16 +340,16 @@ $resultado = $conn->query("SELECT * FROM comentarios ORDER BY id DESC");
             <div class="footer-links-columns">
                 <div class="footer-col">
                     <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="expertos1.html">Experts</a>
-                    <a href="carpetas.html">Recipes</a>
-                    <a href="servicios.html">Services</a>
+                    <a href="index.php">Home</a>
+                    <a href="expertos1.php">Experts</a>
+                    <a href="carpetas.php">Recipes</a>
+                    <a href="servicios.php">Services</a>
                 </div>
                 <div class="footer-col">
                     <h4>Services</h4>
-                    <a href="servicios.html">Nutritional Consultation</a>
-                    <a href="servicios.html">Sports Nutrition</a>
-                    <a href="servicios.html">Pediatric Nutrition</a>
+                    <a href="servicios.php">Nutritional Consultation</a>
+                    <a href="servicios.php">Sports Nutrition</a>
+                    <a href="servicios.php">Pediatric Nutrition</a>
                 </div>
                 <div class="footer-col">
                     <h4>Follow Us</h4>
@@ -390,10 +390,11 @@ $resultado = $conn->query("SELECT * FROM comentarios ORDER BY id DESC");
                 <span>Large Text</span>
             </div>
 
-            <div class="access-item" role="button" tabindex="0" onclick="toggleContrast()">
-                <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
-                <span style="font-size: 13px;">High Contrast</span>
-            </div>
+              <!-- Botón dinámico Mute / Unmute Assistant -->
+<div class="access-item" id="muteAssistantBtn" role="button" tabindex="0" onclick="toggleMuteAssistant()">
+    <div class="access-icon"><i id="muteAssistantIcon" class="fa-solid fa-volume-xmark"></i></div>
+    <span id="muteAssistantText">Mute Assistant</span>
+</div>
 
             <div class="access-item" role="button" tabindex="0" onclick="toggleDarkMode()">
                 <div class="access-icon"><i class="fa-solid fa-moon"></i></div>

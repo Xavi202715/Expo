@@ -333,29 +333,7 @@
 
                 <div class="cards-grid">
 
-                    <!-- AB-A3-01 -->
-                    <div class="card" data-condition="ninguna" data-level="avanzado" data-severity="3">
-                        <button class="pin-btn" title="Pin Plan" onclick="togglePinCard(this)">
-                            <i class="fa-solid fa-thumbtack"></i>
-                        </button>
-                        <div class="left ab red">AB-A3-01</div>
-                        <div class="middle">
-                            <h3>Athletic Performance & Recovery</h3>
-                            <p>High-nutrient density designed for athletic training support.</p>
-                            <div class="meal-preview red">
-                                <strong>Meal idea</strong>
-                                <span>Lean steak, sweet potato, steamed broccoli, and chia pudding.</span>
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <div><span>Duration</span><strong>60 days</strong></div>
-                            <div><span>Follow-up</span><strong>Weekly</strong></div>
-                        </div>
-                        <div class="right">
-                            <button onclick="openPlan('AB-A3-01')">View Plan</button>
-                        </div>
-                    </div>
-
+                   
                     <!-- AB-A3-02 -->
                     <div class="card" data-condition="sobrepeso" data-level="avanzado" data-severity="3">
                         <button class="pin-btn" title="Pin Plan" onclick="togglePinCard(this)">
@@ -478,10 +456,11 @@
                 <span>Large Text</span>
             </div>
 
-            <div class="access-item" role="button" onclick="toggleContrast()">
-                <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
-                <span style="font-size: 13px;">High Contrast</span>
-            </div>
+              <!-- Botón dinámico Mute / Unmute Assistant -->
+<div class="access-item" id="muteAssistantBtn" role="button" tabindex="0" onclick="toggleMuteAssistant()">
+    <div class="access-icon"><i id="muteAssistantIcon" class="fa-solid fa-volume-xmark"></i></div>
+    <span id="muteAssistantText">Mute Assistant</span>
+</div>
 
             <div class="access-item" role="button" onclick="toggleDarkMode()">
                 <div class="access-icon"><i class="fa-solid fa-moon"></i></div>

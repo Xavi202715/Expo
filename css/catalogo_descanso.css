@@ -5,22 +5,27 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* ==========================================
+   LAYOUT PRINCIPAL (IGUAL A EJERCICIOS)
+========================================== */
+
 body {
     background: #f4f6f8;
-    padding: 20px 20px 0 20px;
+    margin: 0;
+    padding: 0; /* Se elimina el padding lateral para no romper el margin: auto */
     overflow-x: hidden;
 }
 
-/* ==========================================
-   CONTENEDOR Y ENCABEZADO CENTRADO
-========================================== */
-
 .container {
-    max-width: 1300px;
+    max-width: 1200px; /* Ancho máximo estándar de ejercicios */
     width: 100%;
-    margin: auto;
-    padding-bottom: 70px;
+    margin: 30px auto; /* Centrado automático en pantallas grandes */
+    padding: 0 20px 70px 20px; /* Colchón de seguridad interno */
 }
+
+/* ==========================================
+   ENCABEZADO Y FILTROS
+========================================== */
 
 .top {
     text-align: center;
@@ -42,10 +47,6 @@ body {
     line-height: 1.5;
 }
 
-/* ==========================================
-   FILTROS
-========================================== */
-
 .filters {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -65,7 +66,7 @@ body {
 }
 
 /* ==========================================
-   SECCIONES Y TÍTULOS DE CATEGORÍAS
+   SECCIONES Y CATEGORÍAS
 ========================================== */
 
 .sections-container {
@@ -125,20 +126,16 @@ body {
 }
 
 /* ==========================================
-   CUADRÍCULA DE CARDS
+   CUADRÍCULA Y TARJETAS
 ========================================== */
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Adaptativo como ejercicios */
     gap: 24px;
     width: 100%;
     align-items: stretch;
 }
-
-/* ==========================================
-   CARD DE DESCANSO CON IMAGEN
-========================================== */
 
 .card {
     position: relative;
@@ -174,7 +171,7 @@ body {
     object-fit: cover;
 }
 
-/* BADGES Y BOTÓN PIN */
+/* BADGES Y PIN */
 
 .left {
     position: absolute;
@@ -381,14 +378,8 @@ body.dark-mode .card-info {
 }
 
 /* ==========================================
-   MEDIA QUERIES (RESPONSIVE)
+   RESPONSIVE
 ========================================== */
-
-@media (max-width: 1100px) {
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
 @media (max-width: 768px) {
     .filters {

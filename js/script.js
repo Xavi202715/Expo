@@ -34,27 +34,46 @@ function changeFontSize(action, event) {
 }
 
 function toggleDarkMode() {
-    if (document.body.classList.contains("high-contrast-mode")) {
-        document.body.classList.remove("high-contrast-mode");
-        localStorage.setItem('highContrast', 'disabled');
-    }
-    
     document.body.classList.toggle("dark-mode");
     const isDark = document.body.classList.contains("dark-mode");
     localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
     return isDark ? "Dark mode enabled" : "Dark mode disabled";
 }
 
-function toggleContrast() { 
-    if (document.body.classList.contains("dark-mode")) {
-        document.body.classList.remove("dark-mode");
-        localStorage.setItem('darkMode', 'disabled');
+// Función auxiliar para cambiar el texto y el icono dinámicamente
+function updateMuteButtonUI(isMuted) {
+    const textElem = document.getElementById("muteAssistantText");
+    const iconElem = document.getElementById("muteAssistantIcon");
+
+    if (textElem) {
+        textElem.innerText = isMuted ? "Unmute Assistant" : "Mute Assistant";
     }
 
-    document.body.classList.toggle('high-contrast-mode'); 
-    const isContrast = document.body.classList.contains('high-contrast-mode');
-    localStorage.setItem('highContrast', isContrast ? 'enabled' : 'disabled');
-    return isContrast ? "High contrast enabled" : "High contrast disabled";
+    if (iconElem) {
+        if (isMuted) {
+            iconElem.className = "fa-solid fa-volume-high";
+        } else {
+            iconElem.className = "fa-solid fa-volume-xmark";
+        }
+    }
+}
+
+// Mute Assistant: Alterna estado y actualiza UI
+function toggleMuteAssistant() {
+    const currentMute = localStorage.getItem('assistantMuted') === 'enabled';
+    const newMuteState = !currentMute;
+    
+    localStorage.setItem('assistantMuted', newMuteState ? 'enabled' : 'disabled');
+    updateMuteButtonUI(newMuteState);
+
+    if (newMuteState) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+        }
+        return "Voice assistant muted";
+    } else {
+        return "Voice assistant enabled";
+    }
 }
 
 function toggleDyslexia() { 
@@ -89,7 +108,6 @@ function resetAccessibility() {
 
     document.body.classList.remove(
         'dark-mode',
-        'high-contrast-mode',
         'dyslexia-mode',
         'extra-spacing-mode',
         'focus-visible-mode'
@@ -97,10 +115,12 @@ function resetAccessibility() {
 
     localStorage.removeItem('fontSize');
     localStorage.removeItem('darkMode');
-    localStorage.removeItem('highContrast');
     localStorage.removeItem('dyslexia');
     localStorage.removeItem('letterSpacing');
     localStorage.removeItem('focusVisible');
+    localStorage.removeItem('assistantMuted');
+
+    updateMuteButtonUI(false);
 
     if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
@@ -108,9 +128,10 @@ function resetAccessibility() {
     return "Accessibility options reset";
 }
 
-// --- NUEVAS FUNCIONES DE ACCESIBILIDAD 100% HANDS-FREE ---
+// --------------------------------------------------------------------------
+// CONTROLES HANDS-FREE Y UTILIDADES
+// --------------------------------------------------------------------------
 
-// 1. Control de Desplazamiento (Scroll por Voz)
 function scrollPage(direction) {
     if (direction === 'down') {
         window.scrollBy({ top: 400, behavior: 'smooth' });
@@ -127,10 +148,8 @@ function scrollPage(direction) {
     }
 }
 
-// Variable para guardar la última selección de texto activa
 let lastSelectedText = "";
 
-// Escuchar constantemente la selección de texto del usuario
 document.addEventListener("selectionchange", () => {
     const selection = window.getSelection().toString().trim();
     if (selection.length > 0) {
@@ -138,17 +157,17 @@ document.addEventListener("selectionchange", () => {
     }
 });
 
-// Función para leer el texto seleccionado
 function readSelectedText(currentLang = 'en-US') {
-    // Si hay texto seleccionado en el instante o usó la última selección guardada
     const currentSelection = window.getSelection().toString().trim();
     const textToRead = currentSelection || lastSelectedText;
 
     if (textToRead.length > 0) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(textToRead);
-        utterance.lang = currentLang;
-        window.speechSynthesis.speak(utterance);
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(textToRead);
+            utterance.lang = currentLang;
+            window.speechSynthesis.speak(utterance);
+        }
         return true;
     } else {
         alert("Please select/highlight some text first!");
@@ -156,13 +175,11 @@ function readSelectedText(currentLang = 'en-US') {
     }
 }
 
-// 3. Resumen y Lectura del Título Principal
 function getPageSummary() {
     const mainTitle = document.querySelector('h1') ? document.querySelector('h1').innerText : document.title;
     return "You are on " + mainTitle;
 }
 
-// 4. Retroalimentación Auditiva (Audio Cue)
 function playBeepSound() {
     try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -180,7 +197,6 @@ function playBeepSound() {
     }
 }
 
-// 5. Cierre suave del widget flotante de Plan Favorito
 function closeFloatingWidget() {
     const widget = document.getElementById('floatingPlanWidget');
     if (widget) {
@@ -204,10 +220,6 @@ function closeFloatingWidget() {
         document.body.classList.add('dark-mode');
     }
 
-    if (localStorage.getItem('highContrast') === 'enabled') {
-        document.body.classList.add('high-contrast-mode');
-    }
-
     if (localStorage.getItem('dyslexia') === 'enabled') {
         document.body.classList.add('dyslexia-mode');
     }
@@ -219,4 +231,7 @@ function closeFloatingWidget() {
     if (localStorage.getItem('focusVisible') === 'enabled') {
         document.body.classList.add('focus-visible-mode');
     }
+
+    const isMuted = localStorage.getItem('assistantMuted') === 'enabled';
+    updateMuteButtonUI(isMuted);
 })();

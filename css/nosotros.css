@@ -335,6 +335,7 @@
   box-shadow: 0 1.125rem 2.5rem rgba(0,0,0,.09);
 }
 
+
 .value-number {
   position: absolute;
   right: 1.25rem;
@@ -342,12 +343,13 @@
   font-size: 3.4375rem;
   font-weight: 700;
   line-height: 1;
-  color: rgba(68,118,75,.08);
+  color: rgba(68, 118, 75, 0.20); /* Subido de .08 a .20 */
   transition: .3s;
+  user-select: none;
 }
 
 .value-card:hover .value-number {
-  color: rgba(68,118,75,.15);
+  color: rgba(68, 118, 75, 0.35); /* Subido de .15 a .35 al pasar el cursor */
 }
 
 .value-icon {

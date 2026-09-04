@@ -615,3 +615,27 @@ html, body {
     border-color: var(--forest-green);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
+
+/* Corrección de accesibilidad y visibilidad para botones outline */
+.btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+/* Adaptación para Dark Mode */
+body.dark-mode .btn-outline-dark,
+body.dark-theme .btn-outline-dark,
+[data-theme="dark"] .btn-outline-dark {
+    border-color: var(--text-primary, #ffffff) !important;
+    color: var(--text-primary, #ffffff) !important;
+}
+
+body.dark-mode .btn-outline-dark:hover,
+body.dark-theme .btn-outline-dark:hover,
+[data-theme="dark"] .btn-outline-dark:hover {
+    background: rgba(255, 255, 255, 0.1);
+}

@@ -739,3 +739,258 @@ body.dyslexia-mode [class*="fa-"],
 body.dyslexia-mode .access-icon i {
     font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "FontAwesome" !important;
 }
+/* Restablece la fuente de Font Awesome para los iconos en la cabecera */
+.main-header i,
+.main-header [class*="fa-"],
+.schedule-btn i,
+.header-btn-schedule i {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "FontAwesome" !important;
+    font-weight: 900 !important; /* Requerido para iconos solid */
+}
+/* Subtítulos Flotantes de Accesibilidad */
+.assistant-caption-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(18, 18, 18, 0.92);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 90vw;
+}
+
+.assistant-caption-banner.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.assistant-caption-banner .caption-icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #2ecc71;
+    flex-shrink: 0;
+}
+
+/* Subtítulos Flotantes */
+.assistant-caption-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(15, 23, 20, 0.95);
+    color: #e2e8f0;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(46, 204, 113, 0.25);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 90vw;
+}
+
+.assistant-caption-banner.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.assistant-caption-banner .caption-icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #2ecc71;
+    flex-shrink: 0;
+}
+
+/* Modal de Comandos - Estilo Nutrición Verde */
+.commands-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(10, 15, 13, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 100000;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.commands-modal-overlay.active {
+    opacity: 1; pointer-events: auto;
+}
+
+.commands-modal-card {
+    background: #121c17;
+    color: #f1f5f9;
+    width: 90%; max-width: 520px;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================================================
+   MODAL DE COMANDOS - PALETA DE MARCA ORIGINAL (NUTRITION EXPRESS)
+   ========================================================================== */
+.commands-modal-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background: rgba(44, 42, 41, 0.7); /* Fondo charcoal semitransparente */
+    backdrop-filter: blur(6px);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    z-index: 100000;
+    opacity: 0; 
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.commands-modal-overlay.active {
+    opacity: 1; 
+    pointer-events: auto;
+}
+
+.commands-modal-card {
+    background: var(--bg-cream); /* Cream background */
+    color: var(--dark-charcoal);
+    width: 90%; 
+    max-width: 520px;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    border: 2px solid var(--gold-ochre);
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Personalización de Scrollbar del Modal */
+.commands-modal-card::-webkit-scrollbar {
+    width: 6px;
+}
+.commands-modal-card::-webkit-scrollbar-thumb {
+    background: var(--gold-ochre);
+    border-radius: 10px;
+}
+
+.commands-modal-card h3 {
+    margin-top: 0; 
+    color: var(--forest-green); 
+    font-size: 1.35rem; 
+    margin-bottom: 18px;
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+    font-weight: 700;
+}
+
+.commands-modal-close {
+    position: absolute; 
+    top: 18px; 
+    right: 20px;
+    background: none; 
+    border: none; 
+    color: var(--dark-charcoal);
+    font-size: 1.6rem; 
+    cursor: pointer; 
+    transition: color 0.2s ease;
+}
+
+.commands-modal-close:hover { 
+    color: var(--terracotta); 
+}
+
+.commands-list {
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 10px;
+}
+
+.command-item {
+    background: #ffffff;
+    padding: 10px 14px; 
+    border-radius: 10px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.command-item span {
+    font-size: 0.9rem; 
+    color: var(--dark-charcoal);
+    font-weight: 600;
+}
+
+.command-item code {
+    background: var(--forest-green); 
+    color: #ffffff;
+    padding: 5px 10px; 
+    border-radius: 6px; 
+    font-weight: 700; 
+    font-size: 0.8rem;
+    box-shadow: 0 2px 6px rgba(58, 107, 69, 0.25);
+}
+
+/* Adaptación del Modal para Modo Oscuro Activado */
+body.dark-mode .commands-modal-card {
+    background: #1e1e1e !important;
+    color: #ffffff !important;
+    border-color: var(--gold-ochre) !important;
+}
+
+body.dark-mode .commands-modal-card h3 {
+    color: var(--gold-ochre) !important;
+}
+
+body.dark-mode .command-item {
+    background: #2a2a2a !important;
+    border-color: #383838 !important;
+}
+
+body.dark-mode .command-item span {
+    color: #f1f1f1 !important;
+}
+
+body.dark-mode .commands-modal-close {
+    color: #ffffff !important;
+}
+
+body.dark-mode .commands-modal-close:hover {
+    color: var(--gold-ochre) !important;
+}

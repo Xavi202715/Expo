@@ -87,31 +87,31 @@ placeholder="Search by name or specialty">
 
 <div class="filters">
 
-<button class="filter active">
+<button class="filter active" data-filter="all">
 All
 </button>
 
-<button class="filter">
+<button class="filter" data-filter="clinica">
 Clinical
 </button>
 
-<button class="filter">
+<button class="filter" data-filter="deportiva">
 Sports
 </button>
 
-<button class="filter">
+<button class="filter" data-filter="infantil">
 Pediatric
 </button>
 
-<button class="filter">
+<button class="filter" data-filter="peso">
 Weight Loss
 </button>
 
-<button class="filter">
+<button class="filter" data-filter="dietas">
 Diets
 </button>
 
-<button class="filter">
+<button class="filter" data-filter="adultos">
 Seniors
 </button>
 
@@ -542,10 +542,11 @@ Schedule Consultation
             <span>Large Text</span>
         </div>
 
-        <div class="access-item" role="button" onclick="toggleContrast()">
-            <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
-            <span style="font-size: 13px;">High Contrast</span>
-        </div>
+          <!-- Botón dinámico Mute / Unmute Assistant -->
+<div class="access-item" id="muteAssistantBtn" role="button" tabindex="0" onclick="toggleMuteAssistant()">
+    <div class="access-icon"><i id="muteAssistantIcon" class="fa-solid fa-volume-xmark"></i></div>
+    <span id="muteAssistantText">Mute Assistant</span>
+</div>
 
         <!-- Botón Modo Oscuro arreglado -->
         <div class="access-item" role="button" onclick="toggleDarkMode()">

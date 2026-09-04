@@ -1,5 +1,5 @@
 // ==========================================================================
-// 🎙️ ULTRA-FAST ACCESSIBLE ASSISTANT WITH FULL QUICK ACCESSIBILITY CONTROL
+// 🎙️ ULTRA-FAST ACCESSIBLE ASSISTANT (NUTRITION EDITION)
 // ==========================================================================
 
 const GEMINI_KEY = "AQ.Ab8RN6J67tH1irzTGxB8Ub9IV9kxN5w5hzGLR71X14HDIEkY_g"; 
@@ -8,6 +8,12 @@ const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models
 let recognitionAssistant = null;
 let isAssistantEnabled = true;
 let isProcessing = false;
+let captionTimeout = null;
+let isInitialPromptActive = false;
+let isSpaceKeyPressed = false;
+
+// Configuración de la Palabra Clave Universal y Variantes por mala pronunciación
+const WAKE_WORDS = ["assistant", "asistente", "asis", "assistant", "system", "sisten", "attendant"];
 
 // Mapeo directo de navegación local
 const NAV_MAP = {
@@ -43,11 +49,19 @@ const NAV_MAP = {
 
 window.addEventListener('DOMContentLoaded', () => {
     initAlwaysOnAssistant();
+    initSpacebarListener();
 
-    // Bienvenida contextual al ingresar
-    setTimeout(() => {
-        announceCurrentPage();
-    }, 800);
+    if (!sessionStorage.getItem('assistantAskedThisSession')) {
+        sessionStorage.setItem('assistantAskedThisSession', 'true');
+        isInitialPromptActive = true;
+        setTimeout(() => {
+            responderVoz("Welcome! To give commands, always say 'Assistant' first, or hold the spacebar to talk without noise. Would you like to enable the assistant? Say yes or no.");
+        }, 1000);
+    } else {
+        setTimeout(() => {
+            announceCurrentPage();
+        }, 800);
+    }
 
     const btnAcceso = document.querySelector('.access-btn') || document.getElementById('accessibilityBtn');
     if (btnAcceso) {
@@ -67,6 +81,7 @@ function announceCurrentPage() {
     }
 }
 
+// Lógica de micrófono continuo
 function initAlwaysOnAssistant() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) return;
@@ -82,15 +97,62 @@ function initAlwaysOnAssistant() {
         const lastIndex = event.results.length - 1;
         const rawTranscript = event.results[lastIndex][0].transcript.trim().toLowerCase();
 
-        if (!rawTranscript || isProcessing) return;
+        if (!rawTranscript || isProcessing || rawTranscript.length < 2) return;
 
-        console.log("🗣️ User said:", rawTranscript);
+        console.log("🗣️ Escuchado en ambiente:", rawTranscript);
+
+        // Flujo inicial de activación
+        if (isInitialPromptActive) {
+            isInitialPromptActive = false;
+            if (rawTranscript.includes("yes") || rawTranscript.includes("yeah") || rawTranscript.includes("sure") || rawTranscript.includes("si")) {
+                isAssistantEnabled = true;
+                responderVoz("Assistant enabled! Remember to say Assistant before your command or hold spacebar.");
+            } else if (rawTranscript.includes("no") || rawTranscript.includes("nope")) {
+                isAssistantEnabled = false;
+                if (recognitionAssistant) recognitionAssistant.stop();
+                responderVoz("Voice assistant disabled.");
+                return;
+            }
+            return;
+        }
+
+        if (!isAssistantEnabled) return;
+
+        // Si se presionó la barra espaciadora, no requiere decir la palabra clave
+        let hasWakeWord = isSpaceKeyPressed; 
+        let cleanCommand = rawTranscript;
+
+        if (!hasWakeWord) {
+            // Verificar si contiene la palabra clave directa o fonéticamente cercana
+            for (let word of WAKE_WORDS) {
+                if (rawTranscript.includes(word)) {
+                    hasWakeWord = true;
+                    cleanCommand = rawTranscript.replace(new RegExp(word, 'gi'), '').trim();
+                    break;
+                }
+            }
+
+            // Detección tolerante a mala pronunciación (Fuzzy Match) en la primera palabra
+            if (!hasWakeWord) {
+                const firstWord = rawTranscript.split(" ")[0];
+                if (isSimilarWord(firstWord, "assistant") || isSimilarWord(firstWord, "asistente")) {
+                    hasWakeWord = true;
+                    cleanCommand = rawTranscript.replace(firstWord, '').trim();
+                }
+            }
+        }
+
+        // Si fue ruido ambiental de la clase y no dijo "Assistant" ni usó la barra espaciadora, lo ignora
+        if (!hasWakeWord) {
+            console.log("🤫 Ignorado (Ruido o voz de fondo sin la palabra Assistant):", rawTranscript);
+            return;
+        }
+
         isProcessing = true;
 
-        // 1. Detección Local Instantánea (Comandos de Accesibilidad + Navegación + Scroll)
-        const handledLocally = handleFastLocalCommands(rawTranscript);
+        // Procesa comandos rápido con tolerancia a errores de pronunciación
+        const handledLocally = handleFastLocalCommands(cleanCommand.length > 0 ? cleanCommand : rawTranscript);
 
-        // 2. Si es una instrucción compleja, consulta con Gemini
         if (!handledLocally) {
             setMicVisualStatus(false, true);
             await processIntentWithAI(rawTranscript);
@@ -113,99 +175,173 @@ function initAlwaysOnAssistant() {
     try { recognitionAssistant.start(); } catch (e) {}
 }
 
-// MANEJO INSTANTÁNEO LOCAL (0 ms de espera)
+// CONTROL CON BARRA ESPACIADORA (Push-to-Talk para salones ruidosos)
+function initSpacebarListener() {
+    window.addEventListener('keydown', (e) => {
+        const activeTag = document.activeElement ? document.activeElement.tagName : '';
+        
+        // Evita interferir si estás escribiendo en un input o cuadro de texto
+        if (e.code === 'Space' && !['INPUT', 'TEXTAREA'].includes(activeTag) && !isSpaceKeyPressed && isAssistantEnabled) {
+            isSpaceKeyPressed = true;
+            setMicVisualStatus(true, true);
+            showCaption("🎙️ Escuchando... (Barra Espaciadora Presionada)");
+        }
+    });
+
+    window.addEventListener('keyup', (e) => {
+        if (e.code === 'Space' && isSpaceKeyPressed) {
+            isSpaceKeyPressed = false;
+            setMicVisualStatus(true, false);
+        }
+    });
+}
+
+// TOLERANCIA A MALA PRONUNCIACIÓN (Algoritmo Levenshtein Distance)
+function isSimilarWord(a, b) {
+    if (!a || !b) return false;
+    const matrix = [];
+    for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+    for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+    for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+            if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+                matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
+            }
+        }
+    }
+    // Permite hasta 2 errores de letras/acentos de diferencia
+    return matrix[b.length][a.length] <= 2;
+}
+
+// MANEJO INSTANTÁNEO LOCAL (Con flexibilidad de lenguaje)
 function handleFastLocalCommands(text) {
-    // ----------------------------------------------------------------------
-    // 🎛️ CONTROLES DEL MENU "QUICK ACCESSIBILITY"
-    // ----------------------------------------------------------------------
-
-    // 1. Large Text (Texto Grande)
-    if (text.includes("large text") || text.includes("big text") || text.includes("increase text") || text.includes("bigger font")) {
-        if (typeof toggleLargeText === "function") toggleLargeText();
-        else document.body.classList.toggle('large-text');
-        responderVoz("Toggling large text mode.");
+    // 0. Detener voz de inmediato
+    if (text === "stop" || text.includes("stop") || text.includes("silence") || text.includes("shut up") || text.includes("calla")) {
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        hideCaption();
         return true;
     }
 
-    // 2. High Contrast (Alto Contraste)
-    if (text.includes("high contrast") || text.includes("contrast mode") || text.includes("contrast")) {
-        if (typeof toggleContrast === "function") toggleContrast();
-        else document.body.classList.toggle('high-contrast');
-        responderVoz("Toggling high contrast mode.");
+    // 1. Mostrar/Ocultar Modal de Comandos
+    if (text.includes("show command") || text.includes("view command") || text.includes("open command") || text.includes("help") || text.includes("command")) {
+        toggleCommandsModal(true);
+        responderVoz("Showing voice commands.");
         return true;
     }
 
-    // 3. Dark Mode (Modo Oscuro)
-    if (text.includes("dark mode") || text.includes("night mode") || text.includes("lights off") || text.includes("dark theme")) {
-        if (typeof toggleDarkMode === "function") toggleDarkMode(true);
-        else document.body.classList.add('dark-theme');
+    if (text.includes("close command") || text.includes("hide command") || text.includes("close list")) {
+        toggleCommandsModal(false);
+        responderVoz("Closing commands modal.");
+        return true;
+    }
+
+    // 2. Abrir/Cerrar Panel de Accesibilidad
+    if (text.includes("accessibility") || text.includes("panel")) {
+        const accessPanel = document.getElementById("accessibilityPanel");
+        if (accessPanel) {
+            if (typeof toggleAccessPanel === "function") toggleAccessPanel();
+        }
+        responderVoz("Toggling accessibility panel.");
+        return true;
+    }
+
+    // 3. Selección en desplegables
+    if (text.includes("select") || text.includes("choose") || text.includes("pick")) {
+        const optionToSelect = text.replace(/(select|choose|pick)\s+/gi, '').trim();
+        const activeSelect = document.activeElement && document.activeElement.tagName === 'SELECT'
+            ? document.activeElement
+            : document.querySelector('select');
+
+        if (activeSelect && optionToSelect) {
+            selectOptionByText(activeSelect, optionToSelect);
+            responderVoz(`Selected ${optionToSelect}`);
+            return true;
+        }
+    }
+
+    // 4. Auto-llenado de campos
+    if (text.includes("write") || text.includes("type") || text.includes("put") || text.includes("set")) {
+        const handledInput = fillFormFieldByVoice(text);
+        if (handledInput) return true;
+    }
+
+    // 5. Clics e interacción con botones (Mandar / Enviar / Click)
+    if (text.includes("click") || text.includes("press") || text.includes("touch") || text.includes("send") || text.includes("submit") || text.includes("mandar") || text.includes("enviar")) {
+        let buttonTarget = text.replace(/(click|press|touch|tap|the|button|send|submit)\s+/gi, '').trim();
+        if (!buttonTarget || text.includes("send") || text.includes("submit") || text.includes("mandar") || text.includes("enviar")) {
+            buttonTarget = "send";
+        }
+        const clicked = clickButtonByText(buttonTarget) || clickButtonByText("submit") || clickButtonByText("enviar");
+        if (clicked) {
+            responderVoz("Submitting form.");
+            return true;
+        }
+    }
+
+    // 6. Siguiente campo
+    if (text.includes("next") || text.includes("skip")) {
+        focusNextInput(document.activeElement);
+        responderVoz("Moving to next field.");
+        return true;
+    }
+
+    // 7. Zoom / Tamaño de fuente
+    if (text.includes("zoom in") || text.includes("larger") || text.includes("big text") || text.includes("increase")) {
+        if (typeof changeFontSize === "function") changeFontSize(1);
+        responderVoz("Increasing text size.");
+        return true;
+    }
+
+    if (text.includes("zoom out") || text.includes("smaller") || text.includes("decrease")) {
+        if (typeof changeFontSize === "function") changeFontSize(-1);
+        responderVoz("Decreasing text size.");
+        return true;
+    }
+
+    // 8. Silenciar / Mute
+    if (text.includes("mute") || text.includes("silence")) {
+        if (typeof toggleMuteAssistant === "function") toggleMuteAssistant();
+        responderVoz("Muting voice assistant.");
+        return true;
+    }
+
+    // 9. Temas
+    if (text.includes("dark mode") || text.includes("night")) {
+        if (typeof toggleDarkMode === "function") toggleDarkMode();
         responderVoz("Switching to dark mode.");
         return true;
     }
 
-    if (text.includes("light mode") || text.includes("day mode") || text.includes("lights on") || text.includes("light theme")) {
-        if (typeof toggleDarkMode === "function") toggleDarkMode(false);
-        else document.body.classList.remove('dark-theme');
+    if (text.includes("light mode") || text.includes("day")) {
+        if (typeof toggleDarkMode === "function") toggleDarkMode();
         responderVoz("Switching to light mode.");
         return true;
     }
 
-    // 4. Reset All (Restablecer todo)
-    if (text.includes("reset all") || text.includes("reset settings") || text.includes("reset accessibility") || text.includes("clear options")) {
-        if (typeof resetAccessibility === "function") resetAccessibility();
-        else {
-            document.body.classList.remove('dark-theme', 'high-contrast', 'large-text', 'dyslexia-font', 'more-spacing', 'visible-focus');
-        }
-        responderVoz("Resetting all accessibility settings to default.");
+    // 10. Desplazamiento / Scroll
+    if (text.includes("down")) {
+        if (typeof scrollPage === "function") scrollPage('down');
+        else window.scrollBy({ top: 400, behavior: 'smooth' });
+        responderVoz("Scrolling down.");
         return true;
     }
 
-    // 5. Read Aloud (Leer Página / Contenido)
-    if (text.includes("read aloud") || text.includes("read page") || text.includes("read screen") || text.includes("speak page")) {
-        if (typeof readPageAloud === "function") {
-            readPageAloud();
-        } else {
-            const pageText = document.querySelector('main') ? document.querySelector('main').innerText : document.body.innerText;
-            responderVoz(pageText.substring(0, 300) + "...");
-        }
+    if (text.includes("up")) {
+        if (typeof scrollPage === "function") scrollPage('up');
+        else window.scrollBy({ top: -400, behavior: 'smooth' });
+        responderVoz("Scrolling up.");
         return true;
     }
 
-    // 6. Dyslexia Mode (Fuente para Dislexia)
-    if (text.includes("dyslexia") || text.includes("dyslexic") || text.includes("dyslexia mode") || text.includes("dyslexia font")) {
-        if (typeof toggleDyslexiaMode === "function") toggleDyslexiaMode();
-        else document.body.classList.toggle('dyslexia-font');
-        responderVoz("Toggling dyslexia friendly font.");
-        return true;
-    }
-
-    // 7. More Spacing (Más Espaciado AAA)
-    if (text.includes("more spacing") || text.includes("spacing") || text.includes("increase spacing") || text.includes("triple a")) {
-        if (typeof toggleMoreSpacing === "function") toggleMoreSpacing();
-        else document.body.classList.toggle('more-spacing');
-        responderVoz("Toggling text spacing.");
-        return true;
-    }
-
-    // 8. Visible Focus (Enfoque Visible)
-    if (text.includes("visible focus") || text.includes("focus mode") || text.includes("highlight focus") || text.includes("outline focus")) {
-        if (typeof toggleVisibleFocus === "function") toggleVisibleFocus();
-        else document.body.classList.toggle('visible-focus');
-        responderVoz("Toggling visible outline focus.");
-        return true;
-    }
-
-    // ----------------------------------------------------------------------
-    // 🧭 INFORMACIÓN, NAVEGACIÓN Y SCROLL
-    // ----------------------------------------------------------------------
-
-    // Ubicación
-    if (text.includes("where am i") || text.includes("what page") || text.includes("location")) {
+    // 11. Ubicación y Navegación
+    if (text.includes("where am i") || text.includes("location") || text.includes("where")) {
         announceCurrentPage();
         return true;
     }
 
-    // Buscador de navegación
     for (const [key, targetUrl] of Object.entries(NAV_MAP)) {
         if (text.includes(key)) {
             ejecutarNavegacion(`Opening ${key}`, targetUrl);
@@ -213,58 +349,75 @@ function handleFastLocalCommands(text) {
         }
     }
 
-    // Scrolls
-    if (text.includes("scroll down") || text.includes("go down")) {
-        const factor = (text.includes("double") || text.includes("two") || text.includes("2")) ? 2 : 1;
-        window.scrollBy({ top: 400 * factor, behavior: 'smooth' });
-        responderVoz(factor > 1 ? "Scrolling down twice." : "Scrolling down.");
-        return true;
+    return false;
+}
+
+// AUTO-LLENADO DE FORMULARIOS POR VOZ
+function fillFormFieldByVoice(text) {
+    const activeEl = document.activeElement;
+    const match = text.match(/(?:write|type|put|set)\s+(.+?)(?:\s+in\s+(.+))?$/i);
+    if (!match) return false;
+
+    const valueToFill = match[1].trim();
+    const targetFieldName = match[2] ? match[2].trim().toLowerCase() : null;
+
+    let targetInput = null;
+
+    if (targetFieldName) {
+        const inputs = Array.from(document.querySelectorAll('input, textarea'));
+        targetInput = inputs.find(input => {
+            const name = (input.name || '').toLowerCase();
+            const id = (input.id || '').toLowerCase();
+            const placeholder = (input.placeholder || '').toLowerCase();
+            const label = (input.getAttribute('aria-label') || '').toLowerCase();
+            return name.includes(targetFieldName) || id.includes(targetFieldName) || placeholder.includes(targetFieldName) || label.includes(targetFieldName);
+        });
+    } else if (activeEl && (activeEl.tagName === "INPUT" || activeEl.tagName === "TEXTAREA")) {
+        targetInput = activeEl;
+    } else {
+        targetInput = document.querySelector('input:not([type="hidden"]), textarea');
     }
 
-    if (text.includes("scroll up") || text.includes("go up")) {
-        const factor = (text.includes("double") || text.includes("two") || text.includes("2")) ? 2 : 1;
-        window.scrollBy({ top: -400 * factor, behavior: 'smooth' });
-        responderVoz(factor > 1 ? "Scrolling up twice." : "Scrolling up.");
+    if (targetInput) {
+        setInputValue(targetInput, valueToFill);
+        responderVoz(`Entered ${valueToFill}`);
         return true;
     }
 
     return false;
 }
 
-// PROCESADOR CON GEMINI PARA FRASES MÁS LIBRES
+// PROCESADOR INTELIGENTE DE GEMINI (Comprensión avanzada)
 async function processIntentWithAI(userText) {
     const systemPrompt = `
-    You are Kizi, an energetic, helpful accessibility assistant for Nutrition Express.
-    Map the user's intent to one of the available actions.
+    You are Kizi, an energetic accessibility assistant. Map the user's spoken intent to an action.
+    Note: The user may have poor English pronunciation or accents. Be broad and tolerant in mapping.
 
-    ACCESSIBILITY ACTIONS:
-    - "LARGE_TEXT": User wants larger text, bigger size.
-    - "HIGH_CONTRAST": User wants contrast, sharp mode.
-    - "DARK_MODE": User wants dark mode, night theme.
-    - "LIGHT_MODE": User wants light mode, day theme.
-    - "RESET_ALL": User wants to reset settings.
-    - "READ_ALOUD": User wants page content read aloud.
-    - "DYSLEXIA_MODE": User wants dyslexia friendly mode or font.
-    - "MORE_SPACING": User wants extra spacing or AAA spacing.
-    - "VISIBLE_FOCUS": User wants visible outline focus.
+    ACCESSIBILITY & FORM ACTIONS:
+    - "LARGE_TEXT": User wants larger text/zoom.
+    - "MUTE_ASSISTANT": User wants to mute.
+    - "DARK_MODE": User wants dark mode.
+    - "RESET_ALL": User wants reset settings.
+    - "READ_ALOUD": User wants page content read.
+    - "DYSLEXIA_MODE": User wants dyslexia font.
+    - "MORE_SPACING": User wants text spacing.
+    - "VISIBLE_FOCUS": User wants focus outline.
+    - "OPEN_PANEL": User wants accessibility panel.
+    - "SHOW_COMMANDS": User wants command list.
+    - "CLICK_BUTTON": User wants to submit, send, or click a button. Extract button name in "value".
+    - "SELECT_OPTION": User wants to select dropdown option. Extract option in "value".
+    - "NEXT_FIELD": User wants to jump to next input field.
 
     NAVIGATION TARGET MAPPING:
-    - Home -> "index.php"
-    - Experts -> "expertos1.php"
-    - Plans -> "carpetas.php"
-    - Calculator -> "calculadora.php"
-    - Services -> "servicios.php"
-    - About Us -> "nosotros.php"
-    - Profile -> "perfil.php"
-    - Appointments -> "citas.php"
-    - Food -> "catalogo.php"
-    - Movement -> "catalogo_ejercicio.php"
-    - Sleep -> "catalogo_descanso.php"
+    - Home -> "index.php", Experts -> "expertos1.php", Plans -> "carpetas.php"
+    - Calculator -> "calculadora.php", Services -> "servicios.php", About Us -> "nosotros.php"
+    - Profile -> "perfil.php", Appointments -> "citas.php", Food -> "catalogo.php"
 
     RESPOND STRICTLY WITH RAW JSON:
     {
         "action": "ACTION_NAME" or "NAVIGATE" or "UNKNOWN",
         "target": "target_filename.php" or null,
+        "value": "string value or null",
         "speech_response": "Short energetic response in English stating what you are doing."
     }
     `;
@@ -288,38 +441,35 @@ async function processIntentWithAI(userText) {
 
         switch (parsed.action) {
             case "LARGE_TEXT":
-                if (typeof toggleLargeText === "function") toggleLargeText();
-                else document.body.classList.toggle('large-text');
+                if (typeof changeFontSize === "function") changeFontSize(1);
                 break;
-            case "HIGH_CONTRAST":
-                if (typeof toggleContrast === "function") toggleContrast();
-                else document.body.classList.toggle('high-contrast');
+            case "MUTE_ASSISTANT":
+                if (typeof toggleMuteAssistant === "function") toggleMuteAssistant();
                 break;
             case "DARK_MODE":
-                if (typeof toggleDarkMode === "function") toggleDarkMode(true);
-                else document.body.classList.add('dark-theme');
-                break;
-            case "LIGHT_MODE":
-                if (typeof toggleDarkMode === "function") toggleDarkMode(false);
-                else document.body.classList.remove('dark-theme');
+                if (typeof toggleDarkMode === "function") toggleDarkMode();
                 break;
             case "RESET_ALL":
                 if (typeof resetAccessibility === "function") resetAccessibility();
                 break;
             case "READ_ALOUD":
-                if (typeof readPageAloud === "function") readPageAloud();
+                if (typeof readSelectedText === "function") readSelectedText();
                 break;
-            case "DYSLEXIA_MODE":
-                if (typeof toggleDyslexiaMode === "function") toggleDyslexiaMode();
-                else document.body.classList.toggle('dyslexia-font');
+            case "SHOW_COMMANDS":
+                toggleCommandsModal(true);
                 break;
-            case "MORE_SPACING":
-                if (typeof toggleMoreSpacing === "function") toggleMoreSpacing();
-                else document.body.classList.toggle('more-spacing');
+            case "CLICK_BUTTON":
+                if (parsed.value) clickButtonByText(parsed.value);
+                else clickButtonByText("send");
                 break;
-            case "VISIBLE_FOCUS":
-                if (typeof toggleVisibleFocus === "function") toggleVisibleFocus();
-                else document.body.classList.toggle('visible-focus');
+            case "SELECT_OPTION":
+                const selectElement = document.activeElement && document.activeElement.tagName === 'SELECT'
+                    ? document.activeElement
+                    : document.querySelector('select');
+                if (selectElement && parsed.value) selectOptionByText(selectElement, parsed.value);
+                break;
+            case "NEXT_FIELD":
+                focusNextInput(document.activeElement);
                 break;
             case "NAVIGATE":
                 if (parsed.target) {
@@ -329,27 +479,104 @@ async function processIntentWithAI(userText) {
         }
     } catch (err) {
         console.error("AI Error:", err);
-        responderVoz("I didn't capture that clearly. Try asking to enable dark mode, large text, or go to profile.");
+        responderVoz("I didn't capture that clearly. Remember to say 'Assistant' before your command.");
     }
 }
 
-// AUXILIARES
+// MODAL DE COMANDOS ESTILO VERDE
+function toggleCommandsModal(show) {
+    let modal = document.getElementById('commandsModalOverlay');
+
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'commandsModalOverlay';
+        modal.className = 'commands-modal-overlay';
+        modal.innerHTML = `
+            <div class="commands-modal-card">
+                <button class="commands-modal-close" onclick="toggleCommandsModal(false)">&times;</button>
+                <h3>🎙️ Voice Commands</h3>
+                <p style="font-size: 0.85rem; color: #27ae60; margin-bottom: 10px;">💡 Say <b>"Assistant"</b> first or hold <b>Spacebar</b> to talk.</p>
+                <div class="commands-list">
+                    <div class="command-item"><span>Show list</span> <code>"Assistant show commands"</code></div>
+                    <div class="command-item"><span>Write value</span> <code>"Assistant write [value] in [field]"</code></div>
+                    <div class="command-item"><span>Select option</span> <code>"Assistant select [option]"</code></div>
+                    <div class="command-item"><span>Submit / Send</span> <code>"Assistant click send"</code></div>
+                    <div class="command-item"><span>Next field</span> <code>"Assistant next"</code></div>
+                    <div class="command-item"><span>Stop speech</span> <code>"Assistant stop"</code></div>
+                    <div class="command-item"><span>Zoom in/out</span> <code>"Assistant zoom in / zoom out"</code></div>
+                    <div class="command-item"><span>Toggle theme</span> <code>"Assistant dark mode"</code></div>
+                    <div class="command-item"><span>Mute voice</span> <code>"Assistant mute"</code></div>
+                    <div class="command-item"><span>Scroll screen</span> <code>"Assistant scroll down"</code></div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    if (show) {
+        modal.classList.add('active');
+    } else {
+        modal.classList.remove('active');
+    }
+}
+
+// SUBTÍTULOS Y SÍNTESIS DE VOZ
+function showCaption(text) {
+    let banner = document.getElementById('assistantCaptionBanner');
+    
+    if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'assistantCaptionBanner';
+        banner.className = 'assistant-caption-banner';
+        banner.innerHTML = `<span class="caption-icon"></span><span id="captionText"></span>`;
+        document.body.appendChild(banner);
+    }
+
+    const captionText = document.getElementById('captionText');
+    captionText.textContent = text;
+    banner.classList.add('visible');
+
+    if (captionTimeout) clearTimeout(captionTimeout);
+
+    const displayDuration = Math.max(3500, text.length * 80); 
+    captionTimeout = setTimeout(() => {
+        banner.classList.remove('visible');
+    }, displayDuration);
+}
+
+function hideCaption() {
+    const banner = document.getElementById('assistantCaptionBanner');
+    if (banner) banner.classList.remove('visible');
+}
+
+function responderVoz(mensaje) {
+    showCaption(mensaje);
+
+    if (localStorage.getItem('assistantMuted') === 'enabled') {
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        return;
+    }
+
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(mensaje);
+        utterance.lang = 'en-US';
+        utterance.rate = 1.0;
+        utterance.pitch = 1.1;
+
+        utterance.onend = () => {
+            hideCaption();
+        };
+
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
 function ejecutarNavegacion(mensajeVoz, urlDestino) {
     responderVoz(mensajeVoz);
     setTimeout(() => {
         window.location.href = urlDestino;
     }, 1000);
-}
-
-function responderVoz(mensaje) {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(mensaje);
-        utterance.lang = 'en-US';
-        utterance.rate = 1.05;
-        utterance.pitch = 1.1;
-        window.speechSynthesis.speak(utterance);
-    }
 }
 
 function toggleAssistantState() {
@@ -360,6 +587,7 @@ function toggleAssistantState() {
     } else {
         if (recognitionAssistant) recognitionAssistant.stop();
         if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        hideCaption();
         setMicVisualStatus(false);
     }
 }
@@ -369,10 +597,53 @@ function setMicVisualStatus(isActive, isProcessing = false) {
     if (!btnAcceso) return;
 
     if (isProcessing) {
-        btnAcceso.style.boxShadow = "0 0 0 5px #f39c12, 0 0 15px #f39c12";
+        btnAcceso.style.boxShadow = "0 0 0 5px #27ae60, 0 0 15px #27ae60";
     } else if (isActive) {
         btnAcceso.style.boxShadow = "0 0 0 5px #2ecc71, 0 0 15px #2ecc71";
     } else {
         btnAcceso.style.boxShadow = "";
+    }
+}
+
+// ASISTENCIA UNIVERSAL DE INTERACCIÓN DE DOM
+function setInputValue(element, value) {
+    if (!element) return;
+    element.focus();
+    element.value = value;
+    element.dispatchEvent(new Event('input', { bubbles: true }));
+    element.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+function selectOptionByText(selectElement, textToMatch) {
+    if (!selectElement) return;
+    const search = textToMatch.toLowerCase();
+    
+    for (let option of selectElement.options) {
+        if (option.text.toLowerCase().includes(search) || option.value.toLowerCase().includes(search)) {
+            selectElement.value = option.value;
+            selectElement.dispatchEvent(new Event('change', { bubbles: true }));
+            break;
+        }
+    }
+}
+
+function clickButtonByText(textToMatch) {
+    const search = textToMatch.toLowerCase();
+    const clickables = document.querySelectorAll('button, input[type="button"], input[type="submit"], a, .btn');
+    
+    for (let el of clickables) {
+        if (el.innerText?.toLowerCase().includes(search) || el.value?.toLowerCase().includes(search)) {
+            el.click();
+            return true;
+        }
+    }
+    return false;
+}
+
+function focusNextInput(currentElement) {
+    const inputs = Array.from(document.querySelectorAll('input, select, textarea, button'));
+    const index = inputs.indexOf(currentElement);
+    if (index > -1 && index < inputs.length - 1) {
+        inputs[index + 1].focus();
     }
 }

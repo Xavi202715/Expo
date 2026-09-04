@@ -72,9 +72,9 @@ if (isset($_SESSION['user_id'])) {
                 <a href="citas.php" class="btn-green-fill" style="text-decoration: none; display: inline-block; text-align: center;">
                     <i class="fa-regular fa-calendar-days"></i> Schedule Appointment
                 </a>
-                <a href="tips.php" class="btn-outline-dark" style="text-decoration: none; display: inline-block; text-align: center;">
-                    <i class="fa-solid fa-utensils"></i> View Tips
-                </a>
+            <a href="servicios.php" class="btn-outline-dark">
+    <i class="fa-solid fa-users"></i> Community
+</a>
             </div>
             <div class="hero-badges">
                 <div class="badge-item"><i class="fa-solid fa-users"></i> <span>Inclusive<br>Care</span></div>
@@ -124,7 +124,7 @@ if (isset($_SESSION['user_id'])) {
 
         <div class="q-card">
             <div class="q-icon-box box-blue">
-                <i class="fa-regular fa-book"></i>
+               <i class="fa-solid fa-users"></i>
             </div>
             <div class="q-card-text">
                 <h3>Community</h3>
@@ -319,10 +319,11 @@ if (isset($_SESSION['user_id'])) {
                 <span>Large Text</span>
             </div>
 
-            <div class="access-item" role="button" tabindex="0" onclick="toggleContrast()">
-                <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
-                <span style="font-size: 13px;">High Contrast</span>
-            </div>
+  <!-- Botón dinámico Mute / Unmute Assistant -->
+<div class="access-item" id="muteAssistantBtn" role="button" tabindex="0" onclick="toggleMuteAssistant()">
+    <div class="access-icon"><i id="muteAssistantIcon" class="fa-solid fa-volume-xmark"></i></div>
+    <span id="muteAssistantText">Mute Assistant</span>
+</div>
 
             <div class="access-item" role="button" tabindex="0" onclick="toggleDarkMode()">
                 <div class="access-icon"><i class="fa-solid fa-moon"></i></div>

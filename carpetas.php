@@ -225,10 +225,11 @@
             <span>Large Text</span>
         </div>
 
-        <div class="access-item" role="button" onclick="toggleContrast()">
-            <div class="access-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
-            <span style="font-size: 13px;">High Contrast</span>
-        </div>
+          <!-- Botón dinámico Mute / Unmute Assistant -->
+<div class="access-item" id="muteAssistantBtn" role="button" tabindex="0" onclick="toggleMuteAssistant()">
+    <div class="access-icon"><i id="muteAssistantIcon" class="fa-solid fa-volume-xmark"></i></div>
+    <span id="muteAssistantText">Mute Assistant</span>
+</div>
 
         <!-- Botón Modo Oscuro arreglado -->
         <div class="access-item" role="button" onclick="toggleDarkMode()">
